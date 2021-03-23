@@ -1,0 +1,1119 @@
+digraph lista{ 
+ rankdir=TB;node[shape = box, style = filled, color = white];
+<nodo34948909> [label= "INI"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34948909> -> <nodo46104728>
+<nodo46104728> [label= "LISTINSTR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo12289376>
+<nodo12289376> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12289376> -> <nodo43495525>
+<nodo43495525> [label= "TYPES_OBJECT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43495525> -> <nodo55915408>
+<nodo55915408> [label= "TYPE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43495525> -> <nodo33476626>
+<nodo33476626> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32854180> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33476626> -> <nodo32854180>
+<nodo43495525> -> <nodo27252167>
+<nodo27252167> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43495525> -> <nodo43942917>
+<nodo43942917> [label= "OBJECT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43495525> -> <nodo59941933>
+<nodo59941933> [label= "LISTINSTR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59941933> -> <nodo2606490>
+<nodo2606490> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2606490> -> <nodo23458411>
+<nodo23458411> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23458411> -> <nodo9799115>
+<nodo9799115> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23458411> -> <nodo21083178>
+<nodo21083178> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21083178> -> <nodo55530882>
+<nodo55530882> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55530882> -> <nodo30015890>
+<nodo30015890> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1707556> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30015890> -> <nodo1707556>
+<nodo21083178> -> <nodo15368010>
+<nodo15368010> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo15368010> -> <nodo4094363>
+<nodo4094363> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36849274> [label= "DAT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo4094363> -> <nodo36849274>
+<nodo23458411> -> <nodo63208015>
+<nodo63208015> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23458411> -> <nodo32001227>
+<nodo32001227> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo19575591> [label= "INTEGER"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32001227> -> <nodo19575591>
+<nodo2606490> -> <nodo41962596>
+<nodo41962596> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59941933> -> <nodo42119052>
+<nodo42119052> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo42119052> -> <nodo43527150>
+<nodo43527150> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43527150> -> <nodo56200037>
+<nodo56200037> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43527150> -> <nodo36038289>
+<nodo36038289> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55909147> [label= "NEXT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36038289> -> <nodo55909147>
+<nodo43527150> -> <nodo33420276>
+<nodo33420276> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43527150> -> <nodo32347029>
+<nodo32347029> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo22687807> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32347029> -> <nodo22687807>
+<nodo42119052> -> <nodo2863675>
+<nodo2863675> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59941933> -> <nodo25773083>
+<nodo25773083> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25773083> -> <nodo30631159>
+<nodo30631159> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30631159> -> <nodo7244975>
+<nodo7244975> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30631159> -> <nodo65204782>
+<nodo65204782> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49972132> [label= "PREV"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo65204782> -> <nodo49972132>
+<nodo30631159> -> <nodo47096010>
+<nodo47096010> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30631159> -> <nodo21210914>
+<nodo21210914> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56680499> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21210914> -> <nodo56680499>
+<nodo25773083> -> <nodo40362448>
+<nodo40362448> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43495525> -> <nodo27717712>
+<nodo27717712> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12289376> -> <nodo48132822>
+<nodo48132822> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo30542218>
+<nodo30542218> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30542218> -> <nodo6444509>
+<nodo6444509> [label= "TYPES_OBJECT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6444509> -> <nodo58000584>
+<nodo58000584> [label= "TYPE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6444509> -> <nodo52243212>
+<nodo52243212> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo426867> [label= "LIST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo52243212> -> <nodo426867>
+<nodo6444509> -> <nodo3841804>
+<nodo3841804> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6444509> -> <nodo34576242>
+<nodo34576242> [label= "OBJECT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6444509> -> <nodo42750725>
+<nodo42750725> [label= "LISTINSTR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo42750725> -> <nodo49212206>
+<nodo49212206> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49212206> -> <nodo40256670>
+<nodo40256670> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40256670> -> <nodo26765710>
+<nodo26765710> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40256670> -> <nodo39564799>
+<nodo39564799> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20538874> [label= "HEAD"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39564799> -> <nodo20538874>
+<nodo40256670> -> <nodo50632145>
+<nodo50632145> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40256670> -> <nodo53036123>
+<nodo53036123> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo7563067> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53036123> -> <nodo7563067>
+<nodo49212206> -> <nodo958745>
+<nodo958745> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6444509> -> <nodo8628710>
+<nodo8628710> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30542218> -> <nodo10549531>
+<nodo10549531> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo27836922>
+<nodo27836922> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27836922> -> <nodo49205706>
+<nodo49205706> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49205706> -> <nodo40198173>
+<nodo40198173> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49205706> -> <nodo26239245>
+<nodo26239245> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34826618> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26239245> -> <nodo34826618>
+<nodo49205706> -> <nodo45004109>
+<nodo45004109> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49205706> -> <nodo2383799>
+<nodo2383799> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21454193> [label= "LIST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2383799> -> <nodo21454193>
+<nodo27836922> -> <nodo58870012>
+<nodo58870012> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo60068066>
+<nodo60068066> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60068066> -> <nodo3741682>
+<nodo3741682> [label= "FUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo33675143>
+<nodo33675143> [label= "FUNCTION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo34640832>
+<nodo34640832> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43332040> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34640832> -> <nodo43332040>
+<nodo3741682> -> <nodo54444047>
+<nodo54444047> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo20234383>
+<nodo20234383> [label= "LISTPARAM"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20234383> -> <nodo47891719>
+<nodo47891719> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47891719> -> <nodo28372289>
+<nodo28372289> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47891719> -> <nodo54024015>
+<nodo54024015> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16454088> [label= "VALOR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54024015> -> <nodo16454088>
+<nodo47891719> -> <nodo13869071>
+<nodo13869071> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47891719> -> <nodo57712780>
+<nodo57712780> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49652976> [label= "INTEGER"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo57712780> -> <nodo49652976>
+<nodo20234383> -> <nodo44223604>
+<nodo44223604> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44223604> -> <nodo62468121>
+<nodo62468121> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44223604> -> <nodo25342185>
+<nodo25342185> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26753075> [label= "LISTAUNO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25342185> -> <nodo26753075>
+<nodo44223604> -> <nodo39451090>
+<nodo39451090> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44223604> -> <nodo19515494>
+<nodo19515494> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo41421720> [label= "LIST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo19515494> -> <nodo41421720>
+<nodo3741682> -> <nodo37251161>
+<nodo37251161> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo66824994>
+<nodo66824994> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo64554036>
+<nodo64554036> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44115416> [label= "INTEGER"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64554036> -> <nodo44115416>
+<nodo3741682> -> <nodo61494432>
+<nodo61494432> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo16578980>
+<nodo16578980> [label= "LISTINSTR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16578980> -> <nodo14993092>
+<nodo14993092> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14993092> -> <nodo720107>
+<nodo720107> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo720107> -> <nodo6480969>
+<nodo6480969> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo720107> -> <nodo58328727>
+<nodo58328727> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55196503> [label= "NEWNODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo58328727> -> <nodo55196503>
+<nodo720107> -> <nodo27006480>
+<nodo27006480> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo720107> -> <nodo41731733>
+<nodo41731733> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40041277> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo41731733> -> <nodo40041277>
+<nodo14993092> -> <nodo24827179>
+<nodo24827179> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16578980> -> <nodo22118023>
+<nodo22118023> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo22118023> -> <nodo64844482>
+<nodo64844482> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64844482> -> <nodo46729429>
+<nodo46729429> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64844482> -> <nodo17911681>
+<nodo17911681> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26987408> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17911681> -> <nodo26987408>
+<nodo64844482> -> <nodo41560081>
+<nodo41560081> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64844482> -> <nodo38496415>
+<nodo38496415> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10923418> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38496415> -> <nodo10923418>
+<nodo22118023> -> <nodo31201899>
+<nodo31201899> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo12381635>
+<nodo12381635> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo44325851>
+<nodo44325851> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44325851> -> <nodo63388340>
+<nodo63388340> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63388340> -> <nodo33624151>
+<nodo33624151> [label= "LISTID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33624151> -> <nodo34181910>
+<nodo34181910> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39201736> [label= "NEWNODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34181910> -> <nodo39201736>
+<nodo33624151> -> <nodo17271312>
+<nodo17271312> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21224086> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17271312> -> <nodo21224086>
+<nodo63388340> -> <nodo56799051>
+<nodo56799051> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63388340> -> <nodo41429416>
+<nodo41429416> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63388340> -> <nodo37320431>
+<nodo37320431> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37320431> -> <nodo339559>
+<nodo339559> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3056034> [label= "VALOR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo339559> -> <nodo3056034>
+<nodo63388340> -> <nodo27504314>
+<nodo27504314> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44325851> -> <nodo46212239>
+<nodo46212239> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46212239> -> <nodo13256970>
+<nodo13256970> [label= "IF"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo52203868>
+<nodo52203868> [label= "IF"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo72766>
+<nodo72766> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo72766> -> <nodo654897>
+<nodo654897> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo72766> -> <nodo5894079>
+<nodo5894079> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5894079> -> <nodo53046711>
+<nodo53046711> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53046711> -> <nodo7658356>
+<nodo7658356> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo7658356> -> <nodo1816341>
+<nodo1816341> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16347077> [label= "LISTAUNO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1816341> -> <nodo16347077>
+<nodo53046711> -> <nodo12905972>
+<nodo12905972> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53046711> -> <nodo49044892>
+<nodo49044892> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49044892> -> <nodo38750844>
+<nodo38750844> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38750844> -> <nodo13213278>
+<nodo13213278> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13213278> -> <nodo51810644>
+<nodo51810644> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63642613> [label= "HEAD"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51810644> -> <nodo63642613>
+<nodo38750844> -> <nodo35912612>
+<nodo35912612> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38750844> -> <nodo54778057>
+<nodo54778057> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54778057> -> <nodo23240469>
+<nodo23240469> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23240469> -> <nodo7837633>
+<nodo7837633> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3429838> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo7837633> -> <nodo3429838>
+<nodo54778057> -> <nodo30868550>
+<nodo30868550> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54778057> -> <nodo9381496>
+<nodo9381496> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9381496> -> <nodo17324607>
+<nodo17324607> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21703739> [label= "0"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17324607> -> <nodo21703739>
+<nodo72766> -> <nodo61115925>
+<nodo61115925> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo13172414>
+<nodo13172414> [label= "THEN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo51442863>
+<nodo51442863> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo60332585>
+<nodo60332585> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60332585> -> <nodo6122357>
+<nodo6122357> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6122357> -> <nodo55101221>
+<nodo55101221> [label= "LISTID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55101221> -> <nodo26148945>
+<nodo26148945> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34013913> [label= "LISTAUNO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26148945> -> <nodo34013913>
+<nodo55101221> -> <nodo37689768>
+<nodo37689768> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3663598> [label= "HEAD"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37689768> -> <nodo3663598>
+<nodo6122357> -> <nodo32972388>
+<nodo32972388> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6122357> -> <nodo28316044>
+<nodo28316044> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6122357> -> <nodo53517805>
+<nodo53517805> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53517805> -> <nodo11898202>
+<nodo11898202> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39974954> [label= "NEWNODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11898202> -> <nodo39974954>
+<nodo6122357> -> <nodo24230272>
+<nodo24230272> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo16745860>
+<nodo16745860> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo16495015>
+<nodo16495015> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo13256970> -> <nodo14237410>
+<nodo14237410> [label= "ELSE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14237410> -> <nodo61027830>
+<nodo61027830> [label= "ELSE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14237410> -> <nodo12379565>
+<nodo12379565> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14237410> -> <nodo44307222>
+<nodo44307222> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44307222> -> <nodo63220684>
+<nodo63220684> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63220684> -> <nodo32115247>
+<nodo32115247> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32115247> -> <nodo20601768>
+<nodo20601768> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51198184> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20601768> -> <nodo51198184>
+<nodo32115247> -> <nodo58130472>
+<nodo58130472> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32115247> -> <nodo53412201>
+<nodo53412201> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32115247> -> <nodo10947764>
+<nodo10947764> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10947764> -> <nodo31421019>
+<nodo31421019> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31421019> -> <nodo14353717>
+<nodo14353717> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14353717> -> <nodo62074597>
+<nodo62074597> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21800467> [label= "LISTAUNO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62074597> -> <nodo21800467>
+<nodo31421019> -> <nodo61986480>
+<nodo61986480> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31421019> -> <nodo21007413>
+<nodo21007413> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21007413> -> <nodo54848996>
+<nodo54848996> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23878916> [label= "HEAD"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54848996> -> <nodo23878916>
+<nodo32115247> -> <nodo13583655>
+<nodo13583655> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44307222> -> <nodo55144039>
+<nodo55144039> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55144039> -> <nodo26534308>
+<nodo26534308> [label= "WHILE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo37482183>
+<nodo37482183> [label= "WHILE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo1795329>
+<nodo1795329> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1795329> -> <nodo16157963>
+<nodo16157963> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1795329> -> <nodo11203942>
+<nodo11203942> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11203942> -> <nodo33726620>
+<nodo33726620> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33726620> -> <nodo35104124>
+<nodo35104124> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35104124> -> <nodo47501665>
+<nodo47501665> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24861802> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47501665> -> <nodo24861802>
+<nodo33726620> -> <nodo22429634>
+<nodo22429634> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33726620> -> <nodo540121>
+<nodo540121> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo540121> -> <nodo4861097>
+<nodo4861097> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo4861097> -> <nodo43749873>
+<nodo43749873> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43749873> -> <nodo58204539>
+<nodo58204539> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54078809> [label= "NEXT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo58204539> -> <nodo54078809>
+<nodo4861097> -> <nodo16947234>
+<nodo16947234> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo4861097> -> <nodo18307385>
+<nodo18307385> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18307385> -> <nodo30548742>
+<nodo30548742> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30548742> -> <nodo6503226>
+<nodo6503226> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo58529038> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6503226> -> <nodo58529038>
+<nodo18307385> -> <nodo56999299>
+<nodo56999299> [label= "<>"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18307385> -> <nodo43231651>
+<nodo43231651> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43231651> -> <nodo53540541>
+<nodo53540541> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12102828> [label= "0"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53540541> -> <nodo12102828>
+<nodo1795329> -> <nodo41816592>
+<nodo41816592> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo40805010>
+<nodo40805010> [label= "DO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo31700771>
+<nodo31700771> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo16871484>
+<nodo16871484> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16871484> -> <nodo17625630>
+<nodo17625630> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17625630> -> <nodo24412946>
+<nodo24412946> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24412946> -> <nodo18389930>
+<nodo18389930> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31291646> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18389930> -> <nodo31291646>
+<nodo24412946> -> <nodo13189358>
+<nodo13189358> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24412946> -> <nodo51595365>
+<nodo51595365> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24412946> -> <nodo61705107>
+<nodo61705107> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo61705107> -> <nodo18475057>
+<nodo18475057> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18475057> -> <nodo32057793>
+<nodo32057793> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32057793> -> <nodo20084682>
+<nodo20084682> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46544415> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20084682> -> <nodo46544415>
+<nodo18475057> -> <nodo16246551>
+<nodo16246551> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18475057> -> <nodo12001237>
+<nodo12001237> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12001237> -> <nodo40902273>
+<nodo40902273> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32576140> [label= "NEXT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40902273> -> <nodo32576140>
+<nodo24412946> -> <nodo24749807>
+<nodo24749807> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo21421675>
+<nodo21421675> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26534308> -> <nodo58577354>
+<nodo58577354> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44307222> -> <nodo57434139>
+<nodo57434139> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo57434139> -> <nodo47145209>
+<nodo47145209> [label= "LISTID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47145209> -> <nodo21653700>
+<nodo21653700> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60665573> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21653700> -> <nodo60665573>
+<nodo47145209> -> <nodo9119245>
+<nodo9119245> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14964341> [label= "NEXT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9119245> -> <nodo14964341>
+<nodo57434139> -> <nodo461342>
+<nodo461342> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo57434139> -> <nodo4152081>
+<nodo4152081> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo57434139> -> <nodo37368736>
+<nodo37368736> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37368736> -> <nodo774306>
+<nodo774306> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6968762> [label= "NEWNODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo774306> -> <nodo6968762>
+<nodo57434139> -> <nodo62718864>
+<nodo62718864> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44307222> -> <nodo27598869>
+<nodo27598869> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27598869> -> <nodo47063234>
+<nodo47063234> [label= "LISTID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47063234> -> <nodo20915929>
+<nodo20915929> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo54025633> [label= "NEWNODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20915929> -> <nodo54025633>
+<nodo47063234> -> <nodo16468652>
+<nodo16468652> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14000148> [label= "PREV"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16468652> -> <nodo14000148>
+<nodo27598869> -> <nodo58892473>
+<nodo58892473> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27598869> -> <nodo60270212>
+<nodo60270212> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27598869> -> <nodo5560998>
+<nodo5560998> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5560998> -> <nodo50048984>
+<nodo50048984> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47787675> [label= "LAST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50048984> -> <nodo47787675>
+<nodo27598869> -> <nodo27435897>
+<nodo27435897> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14237410> -> <nodo45596481>
+<nodo45596481> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14237410> -> <nodo7715150>
+<nodo7715150> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44325851> -> <nodo2327487>
+<nodo2327487> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2327487> -> <nodo20947391>
+<nodo20947391> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20947391> -> <nodo54308798>
+<nodo54308798> [label= "EXIT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20947391> -> <nodo19017142>
+<nodo19017142> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20947391> -> <nodo36936550>
+<nodo36936550> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36936550> -> <nodo63993496>
+<nodo63993496> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39070558> [label= "LISTAUNO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63993496> -> <nodo39070558>
+<nodo20947391> -> <nodo16090703>
+<nodo16090703> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20947391> -> <nodo10598606>
+<nodo10598606> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo28278595>
+<nodo28278595> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3741682> -> <nodo53180767>
+<nodo53180767> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo8864859>
+<nodo8864859> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8864859> -> <nodo12674872>
+<nodo12674872> [label= "PROCEDURE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo46964992>
+<nodo46964992> [label= "PROCEDURE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo20031746>
+<nodo20031746> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46067993> [label= "RECORRIDOLISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20031746> -> <nodo46067993>
+<nodo12674872> -> <nodo11958757>
+<nodo11958757> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo40519951>
+<nodo40519951> [label= "LISTPARAM"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo40519951> -> <nodo29135240>
+<nodo29135240> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29135240> -> <nodo60890569>
+<nodo60890569> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29135240> -> <nodo11144211>
+<nodo11144211> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33189039> [label= "RAIZ"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11144211> -> <nodo33189039>
+<nodo29135240> -> <nodo30265903>
+<nodo30265903> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29135240> -> <nodo3957675>
+<nodo3957675> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35619075> [label= "LIST"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3957675> -> <nodo35619075>
+<nodo12674872> -> <nodo52136226>
+<nodo52136226> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo66572856>
+<nodo66572856> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo62284798>
+<nodo62284798> [label= "LISTINSTR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62284798> -> <nodo23692278>
+<nodo23692278> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo23692278> -> <nodo11903911>
+<nodo11903911> [label= "DECLARACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11903911> -> <nodo40026340>
+<nodo40026340> [label= "VAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11903911> -> <nodo24692740>
+<nodo24692740> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20908074> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24692740> -> <nodo20908074>
+<nodo11903911> -> <nodo53954942>
+<nodo53954942> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11903911> -> <nodo15832433>
+<nodo15832433> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8274172> [label= "NODE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo15832433> -> <nodo8274172>
+<nodo23692278> -> <nodo7358688>
+<nodo7358688> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo66228199>
+<nodo66228199> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo59182880>
+<nodo59182880> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59182880> -> <nodo62883878>
+<nodo62883878> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62883878> -> <nodo29083993>
+<nodo29083993> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29083993> -> <nodo60429346>
+<nodo60429346> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6993202> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60429346> -> <nodo6993202>
+<nodo29083993> -> <nodo62938818>
+<nodo62938818> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29083993> -> <nodo29578451>
+<nodo29578451> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29083993> -> <nodo64879470>
+<nodo64879470> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64879470> -> <nodo47044325>
+<nodo47044325> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47044325> -> <nodo20745743>
+<nodo20745743> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20745743> -> <nodo52493967>
+<nodo52493967> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2683661> [label= "RAIZ"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo52493967> -> <nodo2683661>
+<nodo47044325> -> <nodo24152954>
+<nodo24152954> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47044325> -> <nodo16049999>
+<nodo16049999> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16049999> -> <nodo10232270>
+<nodo10232270> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24981566> [label= "HEAD"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10232270> -> <nodo24981566>
+<nodo29083993> -> <nodo23507505>
+<nodo23507505> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59182880> -> <nodo10240961>
+<nodo10240961> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10240961> -> <nodo25059790>
+<nodo25059790> [label= "WHILE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo24211521>
+<nodo24211521> [label= "WHILE"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo16577099>
+<nodo16577099> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16577099> -> <nodo14976165>
+<nodo14976165> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16577099> -> <nodo567760>
+<nodo567760> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo567760> -> <nodo5109846>
+<nodo5109846> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5109846> -> <nodo45988614>
+<nodo45988614> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo45988614> -> <nodo11244347>
+<nodo11244347> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34090260> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo11244347> -> <nodo34090260>
+<nodo5109846> -> <nodo38376892>
+<nodo38376892> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5109846> -> <nodo9847715>
+<nodo9847715> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9847715> -> <nodo21520579>
+<nodo21520579> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21520579> -> <nodo59467483>
+<nodo59467483> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo65445301> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59467483> -> <nodo65445301>
+<nodo9847715> -> <nodo52136803>
+<nodo52136803> [label= "<>"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9847715> -> <nodo66578044>
+<nodo66578044> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo66578044> -> <nodo62331491>
+<nodo62331491> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24112512> [label= "0"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62331491> -> <nodo24112512>
+<nodo16577099> -> <nodo15686020>
+<nodo15686020> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo6956456>
+<nodo6956456> [label= "DO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo62608109>
+<nodo62608109> [label= "BEGIN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo26602077>
+<nodo26602077> [label= "LISTINSTR2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26602077> -> <nodo38092103>
+<nodo38092103> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38092103> -> <nodo7284614>
+<nodo7284614> [label= "WRITELN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38092103> -> <nodo65561530>
+<nodo65561530> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38092103> -> <nodo53182860>
+<nodo53182860> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53182860> -> <nodo8883693>
+<nodo8883693> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8883693> -> <nodo12844374>
+<nodo12844374> [label= "CADENA2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48490504> [label= "'VALOR: ACTUAL'"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12844374> -> <nodo48490504>
+<nodo53182860> -> <nodo33761356>
+<nodo33761356> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33761356> -> <nodo35416756>
+<nodo35416756> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35416756> -> <nodo50315352>
+<nodo50315352> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50315352> -> <nodo50184984>
+<nodo50184984> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49011679> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50184984> -> <nodo49011679>
+<nodo35416756> -> <nodo38451933>
+<nodo38451933> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35416756> -> <nodo10523083>
+<nodo10523083> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10523083> -> <nodo27598891>
+<nodo27598891> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47063428> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27598891> -> <nodo47063428>
+<nodo38092103> -> <nodo20917673>
+<nodo20917673> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38092103> -> <nodo54041329>
+<nodo54041329> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26602077> -> <nodo16609919>
+<nodo16609919> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16609919> -> <nodo15271547>
+<nodo15271547> [label= "WRITELN"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16609919> -> <nodo3226198>
+<nodo3226198> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16609919> -> <nodo29035785>
+<nodo29035785> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29035785> -> <nodo59995477>
+<nodo59995477> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59995477> -> <nodo3088388>
+<nodo3088388> [label= "CADENA2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27795493> [label= "'VALOR: ANTERIOR'"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3088388> -> <nodo27795493>
+<nodo29035785> -> <nodo48832851>
+<nodo48832851> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48832851> -> <nodo36842478>
+<nodo36842478> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36842478> -> <nodo63146847>
+<nodo63146847> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63146847> -> <nodo31450711>
+<nodo31450711> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo14620943> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31450711> -> <nodo14620943>
+<nodo36842478> -> <nodo64479624>
+<nodo64479624> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36842478> -> <nodo43445707>
+<nodo43445707> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43445707> -> <nodo55467050>
+<nodo55467050> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55467050> -> <nodo29441404>
+<nodo29441404> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29441404> -> <nodo63646052>
+<nodo63646052> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35943562> [label= "PREV"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63646052> -> <nodo35943562>
+<nodo55467050> -> <nodo55056607>
+<nodo55056607> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55467050> -> <nodo25747420>
+<nodo25747420> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25747420> -> <nodo30400195>
+<nodo30400195> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5166299> [label= "DATA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30400195> -> <nodo5166299>
+<nodo16609919> -> <nodo46496694>
+<nodo46496694> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16609919> -> <nodo15817070>
+<nodo15817070> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo26602077> -> <nodo8135907>
+<nodo8135907> [label= "INSTRUCCION2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8135907> -> <nodo6114302>
+<nodo6114302> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6114302> -> <nodo55028720>
+<nodo55028720> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25496434> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo55028720> -> <nodo25496434>
+<nodo6114302> -> <nodo28141317>
+<nodo28141317> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6114302> -> <nodo51945267>
+<nodo51945267> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6114302> -> <nodo64854219>
+<nodo64854219> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64854219> -> <nodo46817064>
+<nodo46817064> [label= "ASIGNACIONOB"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46817064> -> <nodo18700393>
+<nodo18700393> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18700393> -> <nodo34085817>
+<nodo34085817> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo38336904> [label= "TEMP"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34085817> -> <nodo38336904>
+<nodo46817064> -> <nodo9487824>
+<nodo9487824> [label= "."fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46817064> -> <nodo18281552>
+<nodo18281552> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18281552> -> <nodo30316242>
+<nodo30316242> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo4410728> [label= "NEXT"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30316242> -> <nodo4410728>
+<nodo6114302> -> <nodo39696553>
+<nodo39696553> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo21724664>
+<nodo21724664> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25059790> -> <nodo61304253>
+<nodo61304253> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo14867369>
+<nodo14867369> [label= "END"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12674872> -> <nodo66697461>
+<nodo66697461> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo63406242>
+<nodo63406242> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63406242> -> <nodo33785274>
+<nodo33785274> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33785274> -> <nodo35632012>
+<nodo35632012> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo52252659> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35632012> -> <nodo52252659>
+<nodo33785274> -> <nodo511887>
+<nodo511887> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33785274> -> <nodo4606985>
+<nodo4606985> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33785274> -> <nodo41462866>
+<nodo41462866> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo41462866> -> <nodo37621475>
+<nodo37621475> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37621475> -> <nodo3048957>
+<nodo3048957> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27440617> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3048957> -> <nodo27440617>
+<nodo37621475> -> <nodo45638969>
+<nodo45638969> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37621475> -> <nodo8097541>
+<nodo8097541> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8097541> -> <nodo5769005>
+<nodo5769005> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5769005> -> <nodo51921052>
+<nodo51921052> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo64636290> [label= "1"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51921052> -> <nodo64636290>
+<nodo8097541> -> <nodo44855704>
+<nodo44855704> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44855704> -> <nodo1048160>
+<nodo1048160> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9433441> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1048160> -> <nodo9433441>
+<nodo37621475> -> <nodo17792110>
+<nodo17792110> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo33785274> -> <nodo25911262>
+<nodo25911262> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo31874772>
+<nodo31874772> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31874772> -> <nodo18437496>
+<nodo18437496> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18437496> -> <nodo31719739>
+<nodo31719739> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17042198> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31719739> -> <nodo17042198>
+<nodo18437496> -> <nodo19162058>
+<nodo19162058> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18437496> -> <nodo38240801>
+<nodo38240801> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18437496> -> <nodo8622890>
+<nodo8622890> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo8622890> -> <nodo10497152>
+<nodo10497152> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10497152> -> <nodo27365507>
+<nodo27365507> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44962972> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27365507> -> <nodo44962972>
+<nodo10497152> -> <nodo2013564>
+<nodo2013564> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10497152> -> <nodo18122076>
+<nodo18122076> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18122076> -> <nodo28880957>
+<nodo28880957> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo28880957> -> <nodo58602024>
+<nodo58602024> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo57656175> [label= "2"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo58602024> -> <nodo57656175>
+<nodo18122076> -> <nodo49143529>
+<nodo49143529> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49143529> -> <nodo39638585>
+<nodo39638585> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21202951> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39638585> -> <nodo21202951>
+<nodo10497152> -> <nodo56608836>
+<nodo56608836> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18437496> -> <nodo39717481>
+<nodo39717481> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo21913016>
+<nodo21913016> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21913016> -> <nodo62999416>
+<nodo62999416> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62999416> -> <nodo30123835>
+<nodo30123835> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2679067> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30123835> -> <nodo2679067>
+<nodo62999416> -> <nodo24111608>
+<nodo24111608> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62999416> -> <nodo15677883>
+<nodo15677883> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62999416> -> <nodo6883221>
+<nodo6883221> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo6883221> -> <nodo61948991>
+<nodo61948991> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo61948991> -> <nodo20670010>
+<nodo20670010> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51812368> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20670010> -> <nodo51812368>
+<nodo61948991> -> <nodo63658128>
+<nodo63658128> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo61948991> -> <nodo36052245>
+<nodo36052245> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36052245> -> <nodo56034750>
+<nodo56034750> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56034750> -> <nodo34550710>
+<nodo34550710> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo42520941> [label= "3"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34550710> -> <nodo42520941>
+<nodo36052245> -> <nodo47144157>
+<nodo47144157> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47144157> -> <nodo21644229>
+<nodo21644229> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60580335> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21644229> -> <nodo60580335>
+<nodo61948991> -> <nodo8352109>
+<nodo8352109> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62999416> -> <nodo8060118>
+<nodo8060118> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo5432205>
+<nodo5432205> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5432205> -> <nodo48889850>
+<nodo48889850> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48889850> -> <nodo37355470>
+<nodo37355470> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo654914> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37355470> -> <nodo654914>
+<nodo48889850> -> <nodo5894231>
+<nodo5894231> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48889850> -> <nodo53048087>
+<nodo53048087> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48889850> -> <nodo7670737>
+<nodo7670737> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo7670737> -> <nodo1927776>
+<nodo1927776> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1927776> -> <nodo17349988>
+<nodo17349988> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21932166> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo17349988> -> <nodo21932166>
+<nodo1927776> -> <nodo63171767>
+<nodo63171767> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1927776> -> <nodo31674992>
+<nodo31674992> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo31674992> -> <nodo16639474>
+<nodo16639474> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo16639474> -> <nodo15537542>
+<nodo15537542> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5620158> [label= "4"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo15537542> -> <nodo5620158>
+<nodo31674992> -> <nodo50581426>
+<nodo50581426> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50581426> -> <nodo52579650>
+<nodo52579650> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3454809> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo52579650> -> <nodo3454809>
+<nodo1927776> -> <nodo31093287>
+<nodo31093287> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48889850> -> <nodo11404133>
+<nodo11404133> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo35528341>
+<nodo35528341> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo35528341> -> <nodo51319614>
+<nodo51319614> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51319614> -> <nodo59223347>
+<nodo59223347> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo63248075> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo59223347> -> <nodo63248075>
+<nodo51319614> -> <nodo32361769>
+<nodo32361769> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51319614> -> <nodo22820469>
+<nodo22820469> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51319614> -> <nodo4057632>
+<nodo4057632> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo4057632> -> <nodo36518691>
+<nodo36518691> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36518691> -> <nodo60232767>
+<nodo60232767> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5223998> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo60232767> -> <nodo5223998>
+<nodo36518691> -> <nodo47015983>
+<nodo47015983> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo36518691> -> <nodo20490669>
+<nodo20490669> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20490669> -> <nodo50198296>
+<nodo50198296> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50198296> -> <nodo49131481>
+<nodo49131481> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39530145> [label= "5"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo49131481> -> <nodo39530145>
+<nodo20490669> -> <nodo20226985>
+<nodo20226985> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20226985> -> <nodo47825138>
+<nodo47825138> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo27773061> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47825138> -> <nodo27773061>
+<nodo36518691> -> <nodo48630964>
+<nodo48630964> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo51319614> -> <nodo35025494>
+<nodo35025494> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo46793998>
+<nodo46793998> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46793998> -> <nodo18492804>
+<nodo18492804> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18492804> -> <nodo32217513>
+<nodo32217513> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21522166> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo32217513> -> <nodo21522166>
+<nodo18492804> -> <nodo59481773>
+<nodo59481773> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18492804> -> <nodo65573909>
+<nodo65573909> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18492804> -> <nodo53294272>
+<nodo53294272> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo53294272> -> <nodo9886408>
+<nodo9886408> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9886408> -> <nodo21868813>
+<nodo21868813> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo62601592> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo21868813> -> <nodo62601592>
+<nodo9886408> -> <nodo26543418>
+<nodo26543418> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo9886408> -> <nodo37564172>
+<nodo37564172> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo37564172> -> <nodo2533231>
+<nodo2533231> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2533231> -> <nodo22799085>
+<nodo22799085> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo3865173> [label= "6"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo22799085> -> <nodo3865173>
+<nodo37564172> -> <nodo34786562>
+<nodo34786562> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo34786562> -> <nodo44643603>
+<nodo44643603> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo66248115> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44643603> -> <nodo66248115>
+<nodo9886408> -> <nodo59362130>
+<nodo59362130> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo18492804> -> <nodo64497130>
+<nodo64497130> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo43603258>
+<nodo43603258> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo43603258> -> <nodo56885004>
+<nodo56885004> [label= "RETURNFUNCION_ASIGNACION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56885004> -> <nodo42202994>
+<nodo42202994> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo44282627> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo42202994> -> <nodo44282627>
+<nodo56885004> -> <nodo62999330>
+<nodo62999330> [label= ":"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56885004> -> <nodo30123063>
+<nodo30123063> [label= "="fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56885004> -> <nodo2672115>
+<nodo2672115> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo2672115> -> <nodo24049039>
+<nodo24049039> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24049039> -> <nodo15114764>
+<nodo15114764> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo1815156> [label= "INSERTAR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo15114764> -> <nodo1815156>
+<nodo24049039> -> <nodo16336406>
+<nodo16336406> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24049039> -> <nodo12809933>
+<nodo12809933> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo12809933> -> <nodo48180537>
+<nodo48180537> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo48180537> -> <nodo30971651>
+<nodo30971651> [label= "NUMERO"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo10309404> [label= "7"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo30971651> -> <nodo10309404>
+<nodo12809933> -> <nodo25675773>
+<nodo25675773> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25675773> -> <nodo29755367>
+<nodo29755367> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo66471715> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo29755367> -> <nodo66471715>
+<nodo24049039> -> <nodo61374531>
+<nodo61374531> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56885004> -> <nodo15499871>
+<nodo15499871> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo46104728> -> <nodo5281111>
+<nodo5281111> [label= "INSTRUCCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5281111> -> <nodo47530006>
+<nodo47530006> [label= "LLAMADAFUNCION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47530006> -> <nodo25116876>
+<nodo25116876> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo24725298> [label= "RECORRIDOLISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo25116876> -> <nodo24725298>
+<nodo47530006> -> <nodo21201098>
+<nodo21201098> [label= "("fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo47530006> -> <nodo56592155>
+<nodo56592155> [label= "LISTEXPR"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo56592155> -> <nodo39567352>
+<nodo39567352> [label= "EXPRESION"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo39567352> -> <nodo20561848>
+<nodo20561848> [label= "ID"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo50838910> [label= "LISTA"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo20561848> -> <nodo50838910>
+<nodo47530006> -> <nodo54897010>
+<nodo54897010> [label= ")"fillcolor="LightBlue", style ="filled", shape="box"];
+ <nodo5281111> -> <nodo24311045>
+<nodo24311045> [label= ";"fillcolor="LightBlue", style ="filled", shape="box"];
+ 
+}
