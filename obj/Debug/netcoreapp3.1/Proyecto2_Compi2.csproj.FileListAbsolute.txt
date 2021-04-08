@@ -5,7 +5,6 @@ C:\Users\User\source\repos\Proyecto2_Compi2\bin\Debug\netcoreapp3.1\Proyecto2_Co
 C:\Users\User\source\repos\Proyecto2_Compi2\bin\Debug\netcoreapp3.1\Proyecto2_Compi2.dll
 C:\Users\User\source\repos\Proyecto2_Compi2\bin\Debug\netcoreapp3.1\Proyecto2_Compi2.pdb
 C:\Users\User\source\repos\Proyecto2_Compi2\bin\Debug\netcoreapp3.1\Irony.dll
-C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.csprojAssemblyReference.cache
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto1_Compi2.Form1.resources
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.csproj.GenerateResource.cache
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.AssemblyInfoInputs.cache

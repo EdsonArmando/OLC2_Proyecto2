@@ -22,7 +22,7 @@ namespace Proyecto1_Compi2.Expresiones
 
         public override Simbolo.EnumTipoDato getTipo()
         {
-            return this.tipo;
+            return Simbolo.EnumTipoDato.NULL;
         }
 
     }

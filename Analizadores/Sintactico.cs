@@ -4,6 +4,8 @@ using Proyecto1_Compi2.Entornos;
 using Proyecto1_Compi2.Expresiones;
 using Proyecto1_Compi2.Instrucciones;
 using Proyecto1_Compi2.Reportes;
+using Proyecto2_Compi2.Code3D;
+using Proyecto2_Compi2.Expresiones;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,17 +43,20 @@ namespace Proyecto1_Compi2.Analizadores
             }
             else
             {
-                GraficarAST graficar = new GraficarAST(raiz);
+                /*GraficarAST graficar = new GraficarAST(raiz);
                 graficar.recorrerRaiz(raiz);
-                graficar.generarArchivo();
+                graficar.generarArchivo();*/
                 Form1.salidaConsola.AppendText("Se analizo correctamente\n");
                 LinkedList<Abstracto.Instruccion> AST = Listainstrucciones(raiz.ChildNodes.ElementAt(3));
                 Entornos.Entorno ent = new Entornos.Entorno(null);
-                System.Text.StringBuilder entradaTradducida = new System.Text.StringBuilder();
+                Generator3D.getInstance().getCode().Clear();               
                 foreach (Abstracto.Instruccion ins in AST)
                 {
                     ins.Compilar(ent, "global", this);
                 }
+                StringBuilder encabezado = Generator3D.getInstance().agregarEncabezado();
+                StringBuilder code = Generator3D.getInstance().getCode();
+                Form1.salidaConsola.AppendText(encabezado.ToString() + "\n"+code.ToString());
             }
         }
 
@@ -87,7 +92,7 @@ namespace Proyecto1_Compi2.Analizadores
             archivo.Close();
         }
 
-        internal void traducir(string entrada)
+        /*internal void traducir(string entrada)
         {
             errores.Clear();
             types.Clear();
@@ -122,7 +127,7 @@ namespace Proyecto1_Compi2.Analizadores
                     ins.Compilar(ent,"global",null);
                 }           
             }
-        }
+        }*/
 
         private Expresion[,] Dimensiones(ParseTreeNode actual, Expresion[,] valores)
         {
@@ -302,7 +307,7 @@ namespace Proyecto1_Compi2.Analizadores
                         return temp;
                     }
                 case "types_object":
-                    Singleton.getInstance().insertType(new Type_Object(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], Listainstrucciones(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(4))));
+                    instrucciones.AddLast(new Type_Object(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], Listainstrucciones(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(4))));
                     return null;
                 case "graficar_ts":
                     instrucciones.AddLast(new GraficarTS());
@@ -378,11 +383,11 @@ namespace Proyecto1_Compi2.Analizadores
                             {
                                 if (actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).Term.Name == "listexpr")
                                 {
-                                    instrucciones.AddLast(new Declaracion(Simbolo.EnumTipoDato.ARRAY, devListExpresiones(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1)), null, 1, 1, "var", actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(3).ToString().Split(' ')[0].ToLower(), ""));
+                                    instrucciones.AddLast(new Declaracion(Simbolo.EnumTipoDato.OBJETO_TYPE, devListExpresiones(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1)), null, 1, 1, "var", actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(3).ToString().Split(' ')[0].ToLower(), ""));
                                 }
                                 else
                                 {
-                                    instrucciones.AddLast(new Declaracion(Simbolo.EnumTipoDato.ARRAY, actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0].ToLower(), null, 1, 1, "var", actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(3).ToString().Split(' ')[0].ToLower(), ""));
+                                    instrucciones.AddLast(new Declaracion(Simbolo.EnumTipoDato.OBJETO_TYPE, actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0].ToLower(), null, 1, 1, "var", actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(3).ToString().Split(' ')[0].ToLower(), ""));
                                 }
                             }
 
@@ -558,13 +563,13 @@ namespace Proyecto1_Compi2.Analizadores
                 }
                 else
                 {
-                    return new Arimetica(tokenValor, Arimetica.Tipo_operacion.IDENTIFICADOR);
+                    return new AccesoId(null, null,tokenValor);
                 }
             }else if (actual.ChildNodes.Count == 2)
             {
                 if (actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0] == "not")
                 {
-                    return new Arimetica(expresion_numerica(actual.ChildNodes.ElementAt(1)), Arimetica.Tipo_operacion.DIFERENTE);
+                    return new Not(expresion_numerica(actual.ChildNodes.ElementAt(1)), null);
                 }
                 else
                 {
@@ -586,7 +591,7 @@ namespace Proyecto1_Compi2.Analizadores
             }
             else if (tokenOperador.Equals("<>"))
             {
-                return new Arimetica(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.DIFERENCIACION);
+                return new Diferenciacion(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)));
             }
             else if (tokenOperador.Equals("="))
             {
@@ -594,7 +599,7 @@ namespace Proyecto1_Compi2.Analizadores
             }
             else if (tokenOperador.Equals("and"))
             {
-                return new Arimetica(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.AND);
+                return new AND(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)));
             }
             else if (tokenOperador.Equals("mod"))
             {
@@ -602,7 +607,7 @@ namespace Proyecto1_Compi2.Analizadores
             }
             else if (tokenOperador.Equals("or"))
             {
-                return new Arimetica(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.OR);
+                return new Or(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)));
             }
             else if (tokenOperador.Equals("^"))
             {
@@ -610,7 +615,7 @@ namespace Proyecto1_Compi2.Analizadores
             }
             else if (tokenOperador.Equals("not"))
             {
-                return new Arimetica(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.DIFERENTE);
+                return new Not(expresion_logica(actual.ChildNodes.ElementAt(0)), expresion_logica(actual.ChildNodes.ElementAt(2)));
             }
             else if (tokenOperador.Equals(">"))
             {
@@ -632,7 +637,7 @@ namespace Proyecto1_Compi2.Analizadores
                     case "+":
                         return new Arimetica(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.SUMA);
                     case ".":
-                        return new AccesoObject(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)));
+                        return new AccesoId(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)),null);
                     case "pow":
                         return new Arimetica(expresion_numerica(actual.ChildNodes.ElementAt(0)), expresion_numerica(actual.ChildNodes.ElementAt(2)), Arimetica.Tipo_operacion.POTENCIA);
                     case "-":
@@ -658,7 +663,7 @@ namespace Proyecto1_Compi2.Analizadores
             {
                 if (actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0] == "not")
                 {
-                    return new Arimetica(expresion_numerica(actual.ChildNodes.ElementAt(1)), Arimetica.Tipo_operacion.DIFERENTE);
+                    return new Not(expresion_numerica(actual.ChildNodes.ElementAt(1)),null);
                 }
                 else
                 {
@@ -692,12 +697,12 @@ namespace Proyecto1_Compi2.Analizadores
                 if (tipo.Name == "ID")
                 {
                     string tokenValor = actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0];
-                    return new Arimetica(tokenValor, Arimetica.Tipo_operacion.IDENTIFICADOR);
+                    return new AccesoId(null, null,tokenValor);
                 }
                 else if (tipo.Name == "cadena")
                 {
                     String tokenValor = actual.ChildNodes.ElementAt(0).ToString();
-                    return new Arimetica(tokenValor.Remove(tokenValor.ToCharArray().Length - 9, 9), Arimetica.Tipo_operacion.CADENA);
+                    return new Cadena(Simbolo.EnumTipoDato.STRING,tokenValor.Remove(tokenValor.ToCharArray().Length - 9, 9));
                 }
                 else if (tipo.Name == "asignacionob")
                 {
@@ -706,7 +711,7 @@ namespace Proyecto1_Compi2.Analizadores
                 else if (tipo.Name == "cadena2")
                 {
                     String tokenValor = actual.ChildNodes.ElementAt(0).ToString();
-                    return new Arimetica(tokenValor.Remove(tokenValor.ToCharArray().Length - 10, 10), Arimetica.Tipo_operacion.CADENA);
+                    return new Cadena(Simbolo.EnumTipoDato.STRING,tokenValor.Remove(tokenValor.ToCharArray().Length - 10, 10));
                 }
                 else if (tipo.Name.ToLower() == "llamadafuncion")
                 {
@@ -772,7 +777,7 @@ namespace Proyecto1_Compi2.Analizadores
                 {
                     if (temp.ChildNodes.ElementAt(0).ChildNodes.Count != 3)
                     {
-                        ListaExpre.AddLast(new Expresiones.Id(temp.ChildNodes.ElementAt(0).ToString().Split(' ')[0]));
+                        ListaExpre.AddLast(new AccesoId(null, null, temp.ChildNodes.ElementAt(0).ToString().Split(' ')[0]));
                     }
                 }
                 else if (tipo.ErrorAlias == "cadena2")

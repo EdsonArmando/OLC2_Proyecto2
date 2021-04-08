@@ -1,5 +1,6 @@
 ﻿using Proyecto1_Compi2.Analizadores;
 using Proyecto1_Compi2.Instrucciones;
+using Proyecto2_Compi2.Entornos;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,18 +12,24 @@ namespace Proyecto1_Compi2.Entornos
     class Entorno 
     {
         public Hashtable tablaSimbolos;
+        public Hashtable types;
+        public Hashtable funciones;
         public Entorno anterior;
         //Tamanio Funcion
-        int tamanio;
-        String Break;
-        String Continue;
-        String Return;
-        String prop;
+        public int pos;
+        public String Break;
+        public String Continue;
+        public String Return;
+        public String prop;
+        public SimboloFuncion actualFunc;
         public Entorno(Entorno entornoAnterior) : base()
         {
             this.tablaSimbolos = new Hashtable();
+            this.types = new Hashtable();
+            this.funciones = new Hashtable();
             this.anterior = entornoAnterior;
-            this.tamanio = 0;
+            this.pos = 0;
+            this.prop = "main";
             // llamada del constructor de la clase padre
         }
         //Recorrer Tabla
@@ -36,6 +43,18 @@ namespace Proyecto1_Compi2.Entornos
         public bool existeVariable(String id)
         {
             return this.tablaSimbolos.ContainsKey(id.ToLower());
+        }
+        //Entorno para la Funcion
+        public void setEnviorementFunc(string prop, SimboloFuncion actualFunc , String ret)
+        {
+            this.pos = 1; //1 porque la posicion 0 es para el return
+            this.prop = prop;
+            this.Return = ret;
+            this.actualFunc = actualFunc;
+        }
+        //Obtener Funcion
+        public SimboloFuncion getFuncion(String id) {
+            return (SimboloFuncion)this.funciones[id.ToLower()];
         }
         //Obtener la variable del entorno
         public Simbolo obtener(string id, Entorno entorno)
@@ -57,6 +76,47 @@ namespace Proyecto1_Compi2.Entornos
                 return null;
             }
             
+        }
+        public Simbolo obtenerDos(string id, Entorno entorno)
+        {
+            Simbolo sim = null;
+            if (entorno.tablaSimbolos.ContainsKey(id.ToLower()))
+            {
+                sim = (Simbolo)entorno.tablaSimbolos[id.ToLower()];
+                return sim;
+            }
+            else if (entorno.anterior != null)
+            {
+                sim = obtener(id.ToLower(), entorno.anterior);
+                return sim;
+            }
+            else
+            {                
+                return null;
+            }
+
+        }
+        public bool addType(String id,int tamanio, LinkedList<Parametros> parametro) {
+            if (this.types.ContainsKey(id.ToLower()))
+            {
+                return false;
+            }
+            else {
+                this.types.Add(id,new SimboloStruct(id,tamanio,parametro));
+                return true;
+            }
+        }
+        public SimboloStruct getStruct(String id) {
+            Entorno ent = this;
+            id = id.ToLower();
+            while (ent != null) {
+                SimboloStruct sim = (SimboloStruct)ent.types[id];
+                if (sim != null) {
+                    return sim;
+                }                
+                ent = ent.anterior;
+            }
+            return null;
         }
         public void printVal() {
             foreach (Simbolo sim in this.tablaSimbolos) {
@@ -112,16 +172,22 @@ namespace Proyecto1_Compi2.Entornos
             archivo.Close();
             
         }
-        public void Insertar(string nombre, Simbolo valor)
-        {
-            if (this.tablaSimbolos.ContainsKey(nombre.ToLower()))
-            {
-                Form1.salidaConsola.AppendText("La variable '" + nombre + "' YA existe");
-
-                return;
+        public bool addFuncion(PlantillaFuncion funcion, String nombre) {
+            if (this.funciones.ContainsKey(nombre)) {
+                return false;
             }
-            this.tablaSimbolos.Add(nombre.ToLower(), valor);
-
+            this.funciones.Add(funcion.id.ToLower(),new SimboloFuncion(funcion,nombre.ToLower()));
+            return true;
+        }
+        public Simbolo Insertar(string nombre, Simbolo.EnumTipoDato tipo, bool isConst, bool isRef,TipoDato tipoStruct)
+        {
+            nombre = nombre.ToLower();
+            if (this.tablaSimbolos.ContainsKey(nombre) != false) {
+                return null;
+            }
+            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct);
+            this.tablaSimbolos.Add(nombre,sim);
+            return sim;
         }
     }
 }

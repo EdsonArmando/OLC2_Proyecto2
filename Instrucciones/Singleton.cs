@@ -49,7 +49,7 @@ namespace Proyecto1_Compi2.Instrucciones
             foreach (Type_Object ty in types)
             {
                 if (ty.nombreType.ToLower() == id.ToLower()) {
-                    Type_Object newType = (Type_Object)ty.Clone();
+                    Type_Object newType = ty;
                     return newType;
                 }  
             }

@@ -1,6 +1,8 @@
 ﻿using Proyecto1_Compi2.Abstracto;
 using Proyecto1_Compi2.Analizadores;
 using Proyecto1_Compi2.Entornos;
+using Proyecto2_Compi2.Code3D;
+using Proyecto2_Compi2.Entornos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +19,25 @@ namespace Proyecto1_Compi2.Instrucciones
 
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
-            throw new NotImplementedException();
+            Retornar ret = new Retornar("0",false,Simbolo.EnumTipoDato.VOID,null,new TipoDato(Simbolo.EnumTipoDato.VOID,null,null));
+            if (valorReturn != null) {
+                ret = valorReturn.Compilar(ent);
+            }
+            SimboloFuncion simFuncion = ent.actualFunc;
+            if (simFuncion.tipo.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+            {
+                String templabel = Generator3D.getInstance().newLabel();
+                Generator3D.getInstance().addLabel(ret.trueLabel);
+                Generator3D.getInstance().addSetStack("p", "1");
+                Generator3D.getInstance().addGoto(templabel);
+                Generator3D.getInstance().addLabel(ret.falseLabel);
+                Generator3D.getInstance().addSetStack("p", "0");
+                Generator3D.getInstance().addLabel(templabel);
+            }
+            else if (simFuncion.tipo.tipo != Simbolo.EnumTipoDato.VOID)
+                Generator3D.getInstance().addSetStack("p",ret.getValue());
+            Generator3D.getInstance().addGoto(ent.Return);
+            return null;
         }
     }
 }

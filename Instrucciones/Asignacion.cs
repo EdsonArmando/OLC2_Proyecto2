@@ -2,6 +2,7 @@
 using Proyecto1_Compi2.Analizadores;
 using Proyecto1_Compi2.Entornos;
 using Proyecto1_Compi2.Expresiones;
+using Proyecto2_Compi2.Code3D;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,7 +32,17 @@ namespace Proyecto1_Compi2.Instrucciones
 
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
-            throw new NotImplementedException();
+            Generator3D instance = Generator3D.getInstance();
+            Simbolo sim = ent.obtener(id,ent);
+            Retornar value = valor.Compilar(ent);
+            if (sim.isGlobal)
+            {
+                instance.addSetStack(sim.posicion.ToString(),value.getValue());
+            }
+            else { 
+                //Si no es Global
+            }
+            return null;
         }
     }
 }

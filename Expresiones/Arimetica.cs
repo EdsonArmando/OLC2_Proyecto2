@@ -40,14 +40,290 @@ namespace Proyecto1_Compi2.Expresiones
             throw new NotImplementedException();
         }
         public override Retornar Compilar(Entorno ent)
-        {
-            Retornar valorIzqu = operadorIzq.Compilar(ent);
-            Retornar valorDerecho = operadorDer.Compilar(ent);
-            String temp = Generator3D.getInstance().newTemporal();
+        {                       
             if (tipo == Tipo_operacion.DIVISION)
             {
+                Retornar valorIzqu = operadorIzq.Compilar(ent);
+                Retornar valorDerecho = operadorDer.Compilar(ent);
+                String temp = Generator3D.getInstance().newTemporal();
                 Generator3D.getInstance().addExpression(temp,valorIzqu.getValue(),valorDerecho.getValue(),"/");
                 return new Retornar(temp,true,Simbolo.EnumTipoDato.DOUBLE,null);
+            }
+            else if (tipo == Tipo_operacion.NUMERO)
+            {                
+                return new Retornar(this.valor.ToString(), false, Simbolo.EnumTipoDato.DOUBLE, "");
+            }
+            else if (tipo == Tipo_operacion.SUMA)
+            {
+                Retornar valorIzqu = operadorIzq.Compilar(ent);
+                Retornar valorDerecho = operadorDer.Compilar(ent);
+                String temp = Generator3D.getInstance().newTemporal();
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "+");
+                return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, "");
+            }
+            else if (tipo == Tipo_operacion.RESTA)
+            {
+                Retornar valorIzqu = operadorIzq.Compilar(ent);
+                Retornar valorDerecho = operadorDer.Compilar(ent);
+                String temp = Generator3D.getInstance().newTemporal();
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "-");
+                return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, "");
+            }
+            else if (tipo == Tipo_operacion.MULTIPLICACION)
+            {
+                Retornar valorIzqu = operadorIzq.Compilar(ent);
+                Retornar valorDerecho = operadorDer.Compilar(ent);
+                String temp = Generator3D.getInstance().newTemporal();
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "*");
+                return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, null);
+            }
+            else if (tipo == Tipo_operacion.MAYOR_QUE)
+            {
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar dere = null;
+                switch (valorIzqu.tipo) {                    
+                    case Simbolo.EnumTipoDato.DOUBLE:
+                    case Simbolo.EnumTipoDato.INT:
+                        dere = this.operadorDer.Compilar(ent);
+                        switch (dere.tipo) {
+                            case Simbolo.EnumTipoDato.DOUBLE:
+                                this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
+                                this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">", this.truelabel);
+                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
+                                ret.trueLabel = this.truelabel;
+                                ret.falseLabel = this.falselabel;
+                                return ret;                  
+                        }
+                        break;                                                               
+                    case Simbolo.EnumTipoDato.BOOLEAN:
+                        String trueLabel = Generator3D.getInstance().newLabel();
+                        String falseLabel = Generator3D.getInstance().newLabel();
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        this.operadorDer.truelabel = trueLabel;
+                        this.operadorDer.falselabel = falseLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        this.operadorDer.truelabel = falseLabel;
+                        this.operadorDer.falselabel = trueLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
+                            retorno.trueLabel = trueLabel;
+                            retorno.falseLabel = falseLabel;
+                            return retorno;
+                        }
+                        break;
+                }                
+            }
+            else if (tipo == Tipo_operacion.DIFERENCIACION)
+            {
+                
+            }           
+            else if (tipo == Tipo_operacion.OR)
+            {
+                
+            }
+            else if (tipo == Tipo_operacion.XOR)
+            {
+               
+            }
+            else if (tipo == Tipo_operacion.DIFERENTE)
+            {
+               
+            }
+            else if (tipo == Tipo_operacion.IGUAL_QUE)
+            {
+                Retornar left = this.operadorIzq.Compilar(ent);
+                Retornar dere = null;
+                switch (left.tipo) {
+                    case Simbolo.EnumTipoDato.DOUBLE:
+                    case Simbolo.EnumTipoDato.INT:
+                        dere = this.operadorDer.Compilar(ent);
+                    switch (dere.tipo)
+                    {
+                        case Simbolo.EnumTipoDato.DOUBLE:
+                        case Simbolo.EnumTipoDato.INT:
+                            this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
+                            this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
+                            Generator3D.getInstance().addIf(left.getValue(), dere.getValue(), "==", this.truelabel);
+                            Generator3D.getInstance().addGoto(this.falselabel);                                       
+                            Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, "");
+                            retorno.trueLabel = this.truelabel;
+                            retorno.falseLabel = this.falselabel;
+                            return retorno;
+                        default:
+                            break;
+                    }
+                    break;
+                    case Simbolo.EnumTipoDato.BOOLEAN:
+                        String trueLabel = Generator3D.getInstance().newLabel();
+                        String falseLabel = Generator3D.getInstance().newLabel();
+
+                        Generator3D.getInstance().addLabel(left.trueLabel);
+                        this.operadorDer.truelabel = trueLabel;
+                        this.operadorDer.falselabel = falseLabel;
+                        dere = this.operadorDer.Compilar(ent);
+
+                        Generator3D.getInstance().addLabel(left.falseLabel);
+                        this.operadorDer.truelabel = falseLabel;
+                        this.operadorDer.falselabel = trueLabel;
+                        dere = this.operadorDer.Compilar(ent);
+                        if (dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            Retornar retorno = new Retornar("", false, left.tipo,null);
+                            retorno.trueLabel = trueLabel;
+                            retorno.falseLabel = falseLabel;
+                            return retorno;
+                        }
+                        break;
+                }
+            }
+            else if (tipo == Tipo_operacion.MENOR_QUE)
+            {
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar dere = null;
+                switch (valorIzqu.tipo)
+                {
+                    case Simbolo.EnumTipoDato.DOUBLE:
+                    case Simbolo.EnumTipoDato.INT:
+                        dere = this.operadorDer.Compilar(ent);
+                        switch (dere.tipo)
+                        {
+                            case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.DOUBLE:
+                                this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
+                                this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<", this.truelabel);
+                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
+                                ret.trueLabel = this.truelabel;
+                                ret.falseLabel = this.falselabel;
+                                return ret;
+                        }
+                        break;
+                    case Simbolo.EnumTipoDato.BOOLEAN:
+                        String trueLabel = Generator3D.getInstance().newLabel();
+                        String falseLabel = Generator3D.getInstance().newLabel();
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        this.operadorDer.truelabel = trueLabel;
+                        this.operadorDer.falselabel = falseLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        this.operadorDer.truelabel = falseLabel;
+                        this.operadorDer.falselabel = trueLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
+                            retorno.trueLabel = trueLabel;
+                            retorno.falseLabel = falseLabel;
+                            return retorno;
+                        }
+                        break;
+                }
+            }
+            else if (tipo == Tipo_operacion.MOD)
+            {
+                
+            }
+            else if (tipo == Tipo_operacion.MENOR_IGUAL_QUE)
+            {
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar dere = null;
+                switch (valorIzqu.tipo)
+                {
+                    case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.DOUBLE:
+                        dere = this.operadorDer.Compilar(ent);
+                        switch (dere.tipo)
+                        {
+                            case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.DOUBLE:
+                                this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
+                                this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<=", this.truelabel);
+                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
+                                ret.trueLabel = this.truelabel;
+                                ret.falseLabel = this.falselabel;
+                                return ret;
+                        }
+                        break;
+                    case Simbolo.EnumTipoDato.BOOLEAN:
+                        String trueLabel = Generator3D.getInstance().newLabel();
+                        String falseLabel = Generator3D.getInstance().newLabel();
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        this.operadorDer.truelabel = trueLabel;
+                        this.operadorDer.falselabel = falseLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        this.operadorDer.truelabel = falseLabel;
+                        this.operadorDer.falselabel = trueLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
+                            retorno.trueLabel = trueLabel;
+                            retorno.falseLabel = falseLabel;
+                            return retorno;
+                        }
+                        break;
+                }
+            }
+            else if (tipo == Tipo_operacion.MAYOR_IGUAL_QUE)
+            {
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar dere = null;
+                switch (valorIzqu.tipo)
+                {
+                    case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.DOUBLE:
+                        dere = this.operadorDer.Compilar(ent);
+                        switch (dere.tipo)
+                        {
+                            case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.DOUBLE:
+                                this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
+                                this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">=", this.truelabel);
+                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
+                                ret.trueLabel = this.truelabel;
+                                ret.falseLabel = this.falselabel;
+                                return ret;
+                        }
+                        break;
+                    case Simbolo.EnumTipoDato.BOOLEAN:
+                        String trueLabel = Generator3D.getInstance().newLabel();
+                        String falseLabel = Generator3D.getInstance().newLabel();
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        this.operadorDer.truelabel = trueLabel;
+                        this.operadorDer.falselabel = falseLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        this.operadorDer.truelabel = falseLabel;
+                        this.operadorDer.falselabel = trueLabel;
+                        dere = this.operadorIzq.Compilar(ent);
+                        if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
+                            retorno.trueLabel = trueLabel;
+                            retorno.falseLabel = falseLabel;
+                            return retorno;
+                        }
+                        break;
+                }
+            }
+            else if (tipo == Tipo_operacion.TRUE)
+            {
+                
+            }
+            else if (tipo == Tipo_operacion.FALSE)
+            {
+                
             }
             /*else if (tipo == Tipo_operacion.MULTIPLICACION)
             {
@@ -89,51 +365,7 @@ namespace Proyecto1_Compi2.Expresiones
             {
                 return str.Append(valor.ToString());
             }
-            else if (tipo == Tipo_operacion.MAYOR_QUE)
-            {
-
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " > " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.DIFERENCIACION)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " <> " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.AND)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " and " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.OR)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " or " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.XOR)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " > " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.DIFERENTE)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString());
-            }
-            else if (tipo == Tipo_operacion.IGUAL_QUE)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " = " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.MENOR_QUE)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " < " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.MOD)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " % " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.MENOR_IGUAL_QUE)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " <= " + operadorDer.Traducir(ent, tempDere).ToString());
-            }
-            else if (tipo == Tipo_operacion.MAYOR_IGUAL_QUE)
-            {
-                return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " >= " + operadorDer.Traducir(ent, tempDere).ToString());
-            }*/
+            */
             return null;
         }
 

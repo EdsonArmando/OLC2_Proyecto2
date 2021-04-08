@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto2_Compi2.Entornos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,33 +13,38 @@ namespace Proyecto1_Compi2.Entornos
         //Posicion relativa de la variable en el stack
         public int posicion;
         public bool estaHeap;
-        public string ambito;
-        public string referencia_const;
+        public bool isGlobal;
+        public bool referencia_const;
+        public bool isHeap;
+        public String ambito;
+        public TipoDato tipoStruc;
         public int[] posicion_X;
         public int[] posicion_Y;
         public int[] posicion_Z;
         public Simbolo.EnumTipoDato tipoItem;
 
-        public Simbolo(EnumTipoDato tipo, int valor, String id, String ambito,String referencia_const)
+        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc)
         {
             this.id = id;
             this.tipo = tipo;
             this.posicion = valor;
-            this.ambito = ambito;
-            this.referencia_const = referencia_const;
+            this.referencia_const = esconst;
+            this.isHeap = heap;
+            this.tipoStruc = tipStruc;
+            this.isGlobal = global;
         }
         /*
          * Simbolo para ARRAYS
          * 
          * 
          * */
-        public Simbolo(EnumTipoDato tipo, Object valor, String id, String ambito, String referencia_const,int[] posX,int[] posY, int[] posZ,Simbolo.EnumTipoDato tipoItem)
+        public Simbolo(EnumTipoDato tipo, Object valor, String id, String ambito, bool referencia_consts,int[] posX,int[] posY, int[] posZ,Simbolo.EnumTipoDato tipoItem)
         {
             this.id = id;
             this.tipo = tipo;
             this.valor = valor;
             this.ambito = ambito;
-            this.referencia_const = referencia_const;
+            this.referencia_const = referencia_consts;
             this.posicion_X = posX;
             this.posicion_Y = posY;
             this.posicion_Z = posZ;
@@ -66,6 +72,7 @@ namespace Proyecto1_Compi2.Entornos
             OBJETO_TYPE,
             FUNCION,
             ARRAY,
+            VOID,
             REAL,
             CONST
         }
