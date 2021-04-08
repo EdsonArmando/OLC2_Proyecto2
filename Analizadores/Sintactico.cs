@@ -54,7 +54,8 @@ namespace Proyecto1_Compi2.Analizadores
                 {
                     ins.Compilar(ent, "global", this);
                 }
-                StringBuilder encabezado = Generator3D.getInstance().agregarEncabezado();
+                Generator3D.getInstance().NativePrintString();
+                StringBuilder encabezado = Generator3D.getInstance().agregarEncabezado();                
                 StringBuilder code = Generator3D.getInstance().getCode();
                 Form1.salidaConsola.AppendText(encabezado.ToString() + "\n"+code.ToString());
             }
@@ -771,7 +772,7 @@ namespace Proyecto1_Compi2.Analizadores
                 if (tipo.ErrorAlias == "cadena")
                 {
                     String tokenValor = temp.ChildNodes.ElementAt(0).ToString();
-                    ListaExpre.AddLast(new Expresiones.Literal(Entornos.Simbolo.EnumTipoDato.STRING, tokenValor.Remove(tokenValor.ToCharArray().Length - 9, 9)));
+                    ListaExpre.AddLast(new Cadena(Entornos.Simbolo.EnumTipoDato.STRING, tokenValor.Remove(tokenValor.ToCharArray().Length - 9, 9)));
                 }
                 else if (tipo.ErrorAlias == "ID")
                 {
@@ -783,7 +784,7 @@ namespace Proyecto1_Compi2.Analizadores
                 else if (tipo.ErrorAlias == "cadena2")
                 {
                     String tokenValor = temp.ChildNodes.ElementAt(0).ToString();
-                    ListaExpre.AddLast(new Expresiones.Literal(Entornos.Simbolo.EnumTipoDato.STRING, tokenValor.Remove(tokenValor.ToCharArray().Length - 10, 10)));
+                    ListaExpre.AddLast(new Cadena(Entornos.Simbolo.EnumTipoDato.STRING, tokenValor.Remove(tokenValor.ToCharArray().Length - 10, 10)));
                 }
                 else
                 {

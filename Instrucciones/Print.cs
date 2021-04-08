@@ -27,7 +27,7 @@ namespace Proyecto1_Compi2.Instrucciones
             switch (value.tipo) {
                 case Simbolo.EnumTipoDato.DOUBLE:
                 case Simbolo.EnumTipoDato.INT:
-                    Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
+                    Generator3D.getInstance().addPrint("\"%.1f\n\"", value.getValue());
                     break;
                 case Simbolo.EnumTipoDato.BOOLEAN:
                     String labelTemp = Generator3D.getInstance().newLabel();
@@ -39,7 +39,14 @@ namespace Proyecto1_Compi2.Instrucciones
                     Generator3D.getInstance().addLabel(labelTemp);
                     break;
                 case Simbolo.EnumTipoDato.OBJETO_TYPE:
-                    Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
+                    Generator3D.getInstance().addPrint("\"%.1f\n\"", value.getValue());
+                    break;
+                case Simbolo.EnumTipoDato.STRING:
+                    Generator3D.getInstance().nextEnt(ent.pos);
+                    Generator3D.getInstance().addSetStack("p", value.getValue());
+                    Generator3D.getInstance().addCall("Native_PrintString");
+                    Generator3D.getInstance().addPrint("\"%c\"", 10);
+                    Generator3D.getInstance().antEnt(ent.pos);
                     break;
             }           
             return  null;

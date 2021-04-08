@@ -67,6 +67,28 @@ namespace Proyecto2_Compi2.Code3D
         public void nextEnt(int size) {
             this.code.Append("p=p + " +size.ToString()+";\n");
         }
+        //Funcion para Imprimir String
+        public void NativePrintString() {
+            addInicioProc("Native_PrintString");
+            String T1 = newTemporal(); String T2 = newTemporal(); String T3 = newTemporal();
+            String L1 = newLabel(); String L2 = newLabel(); String L3 = newLabel();
+            addExpression(T1, "p", "0", "+");
+            addGetStack(T2, T1);
+            addIf(T2, "-1", "!=", L1);
+            addPrint("\"% c\"", "32");
+            addGoto(L3);
+            addLabel(L1);
+            addGetHeap(T3, T2);
+            addLabel(L2);
+            addIf(T3, "-1", "==", L3);
+            addPrint("\"% c\"", "(char)" + T3);
+            addExpression(T2, T2, "1","+");
+            addGetHeap(T3,T2);
+            addGoto(L2);
+            addLabel(L3);
+            addFinal();
+            freeTemp(T1);freeTemp(T2);freeTemp(T3);
+        }
         //Llamada Funcion
         public void addCall(String id) {
             this.code.Append(id + "() ;\n");
@@ -121,9 +143,6 @@ namespace Proyecto2_Compi2.Code3D
             this.labels.AddLast(label);
             return label;
 
-        }
-        public void addFunctionPrintString() { 
-            
         }
         public void freeTemp(String temp) {
             if (this.tempStorage.Contains(temp)) {
