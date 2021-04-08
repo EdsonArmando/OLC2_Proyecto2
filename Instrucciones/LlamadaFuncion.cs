@@ -71,7 +71,7 @@ namespace Proyecto1_Compi2.Instrucciones
         public override Retornar Compilar(Entorno ent)
         {
             Generator3D instance = Generator3D.getInstance();
-            SimboloFuncion simFuncion = ent.getFuncion(id);
+            SimboloFuncion simFuncion = ent.getFuncion(id.ToLower());
             LinkedList<Retornar> retParamValues = new LinkedList<Retornar>();
             int tam = instance.guardarTemps(ent);
             foreach (Expresion exp in parametros) {

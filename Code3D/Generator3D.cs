@@ -23,7 +23,8 @@ namespace Proyecto2_Compi2.Code3D
             this.tempStorage = new LinkedList<String>();
         }
         public String newTemporal() {
-            String temp = "T" + this.contTemp++.ToString();         
+            String temp = "T" + this.contTemp++.ToString();
+            this.tempStorage.AddLast(temp);
             return temp;
 
         }
@@ -125,8 +126,8 @@ namespace Proyecto2_Compi2.Code3D
             
         }
         public void freeTemp(String temp) {
-            if (this.temporalNoUsados.Contains(temp)) {
-                this.temporalNoUsados.Remove(temp);
+            if (this.tempStorage.Contains(temp)) {
+                this.tempStorage.Remove(temp);
             }
         }
         public void AgregarExpresionNumerica() {

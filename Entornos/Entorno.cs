@@ -54,7 +54,15 @@ namespace Proyecto1_Compi2.Entornos
         }
         //Obtener Funcion
         public SimboloFuncion getFuncion(String id) {
-            return (SimboloFuncion)this.funciones[id.ToLower()];
+            Entorno ent = this;
+            while (ent != null) {
+                SimboloFuncion sim = (SimboloFuncion)ent.funciones[id.ToLower()];
+                if (sim!=null) {
+                    return sim;
+                }
+                ent = ent.anterior;
+            }
+            return null;
         }
         //Obtener la variable del entorno
         public Simbolo obtener(string id, Entorno entorno)
