@@ -74,7 +74,6 @@ namespace Proyecto2_Compi2.Expresiones
                 generator.addGetHeap(temp, tempAux); //Trae el valor del heap
                 return new Retornar(temp, true, attribute.type.tipo,null);
             }
-            return null;
         }
         public override Simbolo.EnumTipoDato getTipo()
         {

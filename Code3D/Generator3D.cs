@@ -30,7 +30,7 @@ namespace Proyecto2_Compi2.Code3D
         //Agregar Fin de Funcion
         public void addFinal()
         {
-            this.code.Append("}\n");
+            this.code.Append("return; \n}\n");
         }
         //Agregar inicio Procedimiento en C
         public void addInicioProc(String id)

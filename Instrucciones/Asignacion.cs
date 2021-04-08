@@ -39,8 +39,11 @@ namespace Proyecto1_Compi2.Instrucciones
             {
                 instance.addSetStack(sim.posicion.ToString(),value.getValue());
             }
-            else { 
-                //Si no es Global
+            else {
+                String temp = instance.newTemporal();
+                instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                instance.addSetStack(temp,value.getValue());
+                return null;
             }
             return null;
         }
