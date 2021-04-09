@@ -3,6 +3,7 @@ using Proyecto1_Compi2.Analizadores;
 using Proyecto1_Compi2.Entornos;
 using Proyecto1_Compi2.Instrucciones;
 using Proyecto2_Compi2.Code3D;
+using Proyecto2_Compi2.Entornos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -318,12 +319,26 @@ namespace Proyecto1_Compi2.Expresiones
                 }
             }
             else if (tipo == Tipo_operacion.TRUE)
-            {
-                
+            {  
+                Generator3D generator = Generator3D.getInstance();
+                Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN,null,new TipoDato(Simbolo.EnumTipoDato.BOOLEAN,null,null));
+                this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
+                this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;            
+                generator.addGoto(this.truelabel);                                           
+                retorno.trueLabel = this.truelabel;
+                retorno.falseLabel = this.falselabel;
+                return retorno;
             }
             else if (tipo == Tipo_operacion.FALSE)
             {
-                
+                Generator3D generator = Generator3D.getInstance();
+                Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null, new TipoDato(Simbolo.EnumTipoDato.BOOLEAN, null, null));
+                this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
+                this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;
+                generator.addGoto(this.falselabel);
+                retorno.trueLabel = this.truelabel;
+                retorno.falseLabel = this.falselabel;
+                return retorno;
             }
             /*else if (tipo == Tipo_operacion.MULTIPLICACION)
             {
