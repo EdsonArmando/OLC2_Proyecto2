@@ -88,7 +88,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.esType(ent);
             //Variables del tipo var id : tipo = expr;
             if (variables==null) {
-                Simbolo sim = ent.Insertar(nombreVariable,tipoVariable,false,false,tipoStruct);
+                Simbolo sim = ent.Insertar(nombreVariable,tipoVariable,false,false,tipoStruct,null,null,null);
                 if (sim.isGlobal) {
                     if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                     {

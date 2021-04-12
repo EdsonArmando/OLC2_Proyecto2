@@ -53,7 +53,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 entFunc.setEnviorementFunc(this.id, sim, returnLabel);
                 foreach (Parametros param in this.param)
                 {
-                    entFunc.Insertar(param.id, param.type.tipo, false, false, param.type);
+                    entFunc.Insertar(param.id, param.type.tipo, false, false, param.type,null,null,null);
                 }
                 instance.LimpiarStorage();
                 instance.addInicioProc(sim.idUnico);

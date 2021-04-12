@@ -67,7 +67,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 String temp = Generator3D.getInstance().newTemporal();
                 Generator3D.getInstance().addGetStack(tempaux, sim.posicion);
                 Generator3D.getInstance().addExpression(temp, tempaux, index.ToString(), "+");
-                Retornar rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type));
+                Retornar rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type,null,null,null));
                 Simbolo simTemp = (Simbolo)rettemp.sim;
                 if (simTemp.isHeap)
                 {

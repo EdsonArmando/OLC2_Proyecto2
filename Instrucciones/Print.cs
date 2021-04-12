@@ -42,6 +42,9 @@ namespace Proyecto1_Compi2.Instrucciones
                     case Simbolo.EnumTipoDato.OBJETO_TYPE:
                         Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
                         break;
+                    case Simbolo.EnumTipoDato.ARRAY:
+                        Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
+                        break;
                     case Simbolo.EnumTipoDato.STRING:
                         Generator3D.getInstance().nextEnt(ent.pos);
                         Generator3D.getInstance().addSetStack("p", value.getValue());

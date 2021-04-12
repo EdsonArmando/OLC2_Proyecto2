@@ -18,12 +18,12 @@ namespace Proyecto1_Compi2.Entornos
         public bool isHeap;
         public String ambito;
         public TipoDato tipoStruc;
-        public int[] posicion_X;
-        public int[] posicion_Y;
-        public int[] posicion_Z;
+        public String[] posicion_X;
+        public String[] posicion_Y;
+        public String[] posicion_Z;
         public Simbolo.EnumTipoDato tipoItem;
 
-        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc)
+        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc,String[] posX, String[] posY, String[] posZ)
         {
             this.id = id;
             this.tipo = tipo;
@@ -32,24 +32,15 @@ namespace Proyecto1_Compi2.Entornos
             this.isHeap = heap;
             this.tipoStruc = tipStruc;
             this.isGlobal = global;
+            this.posicion_X = posX;
+            this.posicion_Y = posY;
+            this.posicion_Z = posZ;
         }
         /*
          * Simbolo para ARRAYS
          * 
          * 
          * */
-        public Simbolo(EnumTipoDato tipo, Object valor, String id, String ambito, bool referencia_consts,int[] posX,int[] posY, int[] posZ,Simbolo.EnumTipoDato tipoItem)
-        {
-            this.id = id;
-            this.tipo = tipo;
-            this.valor = valor;
-            this.ambito = ambito;
-            this.referencia_const = referencia_consts;
-            this.posicion_X = posX;
-            this.posicion_Y = posY;
-            this.posicion_Z = posZ;
-            this.tipoItem = tipoItem;
-        }
         public Object getValor()
         {
             return this.valor;

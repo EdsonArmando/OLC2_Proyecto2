@@ -29,7 +29,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 {
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
-                        Generator3D.getInstance().addPrint("\"%.1f\"", "(double)"+value.getValue());
+                        Generator3D.getInstance().addPrint("\"%.1f\"", "(double)" + value.getValue());
                         break;
                     case Simbolo.EnumTipoDato.BOOLEAN:
                         String labelTemp = Generator3D.getInstance().newLabel();
@@ -41,6 +41,9 @@ namespace Proyecto1_Compi2.Instrucciones
                         Generator3D.getInstance().addLabel(labelTemp);
                         break;
                     case Simbolo.EnumTipoDato.OBJETO_TYPE:
+                        Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
+                        break;
+                    case Simbolo.EnumTipoDato.ARRAY:
                         Generator3D.getInstance().addPrint("\"%.1f\"", value.getValue());
                         break;
                     case Simbolo.EnumTipoDato.STRING:
