@@ -59,9 +59,15 @@ namespace Proyecto1_Compi2.Instrucciones
                     //Significan que recibo un array o struct en la funcion
                     if (param.tipoStrucoArray != null)
                     {
-                        Simbolo array = ent.obtener(param.tipoStrucoArray,ent);
-                        entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null);
-
+                        SimboloStruct structSim = ent.getStruct(param.tipoStrucoArray);
+                        if (structSim != null)
+                        {
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.OBJETO_TYPE, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, "", structSim), null, null, null);
+                        }
+                        else {
+                            Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null);
+                        }
                     }
                     else {
                         entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null);

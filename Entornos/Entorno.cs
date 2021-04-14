@@ -150,6 +150,22 @@ namespace Proyecto1_Compi2.Entornos
             }
             return null;
         }
+        //Existe Struct
+        public bool existeStruct(String id)
+        {
+            Entorno ent = this;
+            id = id.ToLower();
+            while (ent != null)
+            {
+                SimboloStruct sim = (SimboloStruct)ent.types[id];
+                if (sim != null)
+                {
+                    return true;
+                }
+                ent = ent.anterior;
+            }
+            return false;
+        }
         public void printVal() {
             foreach (Simbolo sim in this.tablaSimbolos) {
                 foreach (String key in tablaSimbolos.Keys)

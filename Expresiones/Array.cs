@@ -49,7 +49,7 @@ namespace Proyecto1_Compi2.Expresiones
                 if (isType)
                 {
                     //Ingreso el Type a la Tabla de Simbolos
-                    ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
+                    Simbolo tempSimp = ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
                     return null;
                 }
                 

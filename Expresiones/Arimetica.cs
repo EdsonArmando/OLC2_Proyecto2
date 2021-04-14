@@ -341,6 +341,11 @@ namespace Proyecto1_Compi2.Expresiones
                 retorno.falseLabel = this.falselabel;
                 return retorno;
             }
+            else if (tipo == Tipo_operacion.NEGATIVO)
+            {
+                Retornar izquier = this.operadorIzq.Compilar(ent);
+                return new Retornar("-"+izquier.getValue(), false, Simbolo.EnumTipoDato.DOUBLE, "");
+            }
             /*else if (tipo == Tipo_operacion.MULTIPLICACION)
             {
                 return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " * " + operadorDer.Traducir(ent, tempDere).ToString());
@@ -361,10 +366,7 @@ namespace Proyecto1_Compi2.Expresiones
             {
                 return str.Append(operadorIzq.Traducir(ent, temp).ToString() + " + " + operadorDer.Traducir(ent, tempDere).ToString());
             }
-            else if (tipo == Tipo_operacion.NEGATIVO)
-            {
-                return str.Append("-" + operadorIzq.Traducir(ent, temp).ToString());
-            }
+            
             else if (tipo == Tipo_operacion.NUMERO)
             {
                 return str.Append(valor.ToString());

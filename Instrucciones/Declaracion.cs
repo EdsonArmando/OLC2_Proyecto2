@@ -18,6 +18,7 @@ namespace Proyecto1_Compi2.Instrucciones
         public String nombreVariable;
         public Expresion expresion;
         public int fila, columna;
+        public bool isStruct_Array = false;
         public String esReferencia_const;
         public String nameArra;
         public String tipoDinamico;
@@ -86,7 +87,6 @@ namespace Proyecto1_Compi2.Instrucciones
             if (tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE) {
                 value = (new ResvarStruct(nameArra)).Compilar(ent);
             }
-
             this.esType(ent);
             //Lista de Expre
             if (variables!=null) {
@@ -152,7 +152,16 @@ namespace Proyecto1_Compi2.Instrucciones
             }
             //Variables del tipo var id : tipo = expr;
             if (variables==null) {
-                Simbolo sim = ent.Insertar(nombreVariable,tipoVariable,false,false,tipoStruct,null,null,null);
+                Simbolo sim;
+                //Solo para arreglos
+                if (nameArra != null && isStruct_Array == false )
+                {
+                    Simbolo temp = ent.obtener(nameArra,ent);
+                    sim = ent.Insertar(nombreVariable, temp.tipo, false, false, temp.tipoStruc, temp.posicion_X, temp.posicion_Y, temp.posicion_Z);
+                }
+                else {
+                    sim = ent.Insertar(nombreVariable, tipoVariable, false, false, tipoStruct, null, null, null);
+                }                
                 if (sim.isGlobal) {
                     if (expresion != null)
                         value = this.expresion.Compilar(ent);
@@ -209,9 +218,10 @@ namespace Proyecto1_Compi2.Instrucciones
             return null;
         }
         private void esType(Entorno ent) {
-            if (tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE) {
+            if (tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE  && ent.existeStruct(nameArra)) {
                 SimboloStruct structTemp = ent.getStruct(nameArra);
                 this.tipoStruct.sim = structTemp;
+                this.isStruct_Array = true;
                 this.tipoStruct.tipo = tipoVariable;
             }
         }

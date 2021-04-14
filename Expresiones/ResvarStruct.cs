@@ -20,7 +20,7 @@ namespace Proyecto2_Compi2.Expresiones
             SimboloStruct sim = ent.getStruct(this.id);
             Generator3D generator = Generator3D.getInstance();
             if (sim==null) {
-                Form1.salidaConsola.AppendText("No existe el Struc!!!\n");
+                
                 return null;
             }
             String temp = generator.newTemporal();
