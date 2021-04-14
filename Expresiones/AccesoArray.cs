@@ -22,6 +22,7 @@ namespace Proyecto1_Compi2.Expresiones
         public override Retornar Compilar(Entorno ent)
         {
             Generator3D instance = Generator3D.getInstance();
+            instance.agregarComentario("Inicia Acceso a Array");
             Simbolo sim = ent.obtener(Nombre_id,ent);
             if (sim == null)
                 return null;
@@ -29,24 +30,47 @@ namespace Proyecto1_Compi2.Expresiones
             if (valor[0] != null && valor[1] == null && valor[2] == null)
             {
                 Retornar ret = this.valor[0].Compilar(ent);
-                if (sim.isGlobal) {
+                if (sim.isGlobal)
+                {
                     //Donde se almacenan las posiciones de Inicio y Fin
                     String[] posInicioFin = sim.posicion_X;
                     //Temp Guarda donde se encuentra el inicio del arreglo en el heap
-                    String temp = instance.newTemporal();instance.freeTemp(temp);                    
+                    String temp = instance.newTemporal(); instance.freeTemp(temp);
                     instance.addGetStack(temp, sim.posicion);
                     //Genero temporal Donde se va almacenar mi valor en el Heap
-                    String tempValor = instance.newTemporal();instance.freeTemp(tempValor);
-                    String temp2 = instance.newTemporal();instance.freeTemp(temp2);
-                    instance.addExpression(temp2,ret.getValue(),posInicioFin[0],"-");
-                    instance.addExpression(tempValor,temp2,temp,"+");
+                    String tempValor = instance.newTemporal(); instance.freeTemp(tempValor);
+                    String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
+                    instance.addExpression(temp2, ret.getValue(), posInicioFin[0], "-");
+                    instance.addExpression(tempValor, temp2, temp, "+");
                     //Posicion en el arreglo total
-                    String total = instance.newTemporal();instance.freeTemp(total);
-                    instance.addExpression(total,tempValor,"1","+");
+                    String total = instance.newTemporal(); instance.freeTemp(total);
+                    instance.addExpression(total, tempValor, "1", "+");
                     //Recupero mi valor del Heap
                     String tempPosFinal = instance.newTemporal();
-                    instance.addGetHeap(tempPosFinal,total);
-                    return new Retornar(tempPosFinal, true,sim.tipoStruc.tipo,sim,new TipoDato(Simbolo.EnumTipoDato.ARRAY,null,null));
+                    instance.addGetHeap(tempPosFinal, total);
+                    return new Retornar(tempPosFinal, true, sim.tipoStruc.tipo, sim, new TipoDato(Simbolo.EnumTipoDato.ARRAY, null, null));
+                }
+                else {
+                    String tempP = instance.newTemporal();
+                    instance.freeTemp(tempP);
+                    instance.addExpression(tempP, "p", sim.posicion.ToString(), "+");
+                    //Donde se almacenan las posiciones de Inicio y Fin
+                    String[] posInicioFin = sim.posicion_X;
+                    //Temp Guarda donde se encuentra el inicio del arreglo en el heap
+                    String temp = instance.newTemporal(); instance.freeTemp(temp);
+                    instance.addGetStack(temp, tempP);
+                    //Genero temporal Donde se va almacenar mi valor en el Heap
+                    String tempValor = instance.newTemporal(); instance.freeTemp(tempValor);
+                    String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
+                    instance.addExpression(temp2, ret.getValue(), posInicioFin[0], "-");
+                    instance.addExpression(tempValor, temp2, temp, "+");
+                    //Posicion en el arreglo total
+                    String total = instance.newTemporal(); instance.freeTemp(total);
+                    instance.addExpression(total, tempValor, "1", "+");
+                    //Recupero mi valor del Heap
+                    String tempPosFinal = instance.newTemporal();
+                    instance.addGetHeap(tempPosFinal, total);
+                    return new Retornar(tempPosFinal, true, sim.tipoStruc.tipo, sim, new TipoDato(Simbolo.EnumTipoDato.ARRAY, null, null));
                 }
             }
             //Acceso a un array de dos dimensiones
@@ -59,6 +83,7 @@ namespace Proyecto1_Compi2.Expresiones
             {
                 
             }
+            instance.agregarComentario("Finaliza Acceso a Array");
             return null;
         }
 

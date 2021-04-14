@@ -26,7 +26,7 @@ namespace Proyecto1_Compi2.Instrucciones
         public LinkedList<Parametros> devListParametros(LinkedList<Instruccion> declaraciones) {
             LinkedList<Parametros> listParam = new LinkedList<Parametros>();            
             foreach (Declaracion dcl in declaraciones) {
-                listParam.AddLast(new Parametros(dcl.nombreVariable,new TipoDato(dcl.tipoVariable,dcl.nameArra,null)));
+                listParam.AddLast(new Parametros(dcl.nombreVariable,new TipoDato(dcl.tipoVariable,dcl.nameArra,null),null));
             }
             return listParam;
         }

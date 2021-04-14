@@ -9,9 +9,11 @@ namespace Proyecto2_Compi2.Entornos
     {
         public String id;
         public TipoDato type;
-        public Parametros(String iden, TipoDato tipo) {
+        public String tipoStrucoArray;
+        public Parametros(String iden, TipoDato tipo, String tipoArray_Struct) {
             this.id = iden;
             this.type = tipo;
+            this.tipoStrucoArray = tipoArray_Struct;
         }
         public String getUnicType() {
         if(this.type.tipo == Simbolo.EnumTipoDato.OBJETO_TYPE){

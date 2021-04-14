@@ -52,10 +52,10 @@ namespace Proyecto1_Compi2.Instrucciones
                     //Temporal donde se Guardar posicion a insertar en el Heap
                     String tempHeap = instance.newTemporal();instance.freeTemp(tempHeap);
                     instance.addExpression(tempHeap,tempInicio,posx.getValue(),"+");
-                    String tempHeap2 = instance.newTemporal(); instance.freeTemp(tempHeap2);
-                    instance.addExpression(tempHeap2, tempHeap, "1", "+");
+                    //String tempHeap2 = instance.newTemporal(); instance.freeTemp(tempHeap2);
+                    //instance.addExpression(tempHeap2, tempHeap, "1", "+");
                     //Ingreso el valor en el Heap
-                    instance.addSetHeap(tempHeap2, val.getValue());
+                    instance.addSetHeap(tempHeap, val.getValue());
                 }
                 //Arreglo de dos dimensiones
                 else if (posX != null && posY != null && posZ == null)

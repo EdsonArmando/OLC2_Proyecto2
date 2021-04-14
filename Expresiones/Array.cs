@@ -14,17 +14,22 @@ namespace Proyecto1_Compi2.Expresiones
         private String Nombre_id;
         private Object Tipo;
         private Expresion[,] valor;
+        private bool isType;
 
-        public Array(String id, Object tipo, Expresion[,] tamanio)
+        public Array(String id, Object tipo, Expresion[,] tamanio,bool isType)
         {
             this.Nombre_id = id;
             this.Tipo = tipo;
             this.valor = tamanio;
+            this.isType = isType;
         }
 
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
             Generator3D instance = Generator3D.getInstance();
+
+            //Si se trata de Un Type
+            
             /*
             * Insertar arreglo en 
             * tabla de Simbolos
@@ -37,11 +42,19 @@ namespace Proyecto1_Compi2.Expresiones
                 Retornar PosFinal = valor[0, 1].Compilar(ent);
                 String temp = instance.newTemporal(); instance.freeTemp(temp);
                 String tempAux = instance.newTemporal(); instance.freeTemp(tempAux);
-                instance.addExpression(temp, PosFinal.getValue(), PosiInicial.getValue(), "-");
                 //Guardar donde Inician cada Arreglo
                 String[] posiciones = new String[2];
                 posiciones[0] = PosiInicial.getValue();
                 posiciones[1] = PosFinal.getValue();
+                if (isType)
+                {
+                    //Ingreso el Type a la Tabla de Simbolos
+                    ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
+                    return null;
+                }
+                
+                instance.addExpression(temp, PosFinal.getValue(), PosiInicial.getValue(), "-");
+                
                 //Tamanio Total Arreglo + 2 porque en la pos 0 guardo el tamanio total del arreglo
                 instance.addExpression(tempAux, temp, "2","+");
                 String tempInicio = instance.newTemporal();instance.freeTemp(tempInicio);
@@ -93,6 +106,7 @@ namespace Proyecto1_Compi2.Expresiones
             switch (valor.ToLower())
             {
                 case "integer":
+                case "int":
                     return Simbolo.EnumTipoDato.INT;
                 case "type":
                     return Simbolo.EnumTipoDato.TYPE;

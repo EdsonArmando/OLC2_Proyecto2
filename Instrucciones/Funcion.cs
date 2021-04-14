@@ -53,7 +53,17 @@ namespace Proyecto1_Compi2.Instrucciones
                 entFunc.setEnviorementFunc(this.id, sim, returnLabel);
                 foreach (Parametros param in this.param)
                 {
-                    entFunc.Insertar(param.id, param.type.tipo, false, false, param.type,null,null,null);
+                    //Significan que recibo un array o struct en la funcion
+                    if (param.tipoStrucoArray != null)
+                    {
+                        Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
+                        entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null);
+
+                    }
+                    else
+                    {
+                        entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null);
+                    }
                 }
                 instance.LimpiarStorage();
                 instance.addInicioProc(sim.idUnico);
@@ -88,7 +98,14 @@ namespace Proyecto1_Compi2.Instrucciones
             LinkedList<Parametros> listParam = new LinkedList<Parametros>();
             foreach (Declaracion dcl in declaraciones)
             {
-                listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(dcl.tipoVariable, dcl.nameArra, null)));
+                if (dcl.tipoVariable == Simbolo.EnumTipoDato.NULL)
+                {
+                    listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(dcl.tipoVariable, dcl.nameArra, null), dcl.tipoDinamico));
+                }
+                else
+                {
+                    listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(dcl.tipoVariable, dcl.nameArra, null), null));
+                }
             }
             return listParam;
         }

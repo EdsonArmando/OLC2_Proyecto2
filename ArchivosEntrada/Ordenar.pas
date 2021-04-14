@@ -1,6 +1,6 @@
 program Ordenar;
 const maximo : Integer = 100; 
-const maxVal : Integer= 30000;
+const maxVal : Integer= 3000;
 var datos: array[1..maximo] of integer;      
 var i: integer;       
 procedure swap(var a : integer; var b: integer); 

@@ -217,7 +217,7 @@ namespace Proyecto1_Compi2.Analizadores
                         }
                         else if (actual.ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower() == "type")
                         {
-                            return new Expresiones.Array(actual.ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(8)), nuevo);
+                            return new Expresiones.Array(actual.ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(8)), nuevo,true);
                         }
                     }
                     else if (actual.ChildNodes.Count == 6)
@@ -402,11 +402,11 @@ namespace Proyecto1_Compi2.Analizadores
                         if (actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower() == "var")
                         {
                             Simbolo.EnumTipoDato tipo = devTipoDato(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8));
-                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8).ToString().Split(' ')[0], nuevo));
+                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8).ToString().Split(' ')[0], nuevo,false));
                         }
                         else if (actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower() == "type")
                         {
-                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8)), nuevo));
+                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8)), nuevo,true));
                         }
                     }
                     else if (actual.ChildNodes.ElementAt(0).ChildNodes.Count == 6)
