@@ -27,7 +27,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 instance.addGetStack(tempVal, variable.posicion);
                 //Temp dondeGuardo el valor de la Variable
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal, tempVal, "1", "+");
+                instance.addExpression(tempTotal, tempVal, "1", "-");
                 instance.addSetStack(variable.posicion.ToString(), tempTotal);
             }
             else

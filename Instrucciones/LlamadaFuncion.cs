@@ -25,6 +25,7 @@ namespace Proyecto1_Compi2.Instrucciones
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
             Generator3D instance = Generator3D.getInstance();
+            instance.agregarComentario("Empieaza la Llamada a la Funcion");
             SimboloFuncion simFuncion = ent.getFuncion(id);
             LinkedList<Retornar> retParamValues = new LinkedList<Retornar>();
             int tam = instance.guardarTemps(ent);

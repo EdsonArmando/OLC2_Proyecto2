@@ -46,7 +46,7 @@ namespace Proyecto1_Compi2.Expresiones
                     //Recupero mi valor del Heap
                     String tempPosFinal = instance.newTemporal();
                     instance.addGetHeap(tempPosFinal,total);
-                    return new Retornar(tempPosFinal, true,Simbolo.EnumTipoDato.ARRAY,sim,new TipoDato(Simbolo.EnumTipoDato.ARRAY,null,null));
+                    return new Retornar(tempPosFinal, true,sim.tipoStruc.tipo,sim,new TipoDato(Simbolo.EnumTipoDato.ARRAY,null,null));
                 }
             }
             //Acceso a un array de dos dimensiones

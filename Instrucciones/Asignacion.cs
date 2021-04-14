@@ -52,8 +52,10 @@ namespace Proyecto1_Compi2.Instrucciones
                     //Temporal donde se Guardar posicion a insertar en el Heap
                     String tempHeap = instance.newTemporal();instance.freeTemp(tempHeap);
                     instance.addExpression(tempHeap,tempInicio,posx.getValue(),"+");
+                    String tempHeap2 = instance.newTemporal(); instance.freeTemp(tempHeap2);
+                    instance.addExpression(tempHeap2, tempHeap, "1", "+");
                     //Ingreso el valor en el Heap
-                    instance.addSetHeap(tempHeap, val.getValue());
+                    instance.addSetHeap(tempHeap2, val.getValue());
                 }
                 //Arreglo de dos dimensiones
                 else if (posX != null && posY != null && posZ == null)
@@ -67,14 +69,44 @@ namespace Proyecto1_Compi2.Instrucciones
 
                 }
                 else {
-                    instance.addSetStack(sim.posicion.ToString(), value.getValue());
+                    if (value.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                    {
+                        String templabel = instance.newLabel();
+                        instance.addLabel(value.trueLabel);
+                        instance.addSetStack(sim.posicion.ToString(), "1");
+                        instance.addGoto(templabel);
+                        instance.addLabel(value.falseLabel);
+                        instance.addSetStack(sim.posicion.ToString(), "0");
+                        instance.addLabel(templabel);
+                    }
+                    else {
+                        instance.addSetStack(sim.posicion.ToString(), value.getValue());
+                    }                    
                 }                
             }
             else {
-                String temp = instance.newTemporal();
-                instance.freeTemp(temp);
-                instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
-                instance.addSetStack(temp,value.getValue());
+                if (value.tipo == Simbolo.EnumTipoDato.BOOLEAN)
+                {
+
+                    String templabel = instance.newLabel();
+                    instance.freeTemp(templabel);
+                    String temp = instance.newTemporal(); instance.freeTemp(temp);
+                    
+                    instance.addLabel(value.trueLabel);
+                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                    instance.addSetStack(temp, "1");
+                    instance.addGoto(templabel);
+                    instance.addLabel(value.falseLabel);
+                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                    instance.addSetStack(temp, "0");
+                    instance.addLabel(templabel);
+                }
+                else {
+                    String temp = instance.newTemporal();
+                    instance.freeTemp(temp);
+                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                    instance.addSetStack(temp, value.getValue());
+                }               
                 return null;
             }            
             return null;

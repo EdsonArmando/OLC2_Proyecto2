@@ -88,6 +88,7 @@ namespace Proyecto1_Compi2.Expresiones
                         dere = this.operadorDer.Compilar(ent);
                         switch (dere.tipo) {
                             case Simbolo.EnumTipoDato.DOUBLE:
+                            case Simbolo.EnumTipoDato.INT:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
                                 Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">", this.truelabel);

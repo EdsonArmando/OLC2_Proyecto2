@@ -13,7 +13,7 @@ namespace Proyecto2_Compi2.Expresiones
     {
         private Expresion id;
         private Expresion anterior;
-        private String idVariable;
+        public String idVariable;
         public AccesoId(Expresion anteri,Expresion identificador, String variable) {
             this.id = identificador;
             this.anterior = anteri;

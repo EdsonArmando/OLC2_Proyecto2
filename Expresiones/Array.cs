@@ -66,7 +66,7 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addGoto(labelInicio);
                 instance.addLabel(labelFin);
                 //Guardo La Variable en mi tabla de Simbolos
-                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.ARRAY,null,null),posiciones,null,null);
+                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
                 instance.addSetStack(sim.posicion.ToString(), tempInicio);
 
             }

@@ -54,7 +54,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 aumento = new Aumento(id);
             }
             else {
-                condicion = new Arimetica(new Arimetica(id, Arimetica.Tipo_operacion.IDENTIFICADOR), valorFin, Arimetica.Tipo_operacion.MAYOR_IGUAL_QUE);
+                condicion = new Arimetica(new AccesoId(null, null, id), valorFin, Arimetica.Tipo_operacion.MAYOR_IGUAL_QUE);
                 decremento = new Decremento(id);
             }
             //Creo El Ciclo en 3D

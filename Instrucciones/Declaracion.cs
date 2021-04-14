@@ -79,17 +79,84 @@ namespace Proyecto1_Compi2.Instrucciones
         {
             Generator3D instance = Generator3D.getInstance();
             Retornar value = null;
-            if (expresion != null) {
-                value = this.expresion.Compilar(ent);
+            
+            if (expresion == null && tipoVariable==Simbolo.EnumTipoDato.BOOLEAN) {
+                expresion = new Arimetica(new Literal(Simbolo.EnumTipoDato.BOOLEAN, false), Arimetica.Tipo_operacion.FALSE);     
             }
             if (tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE) {
                 value = (new ResvarStruct(nameArra)).Compilar(ent);
             }
+
             this.esType(ent);
+            //Lista de Expre
+            if (variables!=null) {
+                foreach (AccesoId nombre in variables) {
+                    Simbolo sim = ent.Insertar(nombre.idVariable, tipoVariable, false, false, tipoStruct, null, null, null);
+                    if (sim.isGlobal)
+                    {
+                        if (expresion != null)
+                            value = this.expresion.Compilar(ent);
+
+                        if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            String templabel = instance.newLabel();
+                            instance.addLabel(value.trueLabel);
+                            instance.addSetStack(sim.posicion.ToString(), "1");
+                            instance.addGoto(templabel);
+                            instance.addLabel(value.falseLabel);
+                            instance.addSetStack(sim.posicion.ToString(), "0");
+                            instance.addLabel(templabel);
+                        }
+                        else
+                        {
+                            if (value == null)
+                            {
+                                instance.addSetStack(sim.posicion.ToString(), "0");
+                            }
+                            else
+                            {
+                                instance.addSetStack(sim.posicion.ToString(), value.getValue());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        String temp = instance.newTemporal(); instance.freeTemp(temp);
+                        instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                        if (expresion != null)
+                            value = this.expresion.Compilar(ent);
+
+                        if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
+                        {
+                            String templabel = instance.newLabel();
+                            instance.addLabel(value.trueLabel);
+                            instance.addSetStack(temp, "1");
+                            instance.addGoto(templabel);
+                            instance.addLabel(value.falseLabel);
+                            instance.addSetStack(temp, "0");
+                            instance.addLabel(templabel);
+                        }
+                        else
+                        {
+                            if (expresion == null)
+                            {
+                                instance.addSetStack(temp, "0");
+                            }
+                            else
+                            {
+                                instance.addSetStack(temp, value.getValue());
+                            }
+                        }
+                    }
+                }
+            }
             //Variables del tipo var id : tipo = expr;
             if (variables==null) {
                 Simbolo sim = ent.Insertar(nombreVariable,tipoVariable,false,false,tipoStruct,null,null,null);
                 if (sim.isGlobal) {
+                    if (expresion != null)
+                        value = this.expresion.Compilar(ent);
+
                     if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                     {
                         String templabel = instance.newLabel();
@@ -114,6 +181,9 @@ namespace Proyecto1_Compi2.Instrucciones
                 else {
                     String temp = instance.newTemporal(); instance.freeTemp(temp);
                     instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                    if (expresion != null)
+                        value = this.expresion.Compilar(ent);
+
                     if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                     {
                         String templabel = instance.newLabel();
