@@ -110,7 +110,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         else
                         {
                             if (value == null)
-                            {
+                            {                               
                                 instance.addSetStack(sim.posicion.ToString(), "0");
                             }
                             else
@@ -205,7 +205,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     }
                     else
                     {
-                        if (expresion == null)
+                        if (value == null)
                         {
                             instance.addSetStack(temp, "0");
                         }

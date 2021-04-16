@@ -11,7 +11,10 @@ namespace Proyecto2_Compi2.Expresiones
 {
     class ResvarStruct : Expresion
     {
+        private bool isStruct=false;
         private String id;
+        private Parametros param;
+        private String tempEncuentra;
         public ResvarStruct(String identificador) {
             this.id = identificador;
         }
@@ -36,10 +39,20 @@ namespace Proyecto2_Compi2.Expresiones
                     case Simbolo.EnumTipoDato.STRING:
                     case Simbolo.EnumTipoDato.OBJETO_TYPE:
                     case Simbolo.EnumTipoDato.ARRAY:
+                        isStruct = true;
+                        this.param = param;
+                        param.tipoStrucoArray = "instanciado";
+                        this.tempEncuentra = Generator3D.getInstance().newTemporal();
+                        Generator3D.getInstance().addExpression(tempEncuentra,"h","","");
+                        Generator3D.getInstance().freeTemp(tempEncuentra);
                         generator.addSetHeap("h","-1");
                         break;
                 }
                 generator.nextHeap();
+            }
+            if (isStruct == true) {
+                Retornar ret = (new ResvarStruct(this.param.type.tipoId)).Compilar(ent);
+                generator.addSetHeap(tempEncuentra, ret.getValue());
             }
             return new Retornar(temp,true,Simbolo.EnumTipoDato.OBJETO_TYPE,null,new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE,sim.identifier,sim));
         }

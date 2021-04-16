@@ -221,6 +221,7 @@ namespace Proyecto1_Compi2.Entornos
             
         }
         public bool addFuncion(PlantillaFuncion funcion, String nombre) {
+
             if (this.funciones.ContainsKey(nombre)) {
                 return false;
             }

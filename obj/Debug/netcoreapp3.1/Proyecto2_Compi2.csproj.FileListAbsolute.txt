@@ -14,3 +14,4 @@ C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Co
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.dll
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.pdb
 C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.genruntimeconfig.cache
+C:\Users\User\source\repos\Proyecto2_Compi2\obj\Debug\netcoreapp3.1\Proyecto2_Compi2.csprojAssemblyReference.cache

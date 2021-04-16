@@ -10,7 +10,9 @@ var idx : integer;
 var val : integer;
 var point : Points;
 end;
-var actualDL : array[1..20] of Node;
+type
+DoubleList = array[1..20] of Node;
+var actualDL : DoubleList;
 var count : integer = 1;
 var first : integer = -1;
 var last : integer = -1;
@@ -47,6 +49,38 @@ begin
     actualDL[count] := root;
     count := count + 1;
 end;
+procedure InsertLast(val : integer);
+    var root : Node;
+    var aux : Node;
+    begin
+        if ((first) <> (-1)) then
+        begin
+            aux := actualDL[last];
+
+            last := count;
+
+            root.idx := count;
+            root.val := val;
+            root.point.left := aux.idx;
+            root.point.right := -1;
+
+            aux.point.right := root.idx;
+            actualDL[aux.idx] := aux;
+        end;
+        else
+        begin
+            first := count;
+            last := first;
+            
+            root.idx := count;
+            root.val := val;
+            root.point.left := -1;
+            root.point.right := -1;
+        end;
+        actualDL[count] := root;
+        count := count + 1;
+end;
+
 procedure InsertInto(var val : integer ;var pos : integer);
 var root : Node;
 var aux : Node;
@@ -86,38 +120,6 @@ begin
         count := count + 1;
     end;
 end;
-procedure InsertLast(val : integer);
-    var root : Node;
-    var aux : Node;
-    begin
-        if ((first) <> (-1)) then
-        begin
-            aux := actualDL[last];
-
-            last := count;
-
-            root.idx := count;
-            root.val := val;
-            root.point.left := aux.idx;
-            root.point.right := -1;
-
-            aux.point.right := root.idx;
-            actualDL[aux.idx] := aux;
-        end;
-        else
-        begin
-            first := count;
-            last := first;
-            
-            root.idx := count;
-            root.val := val;
-            root.point.left := -1;
-            root.point.right := -1;
-        end;
-        actualDL[count] := root;
-        count := count + 1;
-end;
-
 procedure PrintListback();
 var actual : Node;
 var i : integer;
