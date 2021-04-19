@@ -1,4 +1,5 @@
-﻿using Proyecto2_Compi2.Entornos;
+﻿using Proyecto1_Compi2.Abstracto;
+using Proyecto2_Compi2.Entornos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,8 +23,9 @@ namespace Proyecto1_Compi2.Entornos
         public String[] posicion_Y;
         public String[] posicion_Z;
         public Simbolo.EnumTipoDato tipoItem;
+        public Expresion[,] valorArray;
 
-        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc,String[] posX, String[] posY, String[] posZ)
+        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2)
         {
             this.id = id;
             this.tipo = tipo;
@@ -35,6 +37,7 @@ namespace Proyecto1_Compi2.Entornos
             this.posicion_X = posX;
             this.posicion_Y = posY;
             this.posicion_Z = posZ;
+            this.valorArray = valor2;
         }
         /*
          * Simbolo para ARRAYS

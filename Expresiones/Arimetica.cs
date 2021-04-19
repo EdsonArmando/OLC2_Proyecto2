@@ -85,10 +85,12 @@ namespace Proyecto1_Compi2.Expresiones
                 switch (valorIzqu.tipo) {                    
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.REAL:
                         dere = this.operadorDer.Compilar(ent);
                         switch (dere.tipo) {
                             case Simbolo.EnumTipoDato.DOUBLE:
                             case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.REAL:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
                                 Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">", this.truelabel);
@@ -143,11 +145,13 @@ namespace Proyecto1_Compi2.Expresiones
                 switch (left.tipo) {
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.REAL:
                         dere = this.operadorDer.Compilar(ent);
                     switch (dere.tipo)
                     {
                         case Simbolo.EnumTipoDato.DOUBLE:
                         case Simbolo.EnumTipoDato.INT:
+                        case Simbolo.EnumTipoDato.REAL:
                             this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                             this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
                             Generator3D.getInstance().addIf(left.getValue(), dere.getValue(), "==", this.truelabel);
@@ -191,10 +195,12 @@ namespace Proyecto1_Compi2.Expresiones
                 {
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.REAL:
                         dere = this.operadorDer.Compilar(ent);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.REAL:
                             case Simbolo.EnumTipoDato.DOUBLE:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
@@ -238,11 +244,13 @@ namespace Proyecto1_Compi2.Expresiones
                 switch (valorIzqu.tipo)
                 {
                     case Simbolo.EnumTipoDato.INT:
+                    case Simbolo.EnumTipoDato.REAL:
                     case Simbolo.EnumTipoDato.DOUBLE:
                         dere = this.operadorDer.Compilar(ent);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
+                            case Simbolo.EnumTipoDato.REAL:
                             case Simbolo.EnumTipoDato.DOUBLE:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
@@ -283,11 +291,13 @@ namespace Proyecto1_Compi2.Expresiones
                 {
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.DOUBLE:
+                    case Simbolo.EnumTipoDato.REAL:
                         dere = this.operadorDer.Compilar(ent);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
                             case Simbolo.EnumTipoDato.DOUBLE:
+                            case Simbolo.EnumTipoDato.REAL:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
                                 Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">=", this.truelabel);

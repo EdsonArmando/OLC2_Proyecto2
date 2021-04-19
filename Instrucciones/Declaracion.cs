@@ -91,7 +91,7 @@ namespace Proyecto1_Compi2.Instrucciones
             //Lista de Expre
             if (variables!=null) {
                 foreach (AccesoId nombre in variables) {
-                    Simbolo sim = ent.Insertar(nombre.idVariable, tipoVariable, false, false, tipoStruct, null, null, null);
+                    Simbolo sim = ent.Insertar(nombre.idVariable, tipoVariable, false, false, tipoStruct, null, null, null,null);
                     if (sim.isGlobal)
                     {
                         if (expresion != null)
@@ -157,10 +157,10 @@ namespace Proyecto1_Compi2.Instrucciones
                 if (nameArra != null && isStruct_Array == false )
                 {
                     Simbolo temp = ent.obtener(nameArra,ent);
-                    sim = ent.Insertar(nombreVariable, temp.tipo, false, false, temp.tipoStruc, temp.posicion_X, temp.posicion_Y, temp.posicion_Z);
+                    sim = ent.Insertar(nombreVariable, temp.tipo, false, false, temp.tipoStruc, temp.posicion_X, temp.posicion_Y, temp.posicion_Z,null);
                 }
                 else {
-                    sim = ent.Insertar(nombreVariable, tipoVariable, false, false, tipoStruct, null, null, null);
+                    sim = ent.Insertar(nombreVariable, tipoVariable, false, false, tipoStruct, null, null, null,null);
                 }                
                 if (sim.isGlobal) {
                     if (expresion != null)

@@ -62,15 +62,15 @@ namespace Proyecto1_Compi2.Instrucciones
                         SimboloStruct structSim = ent.getStruct(param.tipoStrucoArray);
                         if (structSim != null)
                         {
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.OBJETO_TYPE, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, "", structSim), null, null, null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.OBJETO_TYPE, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, "", structSim), null, null, null,null);
                         }
                         else {
                             Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null,null);
                         }
                     }
                     else {
-                        entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null);
+                        entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null,null);
                     }                    
                 }                
                 instance.LimpiarStorage();
@@ -78,10 +78,10 @@ namespace Proyecto1_Compi2.Instrucciones
                 instance.agregarComentario("Declaraciones Locales");
                 foreach (Instruccion ins in listVarLocales)
                 {
-                    ins.Compilar(entFunc, Ambito, AST);
+                    ins.Compilar(entFunc, sim.idUnico, AST);
                 }
                 foreach (Instruccion ins in listInstrucciones) {
-                    ins.Compilar(entFunc,Ambito,AST);
+                    ins.Compilar(entFunc,sim.idUnico,AST);
                 }
                 instance.addLabel(returnLabel);
                 instance.addFinal();

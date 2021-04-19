@@ -1,4 +1,5 @@
-﻿using Proyecto1_Compi2.Analizadores;
+﻿using Proyecto1_Compi2.Abstracto;
+using Proyecto1_Compi2.Analizadores;
 using Proyecto1_Compi2.Instrucciones;
 using Proyecto2_Compi2.Entornos;
 using System;
@@ -228,13 +229,13 @@ namespace Proyecto1_Compi2.Entornos
             this.funciones.Add(funcion.id.ToLower(),new SimboloFuncion(funcion,nombre.ToLower()));
             return true;
         }
-        public Simbolo Insertar(string nombre, Simbolo.EnumTipoDato tipo, bool isConst, bool isRef,TipoDato tipoStruct,String[] posX, String[] posY, String[] posZ)
+        public Simbolo Insertar(string nombre, Simbolo.EnumTipoDato tipo, bool isConst, bool isRef,TipoDato tipoStruct,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2)
         {
             nombre = nombre.ToLower();
             if (this.tablaSimbolos.ContainsKey(nombre) != false) {
                 return null;
             }
-            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX,null,null);
+            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX,null,null,valor2);
             this.tablaSimbolos.Add(nombre,sim);
             return sim;
         }

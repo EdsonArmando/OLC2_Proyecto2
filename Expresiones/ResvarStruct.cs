@@ -37,8 +37,12 @@ namespace Proyecto2_Compi2.Expresiones
                         generator.addSetHeap("h",0);
                         break;
                     case Simbolo.EnumTipoDato.STRING:
-                    case Simbolo.EnumTipoDato.OBJETO_TYPE:
+                        generator.addSetHeap("h", "-1");
+                        break;
                     case Simbolo.EnumTipoDato.ARRAY:
+                        generator.addSetHeap("h", "-1");
+                        break;
+                    case Simbolo.EnumTipoDato.OBJETO_TYPE:                    
                         isStruct = true;
                         this.param = param;
                         param.tipoStrucoArray = "instanciado";

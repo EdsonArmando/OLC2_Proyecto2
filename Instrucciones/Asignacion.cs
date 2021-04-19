@@ -32,10 +32,15 @@ namespace Proyecto1_Compi2.Instrucciones
 
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
+            if (id.ToLower() == Ambito.ToLower())
+            {
+                Return returnNombre = new Return(valor);
+                returnNombre.Compilar(ent, Ambito, AST);
+                return null;
+            }
             Generator3D instance = Generator3D.getInstance();
             Simbolo sim = ent.obtener(id,ent);
-            Retornar value = valor.Compilar(ent);
-
+            Retornar value = valor.Compilar(ent);            
             if (sim.isGlobal)
             {
                 //Arreglo de una dimension
@@ -110,7 +115,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     Retornar val = valor.Compilar(ent);
                     //Obtener el valor del Stack
                     String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
-                    instance.addGetStack(tempInicio, sim.posicion);
+                    instance.addGetStack(tempInicio, temp);
                     //Salto una posicion
                     String tempInicioArray = instance.newTemporal(); instance.freeTemp(tempInicio);
                     instance.addExpression(tempInicioArray, tempInicio, "1", "+");

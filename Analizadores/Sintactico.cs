@@ -406,7 +406,7 @@ namespace Proyecto1_Compi2.Analizadores
                         }
                         else if (actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(0).ToString().Split(' ')[0].ToLower() == "type")
                         {
-                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8)), nuevo,true));
+                            instrucciones.AddLast(new Expresiones.Array(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8)), nuevo,true, actual.ChildNodes.ElementAt(0).ChildNodes.ElementAt(8).ToString().Split(' ')[0]));
                         }
                     }
                     else if (actual.ChildNodes.ElementAt(0).ChildNodes.Count == 6)

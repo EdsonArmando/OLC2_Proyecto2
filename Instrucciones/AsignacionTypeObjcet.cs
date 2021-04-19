@@ -127,13 +127,13 @@ namespace Proyecto1_Compi2.Instrucciones
                     String tempStack = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
                     Generator3D.getInstance().addGetStack(tempStack,tempauxHeap);
                     Generator3D.getInstance().addExpression(temp, tempStack, index.ToString(), "+");
-                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null));
+                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null));
                     simTemp = (Simbolo)rettemp.sim;
                 }
                 else {
                     Generator3D.getInstance().addGetStack(tempaux, sim.posicion);
                     Generator3D.getInstance().addExpression(temp, tempaux, index.ToString(), "+");
-                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null));
+                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null));
                     simTemp = (Simbolo)rettemp.sim;
                 }                               
                 if (simTemp.isHeap)

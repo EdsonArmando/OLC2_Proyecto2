@@ -18,15 +18,27 @@ namespace Proyecto1_Compi2.Instrucciones
         }
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
         {
-            LinkedList<Parametros> temp = devListParametros(listaVariables);
+            LinkedList<Parametros> temp = devListParametros(listaVariables,ent);
             ent.addType(this.nombreType, temp.Count, temp);
             return null;
         }
 
-        public LinkedList<Parametros> devListParametros(LinkedList<Instruccion> declaraciones) {
+        public LinkedList<Parametros> devListParametros(LinkedList<Instruccion> declaraciones,Entorno ent) {
             LinkedList<Parametros> listParam = new LinkedList<Parametros>();            
             foreach (Declaracion dcl in declaraciones) {
-                listParam.AddLast(new Parametros(dcl.nombreVariable,new TipoDato(dcl.tipoVariable,dcl.nameArra,null),null));
+                if (dcl.tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE)
+                {
+                    //Existe el Type del Array
+                    if (ent.existeVariable(dcl.nameArra)) {
+                        listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(Simbolo.EnumTipoDato.ARRAY, dcl.nameArra, null), null));
+                    }
+                    else {
+                        listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(dcl.tipoVariable, dcl.nameArra, null), null));
+                    }
+                }
+                else {
+                    listParam.AddLast(new Parametros(dcl.nombreVariable, new TipoDato(dcl.tipoVariable, dcl.nameArra, null), null));
+                }                
             }
             return listParam;
         }

@@ -15,13 +15,21 @@ namespace Proyecto1_Compi2.Expresiones
         private Object Tipo;
         private Expresion[,] valor;
         private bool isType;
-
+        private String structsd;
         public Array(String id, Object tipo, Expresion[,] tamanio,bool isType)
         {
             this.Nombre_id = id;
             this.Tipo = tipo;
             this.valor = tamanio;
             this.isType = isType;
+        }
+        public Array(String id, Object tipo, Expresion[,] tamanio, bool isType, String structs)
+        {
+            this.Nombre_id = id;
+            this.Tipo = tipo;
+            this.valor = tamanio;
+            this.isType = isType;
+            this.structsd = structs;
         }
 
         public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
@@ -48,8 +56,13 @@ namespace Proyecto1_Compi2.Expresiones
                 posiciones[1] = PosFinal.getValue();
                 if (isType)
                 {
+                    //sE TRATA DE sTRUCT
+                    if (devTipoDato(Tipo.ToString()) == Simbolo.EnumTipoDato.NULL) {
+                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posiciones, null, null,null);
+                        return null;
+                    }
                     //Ingreso el Type a la Tabla de Simbolos
-                    Simbolo tempSimp = ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
+                    Simbolo tempSimp = ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,null);
                     return null;
                 }
                 
@@ -79,8 +92,16 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addGoto(labelInicio);
                 instance.addLabel(labelFin);
                 //Guardo La Variable en mi tabla de Simbolos
-                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null);
-                instance.addSetStack(sim.posicion.ToString(), tempInicio);
+                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,valor);
+                if (!sim.isGlobal)
+                {
+                    String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
+                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+");
+                    instance.addSetStack(temp2, tempInicio);
+                }
+                else {
+                    instance.addSetStack(sim.posicion.ToString(), tempInicio);
+                }                
 
             }
             //Significa que es de dos dimension

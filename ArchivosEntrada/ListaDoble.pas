@@ -10,9 +10,7 @@ var idx : integer;
 var val : integer;
 var point : Points;
 end;
-type
-DoubleList = array[1..20] of Node;
-var actualDL : DoubleList;
+var actualDL : array[1..20] of Node;
 var count : integer = 1;
 var first : integer = -1;
 var last : integer = -1;
@@ -49,6 +47,7 @@ begin
     actualDL[count] := root;
     count := count + 1;
 end;
+
 procedure InsertLast(val : integer);
     var root : Node;
     var aux : Node;
@@ -80,14 +79,13 @@ procedure InsertLast(val : integer);
         actualDL[count] := root;
         count := count + 1;
 end;
-
 procedure InsertInto(var val : integer ;var pos : integer);
 var root : Node;
 var aux : Node;
 var newNode : Node;
 var i : integer;
 begin
-	i := 0;
+    i := 0;
     if (first = (-1)) or (pos = 0) then
     begin
         InsertFirst(val);
