@@ -67,8 +67,8 @@
 	    end;
 	end;
 	function get_cursos():cursos;
-	    var lista_cursos:cursos;
-	    var lista_codigos : codigos;
+	    var lista_cursos:array[1..4] of curso;
+	    var lista_codigos : array[1..4] of integer;;
 	    var i:integer;
 	    begin
 	        // leno el arreglo de codigos
@@ -123,16 +123,18 @@
 	end;
 	procedure imprimir_datos_cursos(entrada:cursos);
 	var i:integer;
+	var temp : curso;
 	begin
 	    writeln('cursos');
 	    // ****** USO DEL FOR ascendente
 	    for i:=1 to TOPE do
 	    begin
+	    temp:= entrada[i];
 	        writeln('----------');
-	        writeln('Codigo: ',entrada[i].codigo);
-	        writeln('Nombre: ',entrada[i].nombre);
-	        writeln('Nota: ',entrada[i].nota);
-	        writeln('Creditos: ',entrada[i].creditos);
+	        writeln('Codigo: ',temp.codigo);
+	        writeln('Nombre: ',temp.nombre);
+	        writeln('Nota: ',temp.nota);
+	        writeln('Creditos: ',temp.creditos);
 	    end;
 	    // tabla de simbolos del procedimiento imprimir_datos_cursos
 	    //graficar_ts();
@@ -150,7 +152,7 @@
 	    imprimir_datos_cursos(entrada.lista_cursos);
 	end;
 	var contador:integer;
-	var listado_general: estudiantes;
+	var listado_general : array[1..4] of estudiante;
 	(*
 	*************Begin***************)
 	contador:=1;

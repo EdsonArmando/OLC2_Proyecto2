@@ -290,7 +290,7 @@ namespace Proyecto1_Compi2.Analizadores
                                 Abstracto.Instruccion nuevo = instruccion(funcion.ChildNodes.ElementAt(8).ChildNodes.ElementAt(i), funcionHija, funcion.ChildNodes.ElementAt(3), instrucciones);
                             }
                         }
-                        temp = new Funcion(funcionHija, listInstr2Temp(funcion.ChildNodes.ElementAt(3)), Listainstrucciones(funcion.ChildNodes.ElementAt(10)), Listainstrucciones2(funcion.ChildNodes.ElementAt(8)), funcion.ChildNodes.ElementAt(1).ToString().Split(' ')[0]);
+                        temp = new Funcion(funcionHija, listInstr2Temp(funcion.ChildNodes.ElementAt(3)), Listainstrucciones(funcion.ChildNodes.ElementAt(10)), Listainstrucciones2(funcion.ChildNodes.ElementAt(8)), funcion.ChildNodes.ElementAt(1).ToString().Split(' ')[0],devTipoDato(funcion.ChildNodes.ElementAt(6)));
                         instrucciones.AddLast(temp);
                         return temp;
                     }
@@ -303,7 +303,7 @@ namespace Proyecto1_Compi2.Analizadores
                                 instruccion(funcion.ChildNodes.ElementAt(5).ChildNodes.ElementAt(i), funcionHija, ListaParametrosPadre, instrucciones);
                             }
                         }
-                        temp = new Funcion(funcionHija, null, Listainstrucciones(funcion.ChildNodes.ElementAt(7)), Listainstrucciones2(funcion.ChildNodes.ElementAt(5)), funcion.ChildNodes.ElementAt(1).ToString().Split(' ')[0]);
+                        temp = new Funcion(funcionHija, null, Listainstrucciones(funcion.ChildNodes.ElementAt(7)), Listainstrucciones2(funcion.ChildNodes.ElementAt(5)), funcion.ChildNodes.ElementAt(1).ToString().Split(' ')[0], devTipoDato(funcion.ChildNodes.ElementAt(6)));
                         instrucciones.AddLast(temp);
                         return temp;
                     }

@@ -169,4 +169,4 @@ begin
     writeln('----------------------------------------');
 end;
 Inicio();
-graficat_ts();
+//graficat_ts();

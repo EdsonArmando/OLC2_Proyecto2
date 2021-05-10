@@ -19,15 +19,17 @@ namespace Proyecto1_Compi2.Instrucciones
         public LinkedList<Instruccion> listVarLocales;
         public LinkedList<Instruccion> formalesParam;
         public bool compilado;
-        public Funcion(String id, LinkedList<Instruccion> param_Formales, LinkedList<Instruccion> listInstrucciones, LinkedList<Instruccion> listVarLocales, String nombreOri)
+        Simbolo.EnumTipoDato valor;
+        public Funcion(String id, LinkedList<Instruccion> param_Formales, LinkedList<Instruccion> listInstrucciones, LinkedList<Instruccion> listVarLocales, String nombreOri,Simbolo.EnumTipoDato tipo)
         {
-            this.tipo = new TipoDato(Simbolo.EnumTipoDato.INT, "void", null);
+            this.tipo = new TipoDato(valor, "void", null);
             this.compilado = true;
             this.id = id;
             this.param = this.devListParametros(param_Formales);
             this.listInstrucciones = listInstrucciones;
             this.listVarLocales = listVarLocales;
             this.idUnico = nombreOri;
+            this.valor = tipo;
         }
         public override Retornar Compilar(Entorno ent)
         {
@@ -44,6 +46,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     Form1.salidaConsola.AppendText("Ya existe una Funcion con ese nombre!!!");
             }
             SimboloFuncion sim = ent.getFuncion(this.id);
+            sim.tipo.tipo = valor;
             if (sim != null)
             {
                 Generator3D instance = Generator3D.getInstance();
@@ -64,7 +67,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         else
                         {
                             Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null,null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, array.posicion_Y, array.posicion_Z,null);
                         }
                     }
                     else

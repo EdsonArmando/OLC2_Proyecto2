@@ -60,7 +60,9 @@ namespace Proyecto1_Compi2.Instrucciones
             //Creo El Ciclo en 3D
             String labelFor = instance.newLabel();
             instance.addLabel(labelFor);
-            Retornar condFor = condicion.Compilar(ent);            
+            Retornar condFor = condicion.Compilar(ent);
+            ent.Break = condFor.falseLabel;
+            ent.Continue = labelFor;
             instance.addLabel(condFor.trueLabel);
             foreach (Instruccion ins in listaInstrucciones) {
                 ins.Compilar(ent,Ambito,AST);

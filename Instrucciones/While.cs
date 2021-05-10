@@ -25,6 +25,8 @@ namespace Proyecto1_Compi2.Instrucciones
             instance.agregarComentario("Inicia While");
             instance.addLabel(labelWhile);
             Retornar condicionWhile = condicion.Compilar(ent);
+            ent.Break = condicionWhile.falseLabel;
+            ent.Continue = labelWhile;
             if (condicionWhile.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
                 instance.addLabel(condicionWhile.trueLabel);

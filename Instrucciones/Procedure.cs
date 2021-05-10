@@ -66,7 +66,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         }
                         else {
                             Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, null, null,null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, array.posicion_Y, array.posicion_Z,null);
                         }
                     }
                     else {

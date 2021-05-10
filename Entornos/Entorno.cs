@@ -235,7 +235,7 @@ namespace Proyecto1_Compi2.Entornos
             if (this.tablaSimbolos.ContainsKey(nombre) != false) {
                 return null;
             }
-            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX,null,null,valor2);
+            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX, posY, posZ,valor2);
             this.tablaSimbolos.Add(nombre,sim);
             return sim;
         }

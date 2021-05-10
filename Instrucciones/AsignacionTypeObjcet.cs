@@ -39,8 +39,7 @@ namespace Proyecto1_Compi2.Instrucciones
             return null;
         }
         public Retornar setExpresion(LinkedList<String> accesos, Simbolo sim, Retornar res, String Ambito, Entorno ent, SimboloStruct structSim,Retornar retor)
-        {
-            
+        {            
             int index = structSim.getPosAttribute(accesos.ElementAt(0));
             Parametros param = structSim.getAttribute(accesos.ElementAt(0));            
             if (accesos.Count >=2) {
@@ -122,6 +121,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 Retornar rettemp = null;
                 if (!sim.isGlobal)
                 {
+                    
                     String tempauxHeap = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
                     Generator3D.getInstance().addExpression(tempauxHeap,"p",sim.posicion.ToString(),"+");
                     String tempStack = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
@@ -144,7 +144,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     }
                     else
                     {
-                        Generator3D.getInstance().addSetHeap(rettemp.getValue(), res.getValue());
+                        Generator3D.getInstance().addSetHeap(rettemp.getValue(), res.getValue());                    
                     }
                 }
             }
