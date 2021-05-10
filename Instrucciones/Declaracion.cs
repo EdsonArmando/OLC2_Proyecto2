@@ -91,7 +91,7 @@ namespace Proyecto1_Compi2.Instrucciones
             //Lista de Expre
             if (variables!=null) {
                 foreach (AccesoId nombre in variables) {
-                    Simbolo sim = ent.Insertar(nombre.idVariable, tipoVariable, false, false, tipoStruct, null, null, null,null);
+                    Simbolo sim = ent.Insertar(nombre.idVariable, tipoVariable, false, false, tipoStruct, null, null, null,null,Ambito);
                     if (sim.isGlobal)
                     {
                         if (expresion != null)
@@ -122,7 +122,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     else
                     {
                         String temp = instance.newTemporal(); instance.freeTemp(temp);
-                        instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                        instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                         if (expresion != null)
                             value = this.expresion.Compilar(ent, isFunc);
 
@@ -157,10 +157,10 @@ namespace Proyecto1_Compi2.Instrucciones
                 if (nameArra != null && isStruct_Array == false )
                 {
                     Simbolo temp = ent.obtener(nameArra,ent);
-                    sim = ent.Insertar(nombreVariable, temp.tipo, false, false, temp.tipoStruc, temp.posicion_X, temp.posicion_Y, temp.posicion_Z,null);
+                    sim = ent.Insertar(nombreVariable, temp.tipo, false, false, temp.tipoStruc, temp.posicion_X, temp.posicion_Y, temp.posicion_Z,null,Ambito);
                 }
                 else {
-                    sim = ent.Insertar(nombreVariable, tipoVariable, false, false, tipoStruct, null, null, null,null);
+                    sim = ent.Insertar(nombreVariable, tipoVariable, false, false, tipoStruct, null, null, null,null,Ambito);
                 }                
                 if (sim.isGlobal) {
                     if (expresion != null)
@@ -189,7 +189,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 }
                 else {
                     String temp = instance.newTemporal(); instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     if (expresion != null)
                         value = this.expresion.Compilar(ent, isFunc);
 

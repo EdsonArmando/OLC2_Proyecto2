@@ -47,7 +47,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         break;
                     case Simbolo.EnumTipoDato.STRING:
                         Generator3D.getInstance().nextEnt(ent.pos, isFunc);
-                        Generator3D.getInstance().addSetStack("p", value.getValue(), isFunc);
+                        Generator3D.getInstance().addSetStack("sp", value.getValue(), isFunc);
                         Generator3D.getInstance().addCall("Native_PrintString", isFunc);   
                         Generator3D.getInstance().antEnt(ent.pos, isFunc);
                         break;

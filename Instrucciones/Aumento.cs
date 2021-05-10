@@ -36,7 +36,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 String temp = instance.newTemporal();
                 instance.freeTemp(temp);
                 //Posicion de donde se encuentra la Variable
-                instance.addExpression(temp, "p", variable.posicion.ToString(), "+", isFunc);
+                instance.addExpression(temp, "sp", variable.posicion.ToString(), "+", isFunc);
                 //Temporal donde se Guardara el Valor de Variable Actual
                 String tempVal = instance.newTemporal(); instance.freeTemp(tempVal);
                 instance.addGetStack(tempVal, temp, isFunc);

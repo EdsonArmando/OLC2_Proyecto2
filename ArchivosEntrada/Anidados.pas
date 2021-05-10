@@ -17,15 +17,12 @@ var	z : integer = 4;
 				writeln('Ambito Padre 22 = ',x);
 				writeln('Ambito Padre de Padre 13 = ',y);
 				writeln('Global 4 = ',z);
-				writeln('Parametro por valor de Padre de Padre 1 = ',a);
-				writeln('Parametro por referencia de Padre de Padre 2 = ',b);
-				b := 1000;
+				writeln('Parametro por valor de Padre de Padre 1 = ');
+				writeln('Parametro por referencia de Padre de Padre 2 = ');			
 			end;
-    	begin
-			p111();
+    	begin			
         end;
-  begin
-      p11();
+  begin    
   end;
   procedure p11();
   begin

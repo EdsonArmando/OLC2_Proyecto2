@@ -51,7 +51,7 @@ namespace Proyecto2_Compi2.Code3D
                 this.freeTemp(temp);
                 int num = 0;
                 this.agregarComentario("Guarda Temporales", isFunc);
-                this.addExpression(temp,"p",ent.pos.ToString(),"+", isFunc);
+                this.addExpression(temp,"sp",ent.pos.ToString(),"+", isFunc);
                 foreach (String valor in tempStorage) {
                     num++;
                     this.addSetStack(temp,valor, isFunc);
@@ -69,10 +69,10 @@ namespace Proyecto2_Compi2.Code3D
         public void nextEnt(int size, bool isFunc) {
             if (!isFunc)
             {
-                this.code.Append("p=p + " + size.ToString() + ";\n");
+                this.code.Append("sp=sp + " + size.ToString() + ";\n");
             }
             else {
-                this.codeFuncion.Append("p=p + " + size.ToString() + ";\n");
+                this.codeFuncion.Append("sp=sp + " + size.ToString() + ";\n");
             }
                 
            
@@ -82,7 +82,7 @@ namespace Proyecto2_Compi2.Code3D
             addInicioProc("Native_PrintString");
             String T1 = newTemporal(); String T2 = newTemporal(); String T3 = newTemporal();
             String L1 = newLabel(); String L2 = newLabel(); String L3 = newLabel();
-            addExpression(T1, "p", "0", "+", isFunc);
+            addExpression(T1, "sp", "0", "+", isFunc);
             addGetStack(T2, T1, isFunc);
             addIf(T2, "-1", "!=", L1, isFunc);
             addPrint("\"% c\"", "32", isFunc);
@@ -117,7 +117,7 @@ namespace Proyecto2_Compi2.Code3D
                 freeTemp(temp);
                 int size = 0;
                 agregarComentario("Inicia Recuperacion temporales",isFunc);
-                addExpression(temp, "p", pos.ToString(), "+", isFunc);
+                addExpression(temp, "sp", pos.ToString(), "+", isFunc);
                 foreach (String tempSt in tempStorage) {
                     size++;
                     addGetStack(tempSt,temp, isFunc);
@@ -138,10 +138,10 @@ namespace Proyecto2_Compi2.Code3D
         {
             if (!isFunc)
             {
-                this.code.Append("p=p - " + size.ToString() + ";\n");
+                this.code.Append("sp=sp - " + size.ToString() + ";\n");
             }
             else {
-                this.codeFuncion.Append("p=p - " + size.ToString() + ";\n");
+                this.codeFuncion.Append("sp=sp - " + size.ToString() + ";\n");
             }                            
         }
         public LinkedList<String> getTempStorage()
@@ -167,10 +167,10 @@ namespace Proyecto2_Compi2.Code3D
         {
             if (!isFunc)
             {
-                this.code.Append("h = h + 1;\n");
+                this.code.Append("sh = sh + 1;\n");
             }
             else {
-                this.codeFuncion.Append("h = h + 1;\n");
+                this.codeFuncion.Append("sh = sh + 1;\n");
             }                           
         }
         public String newLabel()
@@ -244,10 +244,10 @@ namespace Proyecto2_Compi2.Code3D
         public void addNextEnv(int size, bool isFunc)
         {
             if (!isFunc) {
-                this.code.Append("p = p + " + size + ";\n");
+                this.code.Append("sp = sp + " + size + ";\n");
             }
             else {
-                this.codeFuncion.Append("p = p + " + size + ";\n");
+                this.codeFuncion.Append("sp = sp + " + size + ";\n");
             }
             
         }

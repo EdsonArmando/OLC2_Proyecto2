@@ -60,7 +60,7 @@ namespace Proyecto1_Compi2.Analizadores
                 StringBuilder encabezado = Generator3D.getInstance().agregarEncabezado();                
                 StringBuilder code = Generator3D.getInstance().getCode();
                 StringBuilder codeFuncion = Generator3D.getInstance().getCodeFuncion();
-                Form1.salidaConsola.AppendText("#include <stdio.h>\nfloat Heap[100000];\nfloat Stack[100000];\nfloat h=0;\nfloat p=0;\n" + encabezado.ToString() + "\n" + codeFuncion.ToString() + "\nint main(){\n"+ code.ToString()  +"\nreturn 0;\n}");
+                Form1.salidaConsola.AppendText("#include <stdio.h>\nfloat Heap[100000];\nfloat Stack[100000];\nfloat sh=0;\nfloat sp=0;\n" + encabezado.ToString() + "\n" + codeFuncion.ToString() + "\nint main(){\n"+ code.ToString()  +"\nreturn 0;\n}");
             }
         }
 
@@ -234,6 +234,8 @@ namespace Proyecto1_Compi2.Analizadores
                         }
                     }
                     break;
+                case "graficar_ts":
+                    return new GraficarTS();         
                 case "if":
                     String tokenSubIf = "";
                     if (actual.ChildNodes.ElementAt(7).ChildNodes.Count > 0)

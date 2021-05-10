@@ -56,7 +56,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         {
                             String tempaux = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);                           
                             String tempauxHeap = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
-                            Generator3D.getInstance().addExpression(tempauxHeap, "p", sim.posicion.ToString(), "+", isFunc);
+                            Generator3D.getInstance().addExpression(tempauxHeap, "sp", sim.posicion.ToString(), "+", isFunc);
                             Generator3D.getInstance().addGetStack(tempaux2, tempauxHeap, isFunc);
                             Generator3D.getInstance().addExpression(temp2, tempaux2, index.ToString(), "+", isFunc);
                             Generator3D.getInstance().addGetHeap(temp4, temp2, isFunc);
@@ -84,7 +84,7 @@ namespace Proyecto1_Compi2.Instrucciones
                         String tempaux = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
                         String temp = Generator3D.getInstance().newTemporal();
                         String tempauxHeap = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
-                        Generator3D.getInstance().addExpression(tempauxHeap, "p", sim.posicion.ToString(), "+", isFunc);
+                        Generator3D.getInstance().addExpression(tempauxHeap, "sp", sim.posicion.ToString(), "+", isFunc);
                         Generator3D.getInstance().addGetStack(tempaux, tempauxHeap, isFunc);
                         Generator3D.getInstance().addExpression(temp, tempaux, index.ToString(), "+", isFunc);
                         Generator3D.getInstance().addSetHeap(temp, ret.getValue(), isFunc);
@@ -123,17 +123,17 @@ namespace Proyecto1_Compi2.Instrucciones
                 {
                     
                     String tempauxHeap = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
-                    Generator3D.getInstance().addExpression(tempauxHeap,"p",sim.posicion.ToString(),"+", isFunc);
+                    Generator3D.getInstance().addExpression(tempauxHeap,"sp",sim.posicion.ToString(),"+", isFunc);
                     String tempStack = Generator3D.getInstance().newTemporal(); Generator3D.getInstance().freeTemp(tempaux);
                     Generator3D.getInstance().addGetStack(tempStack,tempauxHeap, isFunc);
                     Generator3D.getInstance().addExpression(temp, tempStack, index.ToString(), "+", isFunc);
-                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null));
+                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null,Ambito));
                     simTemp = (Simbolo)rettemp.sim;
                 }
                 else {
                     Generator3D.getInstance().addGetStack(tempaux, sim.posicion, isFunc);
                     Generator3D.getInstance().addExpression(temp, tempaux, index.ToString(), "+", isFunc);
-                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null));
+                    rettemp = new Retornar(temp, true, param.type.tipo, new Simbolo(param.type.tipo, accesos.ElementAt(0), index, false, false, true, param.type, null, null, null,null,Ambito));
                     simTemp = (Simbolo)rettemp.sim;
                 }                               
                 if (simTemp.isHeap)

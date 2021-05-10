@@ -195,6 +195,7 @@ namespace Proyecto1_Compi2.Analizadores
                                 | returnFuncion
                                 | LLAMADAFUNCION + PTCOMA
                                 | IF
+                                | tGraficats + PARIZQ + PARDER + PTCOMA
                                 | listId + PDOSPUNTOS + IGUAL + expresion + PTCOMA
                                 | FOR
                                 | INSTRCASE

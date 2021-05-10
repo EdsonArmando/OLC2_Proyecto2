@@ -28,14 +28,14 @@ namespace Proyecto1_Compi2.Instrucciones
             {
                 String templabel = Generator3D.getInstance().newLabel();
                 Generator3D.getInstance().addLabel(ret.trueLabel, isFunc);
-                Generator3D.getInstance().addSetStack("p", "1", isFunc);
+                Generator3D.getInstance().addSetStack("sp", "1", isFunc);
                 Generator3D.getInstance().addGoto(templabel, isFunc);
                 Generator3D.getInstance().addLabel(ret.falseLabel, isFunc);
-                Generator3D.getInstance().addSetStack("p", "0", isFunc);
+                Generator3D.getInstance().addSetStack("sp", "0", isFunc);
                 Generator3D.getInstance().addLabel(templabel, isFunc);
             }
             else if (simFuncion.tipo.tipo != Simbolo.EnumTipoDato.VOID)
-                Generator3D.getInstance().addSetStack("p",ret.getValue(), isFunc);
+                Generator3D.getInstance().addSetStack("sp",ret.getValue(), isFunc);
             Generator3D.getInstance().addGoto(ent.Return, isFunc);
             return null;
         }

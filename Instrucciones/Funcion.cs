@@ -62,17 +62,17 @@ namespace Proyecto1_Compi2.Instrucciones
                         SimboloStruct structSim = ent.getStruct(param.tipoStrucoArray);
                         if (structSim != null)
                         {
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.OBJETO_TYPE, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, "", structSim), null, null, null,null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.OBJETO_TYPE, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, "", structSim), null, null, null,null,Ambito);
                         }
                         else
                         {
                             Simbolo array = ent.obtener(param.tipoStrucoArray, ent);
-                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, array.posicion_Y, array.posicion_Z,null);
+                            entFunc.Insertar(param.id, Simbolo.EnumTipoDato.ARRAY, false, false, array.tipoStruc, array.posicion_X, array.posicion_Y, array.posicion_Z,null,Ambito);
                         }
                     }
                     else
                     {
-                        entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null,null);
+                        entFunc.Insertar(param.id, param.type.tipo, false, false, param.type, null, null, null,null,Ambito);
                     }
                 }
                 instance.LimpiarStorage();

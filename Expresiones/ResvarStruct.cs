@@ -27,29 +27,29 @@ namespace Proyecto2_Compi2.Expresiones
                 return null;
             }
             String temp = generator.newTemporal();
-            generator.addExpression(temp,"h","","", isFunc);
+            generator.addExpression(temp,"sh","","", isFunc);
             foreach (Parametros param in sim.attributess) {
                 switch (param.type.tipo) {
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.CHAR:
                     case Simbolo.EnumTipoDato.BOOLEAN:
-                        generator.addSetHeap("h",0, isFunc);
+                        generator.addSetHeap("sh",0, isFunc);
                         break;
                     case Simbolo.EnumTipoDato.STRING:
-                        generator.addSetHeap("h", "-1", isFunc);
+                        generator.addSetHeap("sh", "-1", isFunc);
                         break;
                     case Simbolo.EnumTipoDato.ARRAY:
-                        generator.addSetHeap("h", "-1", isFunc);
+                        generator.addSetHeap("sh", "-1", isFunc);
                         break;
                     case Simbolo.EnumTipoDato.OBJETO_TYPE:                    
                         isStruct = true;
                         this.param = param;
                         param.tipoStrucoArray = "instanciado";
                         this.tempEncuentra = Generator3D.getInstance().newTemporal();
-                        Generator3D.getInstance().addExpression(tempEncuentra,"h","","", isFunc);
+                        Generator3D.getInstance().addExpression(tempEncuentra,"sh","","", isFunc);
                         Generator3D.getInstance().freeTemp(tempEncuentra);
-                        generator.addSetHeap("h","-1",isFunc);
+                        generator.addSetHeap("sh","-1",isFunc);
                         break;
                 }
                 generator.nextHeap(isFunc);

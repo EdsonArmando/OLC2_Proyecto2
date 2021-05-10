@@ -53,7 +53,7 @@ namespace Proyecto1_Compi2.Expresiones
                 else {
                     String tempP = instance.newTemporal();
                     instance.freeTemp(tempP);
-                    instance.addExpression(tempP, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(tempP, "sp", sim.posicion.ToString(), "+", isFunc);
                     //Donde se almacenan las posiciones de Inicio y Fin
                     String[] posInicioFin = sim.posicion_X;
                     //Temp Guarda donde se encuentra el inicio del arreglo en el heap
@@ -115,7 +115,7 @@ namespace Proyecto1_Compi2.Expresiones
                 else {
                     String tempP = instance.newTemporal();
                     instance.freeTemp(tempP);
-                    instance.addExpression(tempP, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(tempP, "sp", sim.posicion.ToString(), "+", isFunc);
                     //Donde se almacenan las posiciones de Inicio y Fin
                     String[] posInicialX = sim.posicion_X;
                     String[] posInicialY = sim.posicion_Y;
@@ -209,7 +209,7 @@ namespace Proyecto1_Compi2.Expresiones
                 {
                     String tempP = instance.newTemporal();
                     instance.freeTemp(tempP);
-                    instance.addExpression(tempP, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(tempP, "sp", sim.posicion.ToString(), "+", isFunc);
                     //Donde se almacenan las posiciones de Inicio y Fin
                     String[] posInicialX = sim.posicion_X;
                     String[] posInicialY = sim.posicion_Y;

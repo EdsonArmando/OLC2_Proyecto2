@@ -207,11 +207,11 @@ namespace Proyecto1_Compi2.Entornos
             archivo.Write("<H1>Tabla de Simbolos</H1>");
             archivo.Write("<br><br>");
             archivo.Write("<table>");
-            archivo.Write("<tr><th>No</th><th>Nombre</th><th>Tipo</th><th>Ambito</th></tr>");
+            archivo.Write("<tr><th>No</th><th>Nombre</th><th>Tipo</th><th>Ambito</th><th>Posicion</th></tr>");
             foreach (String key in ent.tablaSimbolos.Keys)
             {
                 sim = (Simbolo)tablaSimbolos[key];
-                archivo.Write("<tr><td>" + conts + "</td><td>" + sim.id + "</td><td>" + sim.tipo + "</td><td>" + sim.ambito + "</td></tr>");
+                archivo.Write("<tr><td>" + conts + "</td><td>" + sim.id + "</td><td>" + sim.tipo + "</td><td>" + sim.ambito + "</td><td>"+ sim.posicion.ToString() +"</td></tr>");
                 conts++;
             }
 
@@ -229,13 +229,13 @@ namespace Proyecto1_Compi2.Entornos
             this.funciones.Add(funcion.id.ToLower(),new SimboloFuncion(funcion,nombre.ToLower()));
             return true;
         }
-        public Simbolo Insertar(string nombre, Simbolo.EnumTipoDato tipo, bool isConst, bool isRef,TipoDato tipoStruct,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2)
+        public Simbolo Insertar(string nombre, Simbolo.EnumTipoDato tipo, bool isConst, bool isRef,TipoDato tipoStruct,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2, String ambito)
         {
             nombre = nombre.ToLower();
             if (this.tablaSimbolos.ContainsKey(nombre) != false) {
                 return null;
             }
-            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX, posY, posZ,valor2);
+            Simbolo sim = new Simbolo(tipo, nombre,this.pos++,isConst,this.anterior==null,isRef,tipoStruct,posX, posY, posZ,valor2,ambito);
             this.tablaSimbolos.Add(nombre,sim);
             return sim;
         }

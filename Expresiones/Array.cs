@@ -58,11 +58,11 @@ namespace Proyecto1_Compi2.Expresiones
                 {
                     //sE TRATA DE sTRUCT
                     if (devTipoDato(Tipo.ToString()) == Simbolo.EnumTipoDato.NULL) {
-                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posiciones, null, null,null);
+                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posiciones, null, null,null,Ambito);
                         return null;
                     }
                     //Ingreso el Type a la Tabla de Simbolos
-                    Simbolo tempSimp = ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,null);
+                    Simbolo tempSimp = ent.Insertar(Nombre_id,Simbolo.EnumTipoDato.ARRAY,false,false,new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,null,Ambito);
                     return null;
                 }
                 
@@ -72,7 +72,7 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addExpression(tempAux, temp, "2","+", isFunc);
                 String tempInicio = instance.newTemporal();instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "", isFunc);
+                instance.addExpression(tempInicio, "sh", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal();instance.freeTemp(tempTotal);
                 instance.addExpression(tempTotal,tempAux,"1","-", isFunc);
@@ -87,16 +87,16 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addLabel(labelInicio, isFunc);
                 instance.addIf(tempAux,tempCont,"==",labelFin, isFunc);                
                 instance.addExpression(tempCont,tempCont,"1","+", isFunc);
-                instance.addSetHeap("h", 0, isFunc);
+                instance.addSetHeap("sh", 0, isFunc);
                 instance.nextHeap(isFunc);
                 instance.addGoto(labelInicio, isFunc);
                 instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
-                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,valor);
+                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,valor,Ambito);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp2, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else {
@@ -125,11 +125,11 @@ namespace Proyecto1_Compi2.Expresiones
                     //sE TRATA DE sTRUCT
                     if (devTipoDato(Tipo.ToString()) == Simbolo.EnumTipoDato.NULL)
                     {
-                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posicionesX, posicionesY, null, null);
+                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posicionesX, posicionesY, null, null,Ambito);
                         return null;
                     }
                     //Ingreso el Type a la Tabla de Simbolos
-                    Simbolo tempSimp = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, null, null);
+                    Simbolo tempSimp = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, null, null,Ambito);
                     return null;
                 }
                 //Tamanio del Vector
@@ -153,7 +153,7 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addExpression(tempAux, tamanioTotal, "2", "+", isFunc);
                 String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "", isFunc);
+                instance.addExpression(tempInicio, "sh", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
                 instance.addExpression(tempTotal, tempAux, "1", "-", isFunc);
@@ -168,16 +168,16 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addLabel(labelInicio, isFunc);
                 instance.addIf(tempTotal, tempCont, "==", labelFin, isFunc);
                 instance.addExpression(tempCont, tempCont, "1", "+", isFunc);
-                instance.addSetHeap("h", 0, isFunc);
+                instance.addSetHeap("sh", 0, isFunc);
                 instance.nextHeap(isFunc);
                 instance.addGoto(labelInicio, isFunc);
                 instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
-                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, null, valor);
+                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, null, valor,Ambito);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp2, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else
@@ -212,11 +212,11 @@ namespace Proyecto1_Compi2.Expresiones
                     //sE TRATA DE sTRUCT
                     if (devTipoDato(Tipo.ToString()) == Simbolo.EnumTipoDato.NULL)
                     {
-                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posicionesX, posicionesY, posicionesZ, null);
+                        Simbolo tempSimp2 = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE, this.structsd, null), posicionesX, posicionesY, posicionesZ, null,Ambito);
                         return null;
                     }
                     //Ingreso el Type a la Tabla de Simbolos
-                    Simbolo tempSimp = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, posicionesZ, null);
+                    Simbolo tempSimp = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, posicionesZ, null,Ambito);
                     return null;
                 }
                 //Tamanio del Vector
@@ -247,7 +247,7 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addExpression(tempAux, tamanioTotal2, "2", "+", isFunc);
                 String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "", isFunc);
+                instance.addExpression(tempInicio, "sh", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
                 instance.addExpression(tempTotal, tempAux, "1", "-", isFunc);
@@ -262,16 +262,16 @@ namespace Proyecto1_Compi2.Expresiones
                 instance.addLabel(labelInicio, isFunc);
                 instance.addIf(tempTotal, tempCont, "==", labelFin, isFunc);
                 instance.addExpression(tempCont, tempCont, "1", "+", isFunc);
-                instance.addSetHeap("h", 0, isFunc);
+                instance.addSetHeap("sh", 0, isFunc);
                 instance.nextHeap(isFunc);
                 instance.addGoto(labelInicio, isFunc);
                 instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
-                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, posicionesZ, valor);
+                Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, posicionesZ, valor,Ambito);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp2, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else

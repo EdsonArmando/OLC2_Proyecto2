@@ -25,7 +25,7 @@ namespace Proyecto1_Compi2.Entornos
         public Simbolo.EnumTipoDato tipoItem;
         public Expresion[,] valorArray;
 
-        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2)
+        public Simbolo(EnumTipoDato tipo, String id, int valor,bool esconst,bool global, bool heap,TipoDato tipStruc,String[] posX, String[] posY, String[] posZ, Expresion[,] valor2,String amb)
         {
             this.id = id;
             this.tipo = tipo;
@@ -34,6 +34,7 @@ namespace Proyecto1_Compi2.Entornos
             this.isHeap = heap;
             this.tipoStruc = tipStruc;
             this.isGlobal = global;
+            this.ambito = amb;
             this.posicion_X = posX;
             this.posicion_Y = posY;
             this.posicion_Z = posZ;

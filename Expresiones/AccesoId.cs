@@ -91,7 +91,7 @@ namespace Proyecto2_Compi2.Expresiones
                 {
                     //La variable esta en el Heap
                     String tempAux = generator.newTemporal(); generator.freeTemp(tempAux);
-                    generator.addExpression(tempAux, "p", sim.posicion.ToString(), "+", isFunc);
+                    generator.addExpression(tempAux, "sp", sim.posicion.ToString(), "+", isFunc);
                     generator.addGetStack(temp, tempAux, isFunc);
                     if (sim.tipo != Simbolo.EnumTipoDato.BOOLEAN) return new Retornar(temp, true, sim.tipo, sim, sim.tipoStruc);
                     Retornar retorno = new Retornar("", false, sim.tipo, sim, sim.tipoStruc);

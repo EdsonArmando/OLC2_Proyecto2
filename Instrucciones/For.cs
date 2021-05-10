@@ -41,7 +41,7 @@ namespace Proyecto1_Compi2.Instrucciones
             else {
                 String temp = instance.newTemporal();
                 instance.freeTemp(temp);
-                instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                 instance.addSetStack(temp, valInicio.getValue(), isFunc);
             }
             //Aumentar o Decre variable

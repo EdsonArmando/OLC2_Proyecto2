@@ -21,13 +21,13 @@ namespace Proyecto2_Compi2.Expresiones
         {
             Generator3D generator = Generator3D.getInstance();
             String temp = generator.newTemporal();
-            generator.addExpression(temp, "h","","", isFunc);
+            generator.addExpression(temp, "sh","","", isFunc);
             for (int i = 0; i < this.valoCadenar.Length; i++)
             {
-                generator.addSetHeap('h', Encoding.ASCII.GetBytes(valoCadenar.Substring(i,1))[0].ToString(), isFunc);
+                generator.addSetHeap("sh", Encoding.ASCII.GetBytes(valoCadenar.Substring(i,1))[0].ToString(), isFunc);
                 generator.nextHeap(isFunc);
             }
-            generator.addSetHeap("h", "-1", isFunc);
+            generator.addSetHeap("sh", "-1", isFunc);
             generator.nextHeap(isFunc);
             return new Retornar(temp,true,Simbolo.EnumTipoDato.STRING,null,new TipoDato(this.tipoDat,"String",null));
         }

@@ -195,7 +195,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     instance.agregarComentario("Iniciando Proceso de Asignacion de arreglo no Global", isFunc);
                     String temp = instance.newTemporal();
                     instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     String[] posInicialX = sim.posicion_X;    
                     //Posicion en la que se va a insertar en el arreglo
                     Retornar posx = posX.Compilar(ent, isFunc);
@@ -225,7 +225,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     instance.agregarComentario("Iniciando Proceso de Asignacion de arreglo no Global", isFunc);
                     String temp = instance.newTemporal();
                     instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     String[] posInicialX = sim.posicion_X;
                     String[] posInicialY = sim.posicion_Y;
                     instance.agregarComentario("Iniciando Proceso de Asignacion de arreglo Global", isFunc);
@@ -286,7 +286,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     //Obtener el valor del Stack
                     String temp = instance.newTemporal();
                     instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
                     instance.addGetStack(tempInicio, temp, isFunc);
                     //Salto una posicion
@@ -329,7 +329,7 @@ namespace Proyecto1_Compi2.Instrucciones
                     instance.addSetHeap(tempHeap, val.getValue(), isFunc);
                     //Seteo Valor nuevo a la variable en el stack
                     String tempNuevo = instance.newTemporal();instance.freeTemp(tempNuevo);
-                    instance.addExpression(tempNuevo,"p",sim2.posicion.ToString(),"+", isFunc);
+                    instance.addExpression(tempNuevo,"sp",sim2.posicion.ToString(),"+", isFunc);
                     instance.addSetStack(tempNuevo,ret.getValue(), isFunc);
                     return null;
                 }
@@ -341,18 +341,18 @@ namespace Proyecto1_Compi2.Instrucciones
                     String temp = instance.newTemporal(); instance.freeTemp(temp);
                     
                     instance.addLabel(value.trueLabel, isFunc);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp, "1", isFunc);
                     instance.addGoto(templabel, isFunc);
                     instance.addLabel(value.falseLabel, isFunc);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp, "0", isFunc);
                     instance.addLabel(templabel, isFunc);
                 }
                 else {
                     String temp = instance.newTemporal();
                     instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addExpression(temp, "sp", sim.posicion.ToString(), "+", isFunc);
                     instance.addSetStack(temp, value.getValue(), isFunc);
                 }               
                 return null;

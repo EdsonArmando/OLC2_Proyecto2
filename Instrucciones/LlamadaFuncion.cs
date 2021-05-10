@@ -37,7 +37,7 @@ namespace Proyecto1_Compi2.Instrucciones
             instance.freeTemp(temp);
             if (retParamValues.Count != 0)
             {
-                instance.addExpression(temp, "p", (ent.pos + 1).ToString(), "+", isFunc);
+                instance.addExpression(temp, "sp", (ent.pos + 1).ToString(), "+", isFunc);
                 for (int index = 0; index < retParamValues.Count; index++)
                 {
                     Retornar temRet = retParamValues.ElementAt(index);
@@ -48,7 +48,7 @@ namespace Proyecto1_Compi2.Instrucciones
             }
             instance.nextEnt(ent.pos, isFunc);
             instance.addCall(simFuncion.idUnico, isFunc);
-            instance.addGetStack(temp, "p", isFunc);
+            instance.addGetStack(temp, "sp", isFunc);
             instance.antEnt(ent.pos, isFunc);
             instance.RecuperarTemp(ent, tam, isFunc);
             instance.aggregarTemp(temp);
@@ -81,7 +81,7 @@ namespace Proyecto1_Compi2.Instrucciones
             String temp = instance.newTemporal();
             instance.freeTemp(temp);
             if (retParamValues.Count != 0) {
-                instance.addExpression(temp, "p",(ent.pos + 1).ToString(), "+", isFunc);
+                instance.addExpression(temp, "sp",(ent.pos + 1).ToString(), "+", isFunc);
                 for (int index=0;index < retParamValues.Count;index++) {
                     Retornar temRet = retParamValues.ElementAt(index);
                     instance.addSetStack(temp,temRet.getValue(), isFunc);
@@ -91,7 +91,7 @@ namespace Proyecto1_Compi2.Instrucciones
             }
             instance.nextEnt(ent.pos, isFunc);
             instance.addCall(simFuncion.idUnico, isFunc);
-            instance.addGetStack(temp,"p", isFunc);
+            instance.addGetStack(temp,"sp", isFunc);
             instance.antEnt(ent.pos, isFunc);
             instance.RecuperarTemp(ent,tam, isFunc);
             instance.aggregarTemp(temp);

@@ -71,6 +71,7 @@
 	    var lista_codigos : array[1..4] of integer;
 	    var i:integer;
 	    begin
+
 	        // leno el arreglo de codigos
 	        lista_codigos[1]:=781;
 	        lista_codigos[2]:=722;
@@ -82,7 +83,7 @@
 	        begin
 	            lista_cursos[i] := get_curso(lista_codigos[i]);
 	            i:= i+1;
-	        end;
+	        end;	    
 	    exit(lista_cursos);
 	    writeln('Mensaje dentro de la funcion get_cursos, si imprime esto no se maneja bien el exit');
 	end;
@@ -125,6 +126,7 @@
 	var i:integer;
 	var temp : curso;
 	begin
+	graficar_ts();
 	    writeln('cursos');
 	    // ****** USO DEL FOR ascendente
 	    for i:=1 to TOPE do
@@ -167,3 +169,4 @@ writeln('***** Imprimiendo datos del estudiante******');
     begin
         imprimir_datos_estudiante(listado_general[contador]);
     end;
+    //graficar_ts();

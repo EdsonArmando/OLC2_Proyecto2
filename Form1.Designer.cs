@@ -89,7 +89,7 @@ namespace Proyecto1_Compi2
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 27);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Ejecutar";
+            this.button1.Text = "Compilar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
