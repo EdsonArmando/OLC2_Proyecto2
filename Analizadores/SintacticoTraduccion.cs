@@ -50,7 +50,7 @@ namespace Proyecto1_Compi2.Analizadores
                 Entornos.Entorno ent = new Entornos.Entorno(null);
                 foreach (Abstracto.Instruccion ins in AST)
                 {
-                    ins.Compilar(ent,"Global",null);                   
+                    ins.Compilar(ent,"Global",null,false);                   
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace Proyecto1_Compi2.Analizadores
                 System.Text.StringBuilder entradaTradducida = new System.Text.StringBuilder();
                 foreach (Abstracto.Instruccion ins in AST)
                 {
-                    ins.Compilar(ent, "global",null);        
+                    ins.Compilar(ent, "global",null,false);        
                 }
                 Form1.salidaConsola.AppendText(entradaTradducida.ToString());
             }

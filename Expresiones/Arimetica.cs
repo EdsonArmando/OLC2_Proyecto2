@@ -40,14 +40,14 @@ namespace Proyecto1_Compi2.Expresiones
         {
             throw new NotImplementedException();
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent,bool isFunc)
         {                       
             if (tipo == Tipo_operacion.DIVISION)
             {
-                Retornar valorIzqu = operadorIzq.Compilar(ent);
-                Retornar valorDerecho = operadorDer.Compilar(ent);
+                Retornar valorIzqu = operadorIzq.Compilar(ent, isFunc);
+                Retornar valorDerecho = operadorDer.Compilar(ent, isFunc);
                 String temp = Generator3D.getInstance().newTemporal();
-                Generator3D.getInstance().addExpression(temp,valorIzqu.getValue(),valorDerecho.getValue(),"/");
+                Generator3D.getInstance().addExpression(temp,valorIzqu.getValue(),valorDerecho.getValue(),"/", isFunc);
                 return new Retornar(temp,true,Simbolo.EnumTipoDato.DOUBLE,null);
             }
             else if (tipo == Tipo_operacion.NUMERO)
@@ -56,45 +56,45 @@ namespace Proyecto1_Compi2.Expresiones
             }
             else if (tipo == Tipo_operacion.SUMA)
             {
-                Retornar valorIzqu = operadorIzq.Compilar(ent);
-                Retornar valorDerecho = operadorDer.Compilar(ent);
+                Retornar valorIzqu = operadorIzq.Compilar(ent, isFunc);
+                Retornar valorDerecho = operadorDer.Compilar(ent, isFunc);
                 String temp = Generator3D.getInstance().newTemporal();
-                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "+");
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "+", isFunc);
                 return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, "");
             }
             else if (tipo == Tipo_operacion.RESTA)
             {
-                Retornar valorIzqu = operadorIzq.Compilar(ent);
-                Retornar valorDerecho = operadorDer.Compilar(ent);
+                Retornar valorIzqu = operadorIzq.Compilar(ent, isFunc);
+                Retornar valorDerecho = operadorDer.Compilar(ent, isFunc);
                 String temp = Generator3D.getInstance().newTemporal();
-                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "-");
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "-", isFunc);
                 return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, "");
             }
             else if (tipo == Tipo_operacion.MULTIPLICACION)
             {
-                Retornar valorIzqu = operadorIzq.Compilar(ent);
-                Retornar valorDerecho = operadorDer.Compilar(ent);
+                Retornar valorIzqu = operadorIzq.Compilar(ent, isFunc);
+                Retornar valorDerecho = operadorDer.Compilar(ent, isFunc);
                 String temp = Generator3D.getInstance().newTemporal();
-                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "*");
+                Generator3D.getInstance().addExpression(temp, valorIzqu.getValue(), valorDerecho.getValue(), "*", isFunc);
                 return new Retornar(temp, true, Simbolo.EnumTipoDato.DOUBLE, null);
             }
             else if (tipo == Tipo_operacion.MAYOR_QUE)
             {
-                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent, isFunc);
                 Retornar dere = null;
                 switch (valorIzqu.tipo) {                    
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.REAL:
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
                         switch (dere.tipo) {
                             case Simbolo.EnumTipoDato.DOUBLE:
                             case Simbolo.EnumTipoDato.INT:
                             case Simbolo.EnumTipoDato.REAL:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
-                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">", this.truelabel);
-                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">", this.truelabel, isFunc);
+                                Generator3D.getInstance().addGoto(this.falselabel, isFunc);
                                 Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
                                 ret.trueLabel = this.truelabel;
                                 ret.falseLabel = this.falselabel;
@@ -104,14 +104,14 @@ namespace Proyecto1_Compi2.Expresiones
                     case Simbolo.EnumTipoDato.BOOLEAN:
                         String trueLabel = Generator3D.getInstance().newLabel();
                         String falseLabel = Generator3D.getInstance().newLabel();
-                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel, isFunc);
                         this.operadorDer.truelabel = trueLabel;
                         this.operadorDer.falselabel = falseLabel;
-                        dere = this.operadorIzq.Compilar(ent);
-                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel, isFunc);
                         this.operadorDer.truelabel = falseLabel;
                         this.operadorDer.falselabel = trueLabel;
-                        dere = this.operadorIzq.Compilar(ent);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
                         if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
@@ -140,13 +140,13 @@ namespace Proyecto1_Compi2.Expresiones
             }
             else if (tipo == Tipo_operacion.IGUAL_QUE)
             {
-                Retornar left = this.operadorIzq.Compilar(ent);
+                Retornar left = this.operadorIzq.Compilar(ent, isFunc);
                 Retornar dere = null;
                 switch (left.tipo) {
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.REAL:
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
                     switch (dere.tipo)
                     {
                         case Simbolo.EnumTipoDato.DOUBLE:
@@ -154,8 +154,8 @@ namespace Proyecto1_Compi2.Expresiones
                         case Simbolo.EnumTipoDato.REAL:
                             this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                             this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
-                            Generator3D.getInstance().addIf(left.getValue(), dere.getValue(), "==", this.truelabel);
-                            Generator3D.getInstance().addGoto(this.falselabel);                                       
+                            Generator3D.getInstance().addIf(left.getValue(), dere.getValue(), "==", this.truelabel, isFunc);
+                            Generator3D.getInstance().addGoto(this.falselabel, isFunc);                                       
                             Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, "");
                             retorno.trueLabel = this.truelabel;
                             retorno.falseLabel = this.falselabel;
@@ -168,15 +168,15 @@ namespace Proyecto1_Compi2.Expresiones
                         String trueLabel = Generator3D.getInstance().newLabel();
                         String falseLabel = Generator3D.getInstance().newLabel();
 
-                        Generator3D.getInstance().addLabel(left.trueLabel);
+                        Generator3D.getInstance().addLabel(left.trueLabel, isFunc);
                         this.operadorDer.truelabel = trueLabel;
                         this.operadorDer.falselabel = falseLabel;
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
 
-                        Generator3D.getInstance().addLabel(left.falseLabel);
+                        Generator3D.getInstance().addLabel(left.falseLabel, isFunc);
                         this.operadorDer.truelabel = falseLabel;
                         this.operadorDer.falselabel = trueLabel;
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
                         if (dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             Retornar retorno = new Retornar("", false, left.tipo,null);
@@ -189,14 +189,14 @@ namespace Proyecto1_Compi2.Expresiones
             }
             else if (tipo == Tipo_operacion.MENOR_QUE)
             {
-                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent, isFunc);
                 Retornar dere = null;
                 switch (valorIzqu.tipo)
                 {
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.REAL:
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
@@ -204,8 +204,8 @@ namespace Proyecto1_Compi2.Expresiones
                             case Simbolo.EnumTipoDato.DOUBLE:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
-                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<", this.truelabel);
-                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<", this.truelabel, isFunc);
+                                Generator3D.getInstance().addGoto(this.falselabel, isFunc);
                                 Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
                                 ret.trueLabel = this.truelabel;
                                 ret.falseLabel = this.falselabel;
@@ -215,14 +215,14 @@ namespace Proyecto1_Compi2.Expresiones
                     case Simbolo.EnumTipoDato.BOOLEAN:
                         String trueLabel = Generator3D.getInstance().newLabel();
                         String falseLabel = Generator3D.getInstance().newLabel();
-                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel, isFunc);
                         this.operadorDer.truelabel = trueLabel;
                         this.operadorDer.falselabel = falseLabel;
-                        dere = this.operadorIzq.Compilar(ent);
-                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel, isFunc);
                         this.operadorDer.truelabel = falseLabel;
                         this.operadorDer.falselabel = trueLabel;
-                        dere = this.operadorIzq.Compilar(ent);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
                         if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
@@ -239,14 +239,14 @@ namespace Proyecto1_Compi2.Expresiones
             }
             else if (tipo == Tipo_operacion.MENOR_IGUAL_QUE)
             {
-                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent, isFunc);
                 Retornar dere = null;
                 switch (valorIzqu.tipo)
                 {
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.REAL:
                     case Simbolo.EnumTipoDato.DOUBLE:
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent, isFunc);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
@@ -254,8 +254,8 @@ namespace Proyecto1_Compi2.Expresiones
                             case Simbolo.EnumTipoDato.DOUBLE:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
-                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<=", this.truelabel);
-                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), "<=", this.truelabel, isFunc);
+                                Generator3D.getInstance().addGoto(this.falselabel, isFunc);
                                 Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
                                 ret.trueLabel = this.truelabel;
                                 ret.falseLabel = this.falselabel;
@@ -265,14 +265,14 @@ namespace Proyecto1_Compi2.Expresiones
                     case Simbolo.EnumTipoDato.BOOLEAN:
                         String trueLabel = Generator3D.getInstance().newLabel();
                         String falseLabel = Generator3D.getInstance().newLabel();
-                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel, isFunc);
                         this.operadorDer.truelabel = trueLabel;
                         this.operadorDer.falselabel = falseLabel;
-                        dere = this.operadorIzq.Compilar(ent);
-                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel, isFunc);
                         this.operadorDer.truelabel = falseLabel;
                         this.operadorDer.falselabel = trueLabel;
-                        dere = this.operadorIzq.Compilar(ent);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
                         if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
@@ -285,14 +285,14 @@ namespace Proyecto1_Compi2.Expresiones
             }
             else if (tipo == Tipo_operacion.MAYOR_IGUAL_QUE)
             {
-                Retornar valorIzqu = this.operadorIzq.Compilar(ent);
+                Retornar valorIzqu = this.operadorIzq.Compilar(ent, isFunc);
                 Retornar dere = null;
                 switch (valorIzqu.tipo)
                 {
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.REAL:
-                        dere = this.operadorDer.Compilar(ent);
+                        dere = this.operadorDer.Compilar(ent,isFunc);
                         switch (dere.tipo)
                         {
                             case Simbolo.EnumTipoDato.INT:
@@ -300,8 +300,8 @@ namespace Proyecto1_Compi2.Expresiones
                             case Simbolo.EnumTipoDato.REAL:
                                 this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
                                 this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
-                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">=", this.truelabel);
-                                Generator3D.getInstance().addGoto(this.falselabel);
+                                Generator3D.getInstance().addIf(valorIzqu.getValue(), dere.getValue(), ">=", this.truelabel, isFunc);
+                                Generator3D.getInstance().addGoto(this.falselabel, isFunc);
                                 Retornar ret = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null);
                                 ret.trueLabel = this.truelabel;
                                 ret.falseLabel = this.falselabel;
@@ -311,14 +311,14 @@ namespace Proyecto1_Compi2.Expresiones
                     case Simbolo.EnumTipoDato.BOOLEAN:
                         String trueLabel = Generator3D.getInstance().newLabel();
                         String falseLabel = Generator3D.getInstance().newLabel();
-                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel);
+                        Generator3D.getInstance().addLabel(valorIzqu.trueLabel, isFunc);
                         this.operadorDer.truelabel = trueLabel;
                         this.operadorDer.falselabel = falseLabel;
-                        dere = this.operadorIzq.Compilar(ent);
-                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
+                        Generator3D.getInstance().addLabel(valorIzqu.falseLabel, isFunc);
                         this.operadorDer.truelabel = falseLabel;
                         this.operadorDer.falselabel = trueLabel;
-                        dere = this.operadorIzq.Compilar(ent);
+                        dere = this.operadorIzq.Compilar(ent, isFunc);
                         if ((Simbolo.EnumTipoDato)dere.tipo == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             Retornar retorno = new Retornar("", false, operadorIzq.tipo, null);
@@ -335,7 +335,7 @@ namespace Proyecto1_Compi2.Expresiones
                 Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN,null,new TipoDato(Simbolo.EnumTipoDato.BOOLEAN,null,null));
                 this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
                 this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;            
-                generator.addGoto(this.truelabel);                                           
+                generator.addGoto(this.truelabel, isFunc);                                           
                 retorno.trueLabel = this.truelabel;
                 retorno.falseLabel = this.falselabel;
                 return retorno;
@@ -346,14 +346,14 @@ namespace Proyecto1_Compi2.Expresiones
                 Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN, null, new TipoDato(Simbolo.EnumTipoDato.BOOLEAN, null, null));
                 this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
                 this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;
-                generator.addGoto(this.falselabel);
+                generator.addGoto(this.falselabel, isFunc);
                 retorno.trueLabel = this.truelabel;
                 retorno.falseLabel = this.falselabel;
                 return retorno;
             }
             else if (tipo == Tipo_operacion.NEGATIVO)
             {
-                Retornar izquier = this.operadorIzq.Compilar(ent);
+                Retornar izquier = this.operadorIzq.Compilar(ent, isFunc);
                 return new Retornar("-"+izquier.getValue(), false, Simbolo.EnumTipoDato.DOUBLE, "");
             }
             /*else if (tipo == Tipo_operacion.MULTIPLICACION)

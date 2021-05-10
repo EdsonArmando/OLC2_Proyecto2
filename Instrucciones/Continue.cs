@@ -10,9 +10,9 @@ namespace Proyecto1_Compi2.Instrucciones
 {
     class Continue : Instruccion
     {
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST, bool isFunc)
         {
-            Generator3D.getInstance().addGoto(ent.Continue);
+            Generator3D.getInstance().addGoto(ent.Continue,isFunc);
             return null;
         }
     }

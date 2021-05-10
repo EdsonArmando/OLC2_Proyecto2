@@ -68,7 +68,7 @@
 	end;
 	function get_cursos():cursos;
 	    var lista_cursos:array[1..4] of curso;
-	    var lista_codigos : array[1..4] of integer;;
+	    var lista_codigos : array[1..4] of integer;
 	    var i:integer;
 	    begin
 	        // leno el arreglo de codigos

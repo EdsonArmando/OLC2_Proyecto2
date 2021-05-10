@@ -15,7 +15,7 @@ namespace Proyecto1_Compi2.Expresiones
             this.derecho = derecho;
         }
 
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent,bool isFunc)
         {
             throw new NotImplementedException();
         }

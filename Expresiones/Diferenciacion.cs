@@ -16,10 +16,10 @@ namespace Proyecto2_Compi2.Expresiones
             this.izquierda = izq;
             this.derecha = dere;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
-            Retornar left = this.izquierda.Compilar(ent);
-            Retornar right = this.derecha.Compilar(ent);
+            Retornar left = this.izquierda.Compilar(ent, isFunc);
+            Retornar right = this.derecha.Compilar(ent, isFunc);
             Generator3D generator = Generator3D.getInstance();
             switch (left.tipo) {
                 case Simbolo.EnumTipoDato.INT:
@@ -32,8 +32,8 @@ namespace Proyecto2_Compi2.Expresiones
                         case Simbolo.EnumTipoDato.DOUBLE:
                             this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
                             this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;
-                            generator.addIf(left.getValue(), right.getValue(), "!=", this.truelabel);
-                            generator.addGoto(this.falselabel);
+                            generator.addIf(left.getValue(), right.getValue(), "!=", this.truelabel, isFunc);
+                            generator.addGoto(this.falselabel, isFunc);
                             Retornar retorno = new Retornar("", false, Simbolo.EnumTipoDato.BOOLEAN,null);
                             retorno.trueLabel = this.truelabel;
                             retorno.falseLabel = this.falselabel;

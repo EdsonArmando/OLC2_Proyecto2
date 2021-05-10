@@ -29,28 +29,28 @@ namespace Proyecto1_Compi2.Instrucciones
             this.global_casIndividual = esIndividual;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST, bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             String LabelSalida = instance.newLabel();
             foreach (Case ca in Case_Instr) {                
                 Arimetica condicionIgual =new Arimetica (condicion,ca.condicion,Arimetica.Tipo_operacion.IGUAL_QUE);
-                condicionIgual.Compilar(ent);
-                instance.addLabel(condicionIgual.truelabel);
+                condicionIgual.Compilar(ent, isFunc);
+                instance.addLabel(condicionIgual.truelabel, isFunc);
                 LinkedList<Instruccion> inst = ca.Case_Instr;
                 foreach (Instruccion ins in inst)
                 {
-                    ins.Compilar(ent,Ambito,AST);
+                    ins.Compilar(ent,Ambito,AST, isFunc);
                 }
-                instance.addGoto(LabelSalida);
-                instance.addLabel(condicionIgual.falselabel);                
+                instance.addGoto(LabelSalida, isFunc);
+                instance.addLabel(condicionIgual.falselabel, isFunc);                
             }
             if (Else != null) {
                 foreach (Instruccion ins in Else) {
-                    ins.Compilar(ent,Ambito,AST);
+                    ins.Compilar(ent,Ambito,AST, isFunc);
                 }           
             }
-            instance.addLabel(LabelSalida);
+            instance.addLabel(LabelSalida, isFunc);
             return null;
         }
     }

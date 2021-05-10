@@ -18,24 +18,24 @@ namespace Proyecto1_Compi2.Instrucciones
             this.listaIntr = listaIntr;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             String labelWhile = instance.newLabel();
-            instance.agregarComentario("Inicia While");
-            instance.addLabel(labelWhile);
-            Retornar condicionWhile = condicion.Compilar(ent);
+            instance.agregarComentario("Inicia While", isFunc);
+            instance.addLabel(labelWhile, isFunc);
+            Retornar condicionWhile = condicion.Compilar(ent, isFunc);
             ent.Break = condicionWhile.falseLabel;
             ent.Continue = labelWhile;
             if (condicionWhile.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
-                instance.addLabel(condicionWhile.trueLabel);
+                instance.addLabel(condicionWhile.trueLabel, isFunc);
                 foreach (Instruccion ins in listaIntr) {
-                    Retornar ret = ins.Compilar(ent, Ambito, AST);
+                    Retornar ret = ins.Compilar(ent, Ambito, AST, isFunc);
                 }
-                instance.addGoto(labelWhile);
-                instance.addLabel(condicionWhile.falseLabel);
-                instance.agregarComentario("Finaliza While");
+                instance.addGoto(labelWhile, isFunc);
+                instance.addLabel(condicionWhile.falseLabel, isFunc);
+                instance.agregarComentario("Finaliza While", isFunc);
                 return null;
             }
             else {

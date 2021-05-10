@@ -16,7 +16,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.id = id;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             Simbolo variable = ent.obtener(id.ToLower(), ent);
@@ -24,11 +24,11 @@ namespace Proyecto1_Compi2.Instrucciones
             {
                 //Temporal donde se Guardara el Valor de Variable Actual
                 String tempVal = instance.newTemporal(); instance.freeTemp(tempVal);
-                instance.addGetStack(tempVal, variable.posicion);
+                instance.addGetStack(tempVal, variable.posicion, isFunc);
                 //Temp dondeGuardo el valor de la Variable
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal, tempVal, "1", "-");
-                instance.addSetStack(variable.posicion.ToString(), tempTotal);
+                instance.addExpression(tempTotal, tempVal, "1", "-", isFunc);
+                instance.addSetStack(variable.posicion.ToString(), tempTotal, isFunc);
             }
             else
             {
@@ -37,14 +37,14 @@ namespace Proyecto1_Compi2.Instrucciones
                 String temp = instance.newTemporal();
                 instance.freeTemp(temp);
                 //Posicion de donde se encuentra la Variable
-                instance.addExpression(temp, "p", variable.posicion.ToString(), "-");
+                instance.addExpression(temp, "p", variable.posicion.ToString(), "-", isFunc);
                 //Temporal donde se Guardara el Valor de Variable Actual
                 String tempVal = instance.newTemporal(); instance.freeTemp(tempVal);
-                instance.addGetStack(tempVal, temp);
+                instance.addGetStack(tempVal, temp, isFunc);
                 //Temp dondeGuardo el valor de la Variable
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal, tempVal, "1", "-");
-                instance.addSetStack(temp, tempTotal);
+                instance.addExpression(tempTotal, tempVal, "1", "-", isFunc);
+                instance.addSetStack(temp, tempTotal, isFunc);
             }
 
             return null;

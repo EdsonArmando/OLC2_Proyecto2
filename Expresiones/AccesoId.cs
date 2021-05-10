@@ -22,17 +22,17 @@ namespace Proyecto2_Compi2.Expresiones
             this.anterior = anteri;
             this.idVariable = variable;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent,bool isFunc)
         {
             Generator3D generator = Generator3D.getInstance();
             //Entorno Global
             Retornar padre = null;
             if (anterior != null)
-                padre = anterior.Compilar(ent);
+                padre = anterior.Compilar(ent, isFunc);
             if (anterior != null)
             {
                 //Parametro que se desa Buscar
-                Retornar ID = id.Compilar(ent);
+                Retornar ID = id.Compilar(ent, isFunc);
                 //Simbolo que trae el anterior   
                 if (padre.tipo == Simbolo.EnumTipoDato.STRING) {
                     return padre;
@@ -46,15 +46,15 @@ namespace Proyecto2_Compi2.Expresiones
                 //Buscar la Variable
                 String tempAux = generator.newTemporal(); generator.freeTemp(tempAux);
                 String temp = generator.newTemporal();
-                generator.addExpression(tempAux, padre.getValue(), index.ToString(), "+"); //Busca la posicion del atributo
-                generator.addGetHeap(temp, tempAux); //Trae el valor del heap
+                generator.addExpression(tempAux, padre.getValue(), index.ToString(), "+", isFunc); //Busca la posicion del atributo
+                generator.addGetHeap(temp, tempAux, isFunc); //Trae el valor del heap
                 if (attribute.type.tipo == Simbolo.EnumTipoDato.OBJETO_TYPE) {
                     SimboloStruct sim2 = ent.getStruct(attribute.type.tipoId);
                     AccesoId idTotal = (AccesoId)this.id;
                     if (idTotal.id == null) {
                         return new Retornar(temp, true, attribute.type.tipo, null);
                     }
-                    Retornar idTemp = idTotal.id.Compilar(ent);
+                    Retornar idTemp = idTotal.id.Compilar(ent, isFunc);
                     //Busco la Variable
                     Parametros attribute2 = sim2.getAttribute(idTemp.getValue());
                     //Posicion en donde se encuentra
@@ -62,8 +62,8 @@ namespace Proyecto2_Compi2.Expresiones
                     //Buscar la Variable
                     String tempAux2 = generator.newTemporal(); generator.freeTemp(tempAux);
                     String temp2 = generator.newTemporal();
-                    generator.addExpression(tempAux2, temp, index2.ToString(), "+"); //Busca la posicion del atributo
-                    generator.addGetHeap(temp2, tempAux2); //Trae el valor del heap
+                    generator.addExpression(tempAux2, temp, index2.ToString(), "+", isFunc); //Busca la posicion del atributo
+                    generator.addGetHeap(temp2, tempAux2, isFunc); //Trae el valor del heap
                     return new Retornar(temp2, true, attribute2.type.tipo, null);
                 }
                 return new Retornar(temp, true, attribute.type.tipo, null);
@@ -76,13 +76,13 @@ namespace Proyecto2_Compi2.Expresiones
                 String temp = generator.newTemporal();
                 if (sim.isGlobal)
                 {
-                    generator.addGetStack(temp, sim.posicion);
+                    generator.addGetStack(temp, sim.posicion, isFunc);
                     if (sim.tipo != Simbolo.EnumTipoDato.BOOLEAN) return new Retornar(temp, true, sim.tipo, sim);
                     Retornar retorno = new Retornar("", false, sim.tipo, sim);
                     this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
                     this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;
-                    generator.addIf(temp, "1", "==", this.truelabel);
-                    generator.addGoto(this.falselabel);
+                    generator.addIf(temp, "1", "==", this.truelabel, isFunc);
+                    generator.addGoto(this.falselabel, isFunc);
                     retorno.trueLabel = this.truelabel;
                     retorno.falseLabel = this.falselabel;
                     return retorno;
@@ -91,14 +91,14 @@ namespace Proyecto2_Compi2.Expresiones
                 {
                     //La variable esta en el Heap
                     String tempAux = generator.newTemporal(); generator.freeTemp(tempAux);
-                    generator.addExpression(tempAux, "p", sim.posicion.ToString(), "+");
-                    generator.addGetStack(temp, tempAux);
+                    generator.addExpression(tempAux, "p", sim.posicion.ToString(), "+", isFunc);
+                    generator.addGetStack(temp, tempAux, isFunc);
                     if (sim.tipo != Simbolo.EnumTipoDato.BOOLEAN) return new Retornar(temp, true, sim.tipo, sim, sim.tipoStruc);
                     Retornar retorno = new Retornar("", false, sim.tipo, sim, sim.tipoStruc);
                     this.truelabel = this.truelabel == "" ? generator.newLabel() : this.truelabel;
                     this.falselabel = this.falselabel == "" ? generator.newLabel() : this.falselabel;
-                    generator.addIf(temp, "1", "==", this.truelabel);
-                    generator.addGoto(this.falselabel);
+                    generator.addIf(temp, "1", "==", this.truelabel, isFunc);
+                    generator.addGoto(this.falselabel, isFunc);
                     retorno.trueLabel = this.truelabel;
                     retorno.falseLabel = this.falselabel;
                     return retorno;

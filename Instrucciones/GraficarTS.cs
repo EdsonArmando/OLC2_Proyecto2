@@ -9,7 +9,7 @@ namespace Proyecto1_Compi2.Instrucciones
 {
     class GraficarTS : Instruccion
     {
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             throw new NotImplementedException();
         }

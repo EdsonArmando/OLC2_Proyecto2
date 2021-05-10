@@ -31,39 +31,39 @@ namespace Proyecto1_Compi2.Instrucciones
             this.columna = columna;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
-            instance.agregarComentario("Iniciando el IF");
-            Retornar condition = this.condicion.Compilar(ent);
+            instance.agregarComentario("Iniciando el IF", isFunc);
+            Retornar condition = this.condicion.Compilar(ent, isFunc);
             if (condition.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
                 String temp = instance.newLabel();
-                instance.addLabel(condition.trueLabel);
+                instance.addLabel(condition.trueLabel, isFunc);
                 foreach (Instruccion ins in listaInstrucciones)
                 {
-                    Retornar ret = ins.Compilar(ent, Ambito, AST);
+                    Retornar ret = ins.Compilar(ent, Ambito, AST, isFunc);
                 }
-                instance.addGoto(temp);
+                instance.addGoto(temp, isFunc);
                 if (subIf != null)
                 {
                     String templabel = instance.newLabel();
-                    instance.addGoto(templabel);
-                    instance.addLabel(condition.falseLabel);
-                    this.subIf.Compilar(ent, Ambito, AST);
-                    instance.addLabel(templabel);
+                    instance.addGoto(templabel, isFunc);
+                    instance.addLabel(condition.falseLabel, isFunc);
+                    this.subIf.Compilar(ent, Ambito, AST, isFunc);
+                    instance.addLabel(templabel, isFunc);
                 }
                 else
                 {
-                    instance.addLabel(condition.falseLabel);
+                    instance.addLabel(condition.falseLabel, isFunc);
                 }
                 if (listaInsElse!=null)
                 {
                     foreach (Instruccion ins in listaInsElse) {
-                        ins.Compilar(ent,Ambito,AST);
+                        ins.Compilar(ent,Ambito,AST, isFunc);
                     }
                 }
-                instance.addLabel(temp);
+                instance.addLabel(temp, isFunc);
             }
             else {
                 Form1.salidaConsola.AppendText("La condicion no es booleana!!!\n");

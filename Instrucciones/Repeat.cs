@@ -18,20 +18,20 @@ namespace Proyecto1_Compi2.Instrucciones
             this.listaIntr = listaIntr;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
-            instance.agregarComentario("Inicia Repeat");
+            instance.agregarComentario("Inicia Repeat", isFunc);
             this.condicion.truelabel = instance.newLabel();
             this.condicion.falselabel = instance.newLabel();
-            instance.addLabel(this.condicion.falselabel);
+            instance.addLabel(this.condicion.falselabel, isFunc);
             foreach (Instruccion ins in listaIntr) {
-                Retornar ret = ins.Compilar(ent,Ambito,AST);
+                Retornar ret = ins.Compilar(ent,Ambito,AST, isFunc);
             }
-            Retornar cond = this.condicion.Compilar(ent);
+            Retornar cond = this.condicion.Compilar(ent, isFunc);
             if (cond.tipo == Simbolo.EnumTipoDato.BOOLEAN) {
-                instance.addLabel(cond.trueLabel);
-                instance.agregarComentario("Finaliza Repeat");
+                instance.addLabel(cond.trueLabel, isFunc);
+                instance.agregarComentario("Finaliza Repeat", isFunc);
                 return null;
             }
             return null;

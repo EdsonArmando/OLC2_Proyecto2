@@ -45,19 +45,22 @@ namespace Proyecto1_Compi2.Analizadores
             {
                 /*GraficarAST graficar = new GraficarAST(raiz);
                 graficar.recorrerRaiz(raiz);
-                graficar.generarArchivo();*/
-                Form1.salidaConsola.AppendText("Se analizo correctamente\n");
+                graficar.generarArchivo();*/               
                 LinkedList<Abstracto.Instruccion> AST = Listainstrucciones(raiz.ChildNodes.ElementAt(3));
                 Entornos.Entorno ent = new Entornos.Entorno(null);
                 Generator3D.getInstance().getCode().Clear();
-                Generator3D.getInstance().NativePrintString();
+                Generator3D.getInstance().LimpiarStorage();
+                Generator3D.getInstance().getCodeFuncion().Clear();
+                Generator3D.getInstance().contTemp = 0;
+                Generator3D.getInstance().NativePrintString(true);
                 foreach (Abstracto.Instruccion ins in AST)
                 {
-                    ins.Compilar(ent, "global", this);
+                    ins.Compilar(ent, "global", this,false);
                 }               
                 StringBuilder encabezado = Generator3D.getInstance().agregarEncabezado();                
                 StringBuilder code = Generator3D.getInstance().getCode();
-                Form1.salidaConsola.AppendText("#include <stdio.h>\nfloat Heap[100000];\nfloat Stack[100000];\nfloat h=0;\nfloat p=0;\n" + encabezado.ToString() + "\n" + code.ToString() + "\nint main(){\nreturn 0;\n}");
+                StringBuilder codeFuncion = Generator3D.getInstance().getCodeFuncion();
+                Form1.salidaConsola.AppendText("#include <stdio.h>\nfloat Heap[100000];\nfloat Stack[100000];\nfloat h=0;\nfloat p=0;\n" + encabezado.ToString() + "\n" + codeFuncion.ToString() + "\nint main(){\n"+ code.ToString()  +"\nreturn 0;\n}");
             }
         }
 

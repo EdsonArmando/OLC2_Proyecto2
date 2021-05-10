@@ -35,12 +35,12 @@ namespace Proyecto1_Compi2.Instrucciones
             this.idUnico = nombreOriginal;
         }
 
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent,bool isFunc)
         {
             return null;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {            
             if(this.compilado){
                 this.compilado = false;
@@ -75,15 +75,15 @@ namespace Proyecto1_Compi2.Instrucciones
                 }                
                 instance.LimpiarStorage();
                 instance.addInicioProc(sim.idUnico);
-                instance.agregarComentario("Declaraciones Locales");
+                instance.agregarComentario("Declaraciones Locales",true);
                 foreach (Instruccion ins in listVarLocales)
                 {
-                    ins.Compilar(entFunc, sim.idUnico, AST);
+                    ins.Compilar(entFunc, sim.idUnico, AST,true);
                 }
                 foreach (Instruccion ins in listInstrucciones) {
-                    ins.Compilar(entFunc,sim.idUnico,AST);
+                    ins.Compilar(entFunc,sim.idUnico,AST,true);
                 }
-                instance.addLabel(returnLabel);
+                instance.addLabel(returnLabel,true);
                 instance.addFinal();
                 instance.setTempStorage(tempSt);
             }

@@ -12,7 +12,7 @@ namespace Proyecto1_Compi2.Abstracto
         public int fila, columna;
         public String truelabel="", falselabel = "";
         public EnumTipoDato tipo;
-        abstract public Retornar Compilar(Entornos.Entorno ent);
+        abstract public Retornar Compilar(Entornos.Entorno ent, bool isFunc);
         public abstract EnumTipoDato getTipo();
     }
 }

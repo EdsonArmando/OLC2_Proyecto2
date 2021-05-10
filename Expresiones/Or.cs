@@ -16,7 +16,7 @@ namespace Proyecto2_Compi2.Expresiones
             this.izquierda = izq;
             this.derecha = dere;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
             this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
             this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
@@ -24,9 +24,9 @@ namespace Proyecto2_Compi2.Expresiones
             this.izquierda.falselabel = Generator3D.getInstance().newLabel();
             this.derecha.falselabel = this.falselabel;
 
-            Retornar left = this.izquierda.Compilar(ent);
-            Generator3D.getInstance().addLabel(this.izquierda.falselabel);
-            Retornar right = this.derecha.Compilar(ent);
+            Retornar left = this.izquierda.Compilar(ent, isFunc);
+            Generator3D.getInstance().addLabel(this.izquierda.falselabel, isFunc);
+            Retornar right = this.derecha.Compilar(ent, isFunc);
             if (left.tipo == Simbolo.EnumTipoDato.BOOLEAN && right.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
                 Retornar retorno = new Retornar("", false, left.tipo,null);

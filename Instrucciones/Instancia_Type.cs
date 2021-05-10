@@ -19,7 +19,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.entObjeto = new Entorno(null);
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             throw new NotImplementedException();
         }

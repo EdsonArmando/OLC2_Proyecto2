@@ -20,7 +20,7 @@ namespace Proyecto1_Compi2.Expresiones
             this.posZ = posZ;
         }
 
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent,bool isFunc)
         {
             throw new NotImplementedException();
         }

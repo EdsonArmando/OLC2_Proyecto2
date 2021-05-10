@@ -32,7 +32,7 @@ namespace Proyecto1_Compi2.Expresiones
             this.structsd = structs;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
 
@@ -46,8 +46,8 @@ namespace Proyecto1_Compi2.Expresiones
             //Significa que es de una dimension
             if (valor[0, 0] != null && valor[1, 0] == null)
             {
-                Retornar PosiInicial = valor[0, 0].Compilar(ent);
-                Retornar PosFinal = valor[0, 1].Compilar(ent);
+                Retornar PosiInicial = valor[0, 0].Compilar(ent, isFunc);
+                Retornar PosFinal = valor[0, 1].Compilar(ent, isFunc);
                 String temp = instance.newTemporal(); instance.freeTemp(temp);
                 String tempAux = instance.newTemporal(); instance.freeTemp(tempAux);
                 //Guardar donde Inician cada Arreglo
@@ -66,53 +66,53 @@ namespace Proyecto1_Compi2.Expresiones
                     return null;
                 }
                 
-                instance.addExpression(temp, PosFinal.getValue(), PosiInicial.getValue(), "-");
+                instance.addExpression(temp, PosFinal.getValue(), PosiInicial.getValue(), "-", isFunc);
                 
                 //Tamanio Total Arreglo + 2 porque en la pos 0 guardo el tamanio total del arreglo
-                instance.addExpression(tempAux, temp, "2","+");
+                instance.addExpression(tempAux, temp, "2","+", isFunc);
                 String tempInicio = instance.newTemporal();instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "");
+                instance.addExpression(tempInicio, "h", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal();instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal,tempAux,"1","-");
-                instance.addSetHeap(tempInicio,tempTotal);
-                instance.nextHeap();
+                instance.addExpression(tempTotal,tempAux,"1","-", isFunc);
+                instance.addSetHeap(tempInicio,tempTotal, isFunc);
+                instance.nextHeap(isFunc);
                 //Temporal para el contadors
                 String tempCont = instance.newTemporal();instance.freeTemp(tempCont);
-                instance.addExpression(tempCont, "0", "", "");
+                instance.addExpression(tempCont, "0", "", "", isFunc);
                 //Empiezo a reservar los espacios del arreglo
                 String labelInicio = instance.newLabel();
                 String labelFin = instance.newLabel();
-                instance.addLabel(labelInicio);
-                instance.addIf(tempAux,tempCont,"==",labelFin);                
-                instance.addExpression(tempCont,tempCont,"1","+");
-                instance.addSetHeap("h", 0);
-                instance.nextHeap();
-                instance.addGoto(labelInicio);
-                instance.addLabel(labelFin);
+                instance.addLabel(labelInicio, isFunc);
+                instance.addIf(tempAux,tempCont,"==",labelFin, isFunc);                
+                instance.addExpression(tempCont,tempCont,"1","+", isFunc);
+                instance.addSetHeap("h", 0, isFunc);
+                instance.nextHeap(isFunc);
+                instance.addGoto(labelInicio, isFunc);
+                instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
                 Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()),null,null),posiciones,null,null,valor);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+");
-                    instance.addSetStack(temp2, tempInicio);
+                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else {
-                    instance.addSetStack(sim.posicion.ToString(), tempInicio);
+                    instance.addSetStack(sim.posicion.ToString(), tempInicio, isFunc);
                 }                
 
             }
             //Significa que es de dos dimensiones
             else if (valor[0, 0] != null && valor[1, 0] != null && valor[2, 0] == null)
             {
-                instance.agregarComentario("Inicia Declaracion de arreglo");
+                instance.agregarComentario("Inicia Declaracion de arreglo", isFunc);
                 //Donde Inicia cada dimension del arreglo
-                Retornar PosiInicialX = valor[0, 0].Compilar(ent);
-                Retornar PosFinalX = valor[0, 1].Compilar(ent);
-                Retornar PosiInicialY = valor[1, 0].Compilar(ent);
-                Retornar PosFinalY = valor[1, 1].Compilar(ent);
+                Retornar PosiInicialX = valor[0, 0].Compilar(ent, isFunc);
+                Retornar PosFinalX = valor[0, 1].Compilar(ent, isFunc);
+                Retornar PosiInicialY = valor[1, 0].Compilar(ent, isFunc);
+                Retornar PosFinalY = valor[1, 1].Compilar(ent, isFunc);
                 //Guardo temporales donde inicia cada arreglo
                 String[] posicionesX = new String[2];
                 posicionesX[0] = PosiInicialX.getValue();
@@ -135,68 +135,68 @@ namespace Proyecto1_Compi2.Expresiones
                 //Tamanio del Vector
                 //X
                 String tempTamanio = instance.newTemporal();instance.freeTemp(tempTamanio);
-                instance.addExpression(tempTamanio,PosFinalX.getValue(),PosiInicialX.getValue(),"-");
+                instance.addExpression(tempTamanio,PosFinalX.getValue(),PosiInicialX.getValue(),"-", isFunc);
                 String Op1 = instance.newTemporal(); instance.freeTemp(tempTamanio);
-                instance.addExpression(Op1, tempTamanio,"1", "+");
+                instance.addExpression(Op1, tempTamanio,"1", "+", isFunc);
                 //Y
                 String tempTamanioy = instance.newTemporal(); instance.freeTemp(tempTamanioy);
-                instance.addExpression(tempTamanioy, PosFinalY.getValue(), PosiInicialY.getValue(), "-");
+                instance.addExpression(tempTamanioy, PosFinalY.getValue(), PosiInicialY.getValue(), "-", isFunc);
                 String Op2 = instance.newTemporal(); instance.freeTemp(tempTamanio);
-                instance.addExpression(Op2, tempTamanioy, "1", "+");
+                instance.addExpression(Op2, tempTamanioy, "1", "+", isFunc);
                 //Total
                 String tamanioTotal = instance.newTemporal(); instance.freeTemp(tamanioTotal);
-                instance.addExpression(tamanioTotal, Op1, Op2, "*");
+                instance.addExpression(tamanioTotal, Op1, Op2, "*", isFunc);
                 //Inicializacion del arreglo
                 String tempAux = instance.newTemporal(); instance.freeTemp(tempAux);
 
                 //Tamanio Total Arreglo + 2 porque en la pos 0 guardo el tamanio total del arreglo
-                instance.addExpression(tempAux, tamanioTotal, "2", "+");
+                instance.addExpression(tempAux, tamanioTotal, "2", "+", isFunc);
                 String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "");
+                instance.addExpression(tempInicio, "h", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal, tempAux, "1", "-");
-                instance.addSetHeap(tempInicio, tamanioTotal);
-                instance.nextHeap();
+                instance.addExpression(tempTotal, tempAux, "1", "-", isFunc);
+                instance.addSetHeap(tempInicio, tamanioTotal, isFunc);
+                instance.nextHeap( isFunc);
                 //Temporal para el contadors
                 String tempCont = instance.newTemporal(); instance.freeTemp(tempCont);
-                instance.addExpression(tempCont, "0", "", "");
+                instance.addExpression(tempCont, "0", "", "", isFunc);
                 //Empiezo a reservar los espacios del arreglo
                 String labelInicio = instance.newLabel();
                 String labelFin = instance.newLabel();
-                instance.addLabel(labelInicio);
-                instance.addIf(tempTotal, tempCont, "==", labelFin);
-                instance.addExpression(tempCont, tempCont, "1", "+");
-                instance.addSetHeap("h", 0);
-                instance.nextHeap();
-                instance.addGoto(labelInicio);
-                instance.addLabel(labelFin);
+                instance.addLabel(labelInicio, isFunc);
+                instance.addIf(tempTotal, tempCont, "==", labelFin, isFunc);
+                instance.addExpression(tempCont, tempCont, "1", "+", isFunc);
+                instance.addSetHeap("h", 0, isFunc);
+                instance.nextHeap(isFunc);
+                instance.addGoto(labelInicio, isFunc);
+                instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
                 Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, null, valor);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+");
-                    instance.addSetStack(temp2, tempInicio);
+                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else
                 {
-                    instance.addSetStack(sim.posicion.ToString(), tempInicio);
+                    instance.addSetStack(sim.posicion.ToString(), tempInicio, isFunc);
                 }
-                instance.agregarComentario("Finaliza Declaracion de arreglo");
+                instance.agregarComentario("Finaliza Declaracion de arreglo", isFunc);
             }
             //Significa que es de Tres dimensiones
             else if (valor[0, 0] != null && valor[1, 0] != null && valor[2, 0] != null)
             {
-                instance.agregarComentario("Inicia Declaracion de arreglo");
+                instance.agregarComentario("Inicia Declaracion de arreglo", isFunc);
                 //Donde Inicia cada dimension del arreglo
-                Retornar PosiInicialX = valor[0, 0].Compilar(ent);
-                Retornar PosFinalX = valor[0, 1].Compilar(ent);
-                Retornar PosiInicialY = valor[1, 0].Compilar(ent);
-                Retornar PosFinalY = valor[1, 1].Compilar(ent);
-                Retornar PosiInicialZ = valor[2, 0].Compilar(ent);
-                Retornar PosFinalZ = valor[2, 1].Compilar(ent);
+                Retornar PosiInicialX = valor[0, 0].Compilar(ent, isFunc);
+                Retornar PosFinalX = valor[0, 1].Compilar(ent, isFunc);
+                Retornar PosiInicialY = valor[1, 0].Compilar(ent, isFunc);
+                Retornar PosFinalY = valor[1, 1].Compilar(ent, isFunc);
+                Retornar PosiInicialZ = valor[2, 0].Compilar(ent, isFunc);
+                Retornar PosFinalZ = valor[2, 1].Compilar(ent, isFunc);
                 //Guardo temporales donde inicia cada arreglo
                 String[] posicionesX = new String[2];
                 posicionesX[0] = PosiInicialX.getValue();
@@ -222,63 +222,63 @@ namespace Proyecto1_Compi2.Expresiones
                 //Tamanio del Vector
                 //X
                 String tempTamanio = instance.newTemporal(); instance.freeTemp(tempTamanio);
-                instance.addExpression(tempTamanio, PosFinalX.getValue(), PosiInicialX.getValue(), "-");
+                instance.addExpression(tempTamanio, PosFinalX.getValue(), PosiInicialX.getValue(), "-", isFunc);
                 String Op1 = instance.newTemporal(); instance.freeTemp(Op1);
-                instance.addExpression(Op1, tempTamanio, "1", "+");
+                instance.addExpression(Op1, tempTamanio, "1", "+", isFunc);
                 //Y
                 String tempTamanioy = instance.newTemporal(); instance.freeTemp(tempTamanioy);
-                instance.addExpression(tempTamanioy, PosFinalY.getValue(), PosiInicialY.getValue(), "-");
+                instance.addExpression(tempTamanioy, PosFinalY.getValue(), PosiInicialY.getValue(), "-", isFunc);
                 String Op2 = instance.newTemporal(); instance.freeTemp(Op2);
-                instance.addExpression(Op2, tempTamanioy, "1", "+");
+                instance.addExpression(Op2, tempTamanioy, "1", "+", isFunc);
                 //Z                
                 String tempTamanioZ = instance.newTemporal(); instance.freeTemp(tempTamanioZ);
-                instance.addExpression(tempTamanioZ, PosFinalZ.getValue(), PosiInicialZ.getValue(), "-");
+                instance.addExpression(tempTamanioZ, PosFinalZ.getValue(), PosiInicialZ.getValue(), "-", isFunc);
                 String Op3 = instance.newTemporal(); instance.freeTemp(Op3);
-                instance.addExpression(Op3, tempTamanioZ, "1", "+");
+                instance.addExpression(Op3, tempTamanioZ, "1", "+", isFunc);
                 //Total
                 String tamanioTotal = instance.newTemporal(); instance.freeTemp(tamanioTotal);
-                instance.addExpression(tamanioTotal, Op1, Op2, "*");
+                instance.addExpression(tamanioTotal, Op1, Op2, "*",isFunc);
                 String tamanioTotal2 = instance.newTemporal(); instance.freeTemp(tamanioTotal2);
-                instance.addExpression(tamanioTotal2, Op3, tamanioTotal, "*");
+                instance.addExpression(tamanioTotal2, Op3, tamanioTotal, "*", isFunc);
                 //Inicializacion del arreglo
                 String tempAux = instance.newTemporal(); instance.freeTemp(tempAux);
 
                 //Tamanio Total Arreglo + 2 porque en la pos 0 guardo el tamanio total del arreglo
-                instance.addExpression(tempAux, tamanioTotal2, "2", "+");
+                instance.addExpression(tempAux, tamanioTotal2, "2", "+", isFunc);
                 String tempInicio = instance.newTemporal(); instance.freeTemp(tempInicio);
                 //Valor actual del Heap
-                instance.addExpression(tempInicio, "h", "", "");
+                instance.addExpression(tempInicio, "h", "", "", isFunc);
                 //Ingresar en la primera posicion el tamanio del arreglo
                 String tempTotal = instance.newTemporal(); instance.freeTemp(tempTotal);
-                instance.addExpression(tempTotal, tempAux, "1", "-");
-                instance.addSetHeap(tempInicio, tamanioTotal2);
-                instance.nextHeap();
+                instance.addExpression(tempTotal, tempAux, "1", "-", isFunc);
+                instance.addSetHeap(tempInicio, tamanioTotal2, isFunc);
+                instance.nextHeap(isFunc);
                 //Temporal para el contadors
                 String tempCont = instance.newTemporal(); instance.freeTemp(tempCont);
-                instance.addExpression(tempCont, "0", "", "");
+                instance.addExpression(tempCont, "0", "", "", isFunc);
                 //Empiezo a reservar los espacios del arreglo
                 String labelInicio = instance.newLabel();
                 String labelFin = instance.newLabel();
-                instance.addLabel(labelInicio);
-                instance.addIf(tempTotal, tempCont, "==", labelFin);
-                instance.addExpression(tempCont, tempCont, "1", "+");
-                instance.addSetHeap("h", 0);
-                instance.nextHeap();
-                instance.addGoto(labelInicio);
-                instance.addLabel(labelFin);
+                instance.addLabel(labelInicio, isFunc);
+                instance.addIf(tempTotal, tempCont, "==", labelFin, isFunc);
+                instance.addExpression(tempCont, tempCont, "1", "+", isFunc);
+                instance.addSetHeap("h", 0, isFunc);
+                instance.nextHeap(isFunc);
+                instance.addGoto(labelInicio, isFunc);
+                instance.addLabel(labelFin, isFunc);
                 //Guardo La Variable en mi tabla de Simbolos
                 Simbolo sim = ent.Insertar(Nombre_id, Simbolo.EnumTipoDato.ARRAY, false, false, new TipoDato(devTipoDato(Tipo.ToString()), null, null), posicionesX, posicionesY, posicionesZ, valor);
                 if (!sim.isGlobal)
                 {
                     String temp2 = instance.newTemporal(); instance.freeTemp(temp2);
-                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+");
-                    instance.addSetStack(temp2, tempInicio);
+                    instance.addExpression(temp2, "p", sim.posicion.ToString(), "+", isFunc);
+                    instance.addSetStack(temp2, tempInicio, isFunc);
                 }
                 else
                 {
-                    instance.addSetStack(sim.posicion.ToString(), tempInicio);
+                    instance.addSetStack(sim.posicion.ToString(), tempInicio, isFunc);
                 }
-                instance.agregarComentario("Finaliza Declaracion de arreglo");
+                instance.agregarComentario("Finaliza Declaracion de arreglo", isFunc);
             }
             else
             {

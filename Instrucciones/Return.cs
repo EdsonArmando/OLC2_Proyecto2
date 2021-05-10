@@ -17,26 +17,26 @@ namespace Proyecto1_Compi2.Instrucciones
             this.valorReturn = valor;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Retornar ret = new Retornar("0",false,Simbolo.EnumTipoDato.VOID,null,new TipoDato(Simbolo.EnumTipoDato.VOID,null,null));
             if (valorReturn != null) {
-                ret = valorReturn.Compilar(ent);
+                ret = valorReturn.Compilar(ent, isFunc);
             }
             SimboloFuncion simFuncion = ent.actualFunc;
             if (simFuncion.tipo.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
                 String templabel = Generator3D.getInstance().newLabel();
-                Generator3D.getInstance().addLabel(ret.trueLabel);
-                Generator3D.getInstance().addSetStack("p", "1");
-                Generator3D.getInstance().addGoto(templabel);
-                Generator3D.getInstance().addLabel(ret.falseLabel);
-                Generator3D.getInstance().addSetStack("p", "0");
-                Generator3D.getInstance().addLabel(templabel);
+                Generator3D.getInstance().addLabel(ret.trueLabel, isFunc);
+                Generator3D.getInstance().addSetStack("p", "1", isFunc);
+                Generator3D.getInstance().addGoto(templabel, isFunc);
+                Generator3D.getInstance().addLabel(ret.falseLabel, isFunc);
+                Generator3D.getInstance().addSetStack("p", "0", isFunc);
+                Generator3D.getInstance().addLabel(templabel, isFunc);
             }
             else if (simFuncion.tipo.tipo != Simbolo.EnumTipoDato.VOID)
-                Generator3D.getInstance().addSetStack("p",ret.getValue());
-            Generator3D.getInstance().addGoto(ent.Return);
+                Generator3D.getInstance().addSetStack("p",ret.getValue(), isFunc);
+            Generator3D.getInstance().addGoto(ent.Return, isFunc);
             return null;
         }
     }

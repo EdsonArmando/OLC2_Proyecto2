@@ -22,35 +22,35 @@ namespace Proyecto1_Compi2.Instrucciones
             this.columna = columna;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
-            instance.agregarComentario("Empieaza la Llamada a la Funcion");
+            instance.agregarComentario("Empieaza la Llamada a la Funcion", isFunc);
             SimboloFuncion simFuncion = ent.getFuncion(id);
             LinkedList<Retornar> retParamValues = new LinkedList<Retornar>();
-            int tam = instance.guardarTemps(ent);
+            int tam = instance.guardarTemps(ent, isFunc);
             foreach (Expresion exp in parametros)
             {
-                retParamValues.AddLast(exp.Compilar(ent));
+                retParamValues.AddLast(exp.Compilar(ent, isFunc));
             }
             String temp = instance.newTemporal();
             instance.freeTemp(temp);
             if (retParamValues.Count != 0)
             {
-                instance.addExpression(temp, "p", (ent.pos + 1).ToString(), "+");
+                instance.addExpression(temp, "p", (ent.pos + 1).ToString(), "+", isFunc);
                 for (int index = 0; index < retParamValues.Count; index++)
                 {
                     Retornar temRet = retParamValues.ElementAt(index);
-                    instance.addSetStack(temp, temRet.getValue());
+                    instance.addSetStack(temp, temRet.getValue(), isFunc);
                     if (index != retParamValues.Count - 1)
-                        instance.addExpression(temp, temp, "1", "+");
+                        instance.addExpression(temp, temp, "1", "+", isFunc);
                 }
             }
-            instance.nextEnt(ent.pos);
-            instance.addCall(simFuncion.idUnico);
-            instance.addGetStack(temp, "p");
-            instance.antEnt(ent.pos);
-            instance.RecuperarTemp(ent, tam);
+            instance.nextEnt(ent.pos, isFunc);
+            instance.addCall(simFuncion.idUnico, isFunc);
+            instance.addGetStack(temp, "p", isFunc);
+            instance.antEnt(ent.pos, isFunc);
+            instance.RecuperarTemp(ent, tam, isFunc);
             instance.aggregarTemp(temp);
             if (simFuncion.tipo.tipo != Simbolo.EnumTipoDato.BOOLEAN)
             {
@@ -61,39 +61,39 @@ namespace Proyecto1_Compi2.Instrucciones
             Retornar reto = new Retornar("", false, simFuncion.tipo.tipo, simFuncion, simFuncion.tipo);
             this.truelabel = this.truelabel == "" ? instance.newLabel() : this.truelabel;
             this.falselabel = this.falselabel == "" ? instance.newLabel() : this.falselabel;
-            instance.addIf(temp, "1", "==", this.truelabel);
-            instance.addGoto(this.falselabel);
+            instance.addIf(temp, "1", "==", this.truelabel, isFunc);
+            instance.addGoto(this.falselabel, isFunc);
             reto.trueLabel = this.truelabel;
             reto.falseLabel = this.falselabel;
             reto.getValue();
             return reto;
         }
 
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             SimboloFuncion simFuncion = ent.getFuncion(id.ToLower());
             LinkedList<Retornar> retParamValues = new LinkedList<Retornar>();
-            int tam = instance.guardarTemps(ent);
+            int tam = instance.guardarTemps(ent, isFunc);
             foreach (Expresion exp in parametros) {
-                retParamValues.AddLast(exp.Compilar(ent));
+                retParamValues.AddLast(exp.Compilar(ent, isFunc));
             }
             String temp = instance.newTemporal();
             instance.freeTemp(temp);
             if (retParamValues.Count != 0) {
-                instance.addExpression(temp, "p",(ent.pos + 1).ToString(), "+");
+                instance.addExpression(temp, "p",(ent.pos + 1).ToString(), "+", isFunc);
                 for (int index=0;index < retParamValues.Count;index++) {
                     Retornar temRet = retParamValues.ElementAt(index);
-                    instance.addSetStack(temp,temRet.getValue());
+                    instance.addSetStack(temp,temRet.getValue(), isFunc);
                     if (index != retParamValues.Count - 1)
-                        instance.addExpression(temp,temp,"1","+");
+                        instance.addExpression(temp,temp,"1","+", isFunc);
                 }
             }
-            instance.nextEnt(ent.pos);
-            instance.addCall(simFuncion.idUnico);
-            instance.addGetStack(temp,"p");
-            instance.antEnt(ent.pos);
-            instance.RecuperarTemp(ent,tam);
+            instance.nextEnt(ent.pos, isFunc);
+            instance.addCall(simFuncion.idUnico, isFunc);
+            instance.addGetStack(temp,"p", isFunc);
+            instance.antEnt(ent.pos, isFunc);
+            instance.RecuperarTemp(ent,tam, isFunc);
             instance.aggregarTemp(temp);
             if (simFuncion.tipo.tipo != Simbolo.EnumTipoDato.BOOLEAN) { 
                 Retornar tempoRet = new Retornar(temp, true, simFuncion.tipo.tipo, simFuncion, simFuncion.tipo);
@@ -103,8 +103,8 @@ namespace Proyecto1_Compi2.Instrucciones
             Retornar reto = new Retornar("",false,simFuncion.tipo.tipo,simFuncion,simFuncion.tipo);
             this.truelabel = this.truelabel == "" ? instance.newLabel() : this.truelabel;
             this.falselabel = this.falselabel == "" ? instance.newLabel() : this.falselabel;
-            instance.addIf(temp, "1", "==", this.truelabel);
-            instance.addGoto(this.falselabel);
+            instance.addIf(temp, "1", "==", this.truelabel, isFunc);
+            instance.addGoto(this.falselabel, isFunc);
             reto.trueLabel = this.truelabel;
             reto.falseLabel = this.falselabel;
             reto.getValue();

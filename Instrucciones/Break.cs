@@ -10,9 +10,9 @@ namespace Proyecto1_Compi2.Instrucciones
 {
     class Break : Abstracto.Instruccion
     {
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
-            Generator3D.getInstance().addGoto(ent.Break);
+            Generator3D.getInstance().addGoto(ent.Break, isFunc);
             return null;
         }
     }

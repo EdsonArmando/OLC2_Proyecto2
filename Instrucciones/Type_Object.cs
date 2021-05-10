@@ -16,7 +16,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.nombreType = nombre.ToLower();
             this.listaVariables = variables;          
         }
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             LinkedList<Parametros> temp = devListParametros(listaVariables,ent);
             ent.addType(this.nombreType, temp.Count, temp);

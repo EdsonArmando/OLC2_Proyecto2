@@ -17,18 +17,18 @@ namespace Proyecto2_Compi2.Expresiones
             this.tipoDat = tipodato;
             this.valoCadenar = val;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
             Generator3D generator = Generator3D.getInstance();
             String temp = generator.newTemporal();
-            generator.addExpression(temp, "h","","");
+            generator.addExpression(temp, "h","","", isFunc);
             for (int i = 0; i < this.valoCadenar.Length; i++)
             {
-                generator.addSetHeap('h', Encoding.ASCII.GetBytes(valoCadenar.Substring(i,1))[0].ToString());
-                generator.nextHeap();
+                generator.addSetHeap('h', Encoding.ASCII.GetBytes(valoCadenar.Substring(i,1))[0].ToString(), isFunc);
+                generator.nextHeap(isFunc);
             }
-            generator.addSetHeap("h", "-1");
-            generator.nextHeap();
+            generator.addSetHeap("h", "-1", isFunc);
+            generator.nextHeap(isFunc);
             return new Retornar(temp,true,Simbolo.EnumTipoDato.STRING,null,new TipoDato(this.tipoDat,"String",null));
         }
 

@@ -8,6 +8,6 @@ namespace Proyecto1_Compi2.Abstracto
 {
     interface Instruccion
     {
-        Retornar Compilar(Entornos.Entorno ent, String Ambito, Sintactico AST );      
+        Retornar Compilar(Entornos.Entorno ent, String Ambito, Sintactico AST,bool isFunc );      
     }
 }

@@ -16,14 +16,14 @@ namespace Proyecto2_Compi2.Expresiones
             this.izquierda = izq;
             this.derecha = dere;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
             this.truelabel = this.truelabel == "" ? Generator3D.getInstance().newLabel() : this.truelabel;
             this.falselabel = this.falselabel == "" ? Generator3D.getInstance().newLabel() : this.falselabel;
 
             this.izquierda.truelabel = this.falselabel;
             this.izquierda.falselabel = this.truelabel;
-            Retornar value = this.izquierda.Compilar(ent);
+            Retornar value = this.izquierda.Compilar(ent, isFunc);
             if (value.tipo == Simbolo.EnumTipoDato.BOOLEAN)
             {
                 Retornar retorno = new Retornar("", false, value.tipo,null);

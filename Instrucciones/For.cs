@@ -25,7 +25,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.descendente = desce;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             //Creo la Condicion
@@ -33,16 +33,16 @@ namespace Proyecto1_Compi2.Instrucciones
             //Obtengo la Variable a umentar
             Simbolo sim = ent.obtener(id,ent);
             //Compilo los Valores de Inicio
-            Retornar valInicio = valorInicio.Compilar(ent);
+            Retornar valInicio = valorInicio.Compilar(ent, isFunc);
             if (sim.isGlobal)
             {
-                instance.addSetStack(sim.posicion.ToString(), valInicio.getValue());
+                instance.addSetStack(sim.posicion.ToString(), valInicio.getValue(), isFunc);
             }
             else {
                 String temp = instance.newTemporal();
                 instance.freeTemp(temp);
-                instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
-                instance.addSetStack(temp, valInicio.getValue());
+                instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
+                instance.addSetStack(temp, valInicio.getValue(), isFunc);
             }
             //Aumentar o Decre variable
             Aumento aumento = null;
@@ -59,25 +59,25 @@ namespace Proyecto1_Compi2.Instrucciones
             }
             //Creo El Ciclo en 3D
             String labelFor = instance.newLabel();
-            instance.addLabel(labelFor);
-            Retornar condFor = condicion.Compilar(ent);
+            instance.addLabel(labelFor, isFunc);
+            Retornar condFor = condicion.Compilar(ent, isFunc);
             ent.Break = condFor.falseLabel;
             ent.Continue = labelFor;
-            instance.addLabel(condFor.trueLabel);
+            instance.addLabel(condFor.trueLabel, isFunc);
             foreach (Instruccion ins in listaInstrucciones) {
-                ins.Compilar(ent,Ambito,AST);
+                ins.Compilar(ent,Ambito,AST, isFunc);
             }
             if (descendente == false)
             {
-                aumento.Compilar(ent, Ambito, AST);
+                aumento.Compilar(ent, Ambito, AST, isFunc);
             }
             else
             {
-                decremento.Compilar(ent, Ambito, AST);
+                decremento.Compilar(ent, Ambito, AST, isFunc);
             }
-            instance.addGoto(labelFor);
-            instance.addLabel(condFor.falseLabel);
-            instance.agregarComentario("Finaliza For");
+            instance.addGoto(labelFor, isFunc);
+            instance.addLabel(condFor.falseLabel, isFunc);
+            instance.agregarComentario("Finaliza For", isFunc);
             return null;
         }
     }

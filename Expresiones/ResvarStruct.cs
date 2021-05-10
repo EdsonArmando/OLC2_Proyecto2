@@ -18,7 +18,7 @@ namespace Proyecto2_Compi2.Expresiones
         public ResvarStruct(String identificador) {
             this.id = identificador;
         }
-        public override Retornar Compilar(Entorno ent)
+        public override Retornar Compilar(Entorno ent, bool isFunc)
         {
             SimboloStruct sim = ent.getStruct(this.id);
             Generator3D generator = Generator3D.getInstance();
@@ -27,36 +27,36 @@ namespace Proyecto2_Compi2.Expresiones
                 return null;
             }
             String temp = generator.newTemporal();
-            generator.addExpression(temp,"h","","");
+            generator.addExpression(temp,"h","","", isFunc);
             foreach (Parametros param in sim.attributess) {
                 switch (param.type.tipo) {
                     case Simbolo.EnumTipoDato.INT:
                     case Simbolo.EnumTipoDato.DOUBLE:
                     case Simbolo.EnumTipoDato.CHAR:
                     case Simbolo.EnumTipoDato.BOOLEAN:
-                        generator.addSetHeap("h",0);
+                        generator.addSetHeap("h",0, isFunc);
                         break;
                     case Simbolo.EnumTipoDato.STRING:
-                        generator.addSetHeap("h", "-1");
+                        generator.addSetHeap("h", "-1", isFunc);
                         break;
                     case Simbolo.EnumTipoDato.ARRAY:
-                        generator.addSetHeap("h", "-1");
+                        generator.addSetHeap("h", "-1", isFunc);
                         break;
                     case Simbolo.EnumTipoDato.OBJETO_TYPE:                    
                         isStruct = true;
                         this.param = param;
                         param.tipoStrucoArray = "instanciado";
                         this.tempEncuentra = Generator3D.getInstance().newTemporal();
-                        Generator3D.getInstance().addExpression(tempEncuentra,"h","","");
+                        Generator3D.getInstance().addExpression(tempEncuentra,"h","","", isFunc);
                         Generator3D.getInstance().freeTemp(tempEncuentra);
-                        generator.addSetHeap("h","-1");
+                        generator.addSetHeap("h","-1",isFunc);
                         break;
                 }
-                generator.nextHeap();
+                generator.nextHeap(isFunc);
             }
             if (isStruct == true) {
-                Retornar ret = (new ResvarStruct(this.param.type.tipoId)).Compilar(ent);
-                generator.addSetHeap(tempEncuentra, ret.getValue());
+                Retornar ret = (new ResvarStruct(this.param.type.tipoId)).Compilar(ent, isFunc);
+                generator.addSetHeap(tempEncuentra, ret.getValue(), isFunc);
             }
             return new Retornar(temp,true,Simbolo.EnumTipoDato.OBJETO_TYPE,null,new TipoDato(Simbolo.EnumTipoDato.OBJETO_TYPE,sim.identifier,sim));
         }

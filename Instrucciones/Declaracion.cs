@@ -76,7 +76,7 @@ namespace Proyecto1_Compi2.Instrucciones
             this.nameArra = nameArray;
         }
 
-        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST)
+        public Retornar Compilar(Entorno ent, string Ambito, Sintactico AST,bool isFunc)
         {
             Generator3D instance = Generator3D.getInstance();
             Retornar value = null;
@@ -85,7 +85,7 @@ namespace Proyecto1_Compi2.Instrucciones
                 expresion = new Arimetica(new Literal(Simbolo.EnumTipoDato.BOOLEAN, false), Arimetica.Tipo_operacion.FALSE);     
             }
             if (tipoVariable == Simbolo.EnumTipoDato.OBJETO_TYPE) {
-                value = (new ResvarStruct(nameArra)).Compilar(ent);
+                value = (new ResvarStruct(nameArra)).Compilar(ent, isFunc);
             }
             this.esType(ent);
             //Lista de Expre
@@ -95,56 +95,56 @@ namespace Proyecto1_Compi2.Instrucciones
                     if (sim.isGlobal)
                     {
                         if (expresion != null)
-                            value = this.expresion.Compilar(ent);
+                            value = this.expresion.Compilar(ent, isFunc);
 
                         if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             String templabel = instance.newLabel();
-                            instance.addLabel(value.trueLabel);
-                            instance.addSetStack(sim.posicion.ToString(), "1");
-                            instance.addGoto(templabel);
-                            instance.addLabel(value.falseLabel);
-                            instance.addSetStack(sim.posicion.ToString(), "0");
-                            instance.addLabel(templabel);
+                            instance.addLabel(value.trueLabel, isFunc);
+                            instance.addSetStack(sim.posicion.ToString(), "1", isFunc);
+                            instance.addGoto(templabel, isFunc);
+                            instance.addLabel(value.falseLabel, isFunc);
+                            instance.addSetStack(sim.posicion.ToString(), "0", isFunc);
+                            instance.addLabel(templabel, isFunc);
                         }
                         else
                         {
                             if (value == null)
                             {                               
-                                instance.addSetStack(sim.posicion.ToString(), "0");
+                                instance.addSetStack(sim.posicion.ToString(), "0", isFunc);
                             }
                             else
                             {
-                                instance.addSetStack(sim.posicion.ToString(), value.getValue());
+                                instance.addSetStack(sim.posicion.ToString(), value.getValue(), isFunc);
                             }
                         }
                     }
                     else
                     {
                         String temp = instance.newTemporal(); instance.freeTemp(temp);
-                        instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                        instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
                         if (expresion != null)
-                            value = this.expresion.Compilar(ent);
+                            value = this.expresion.Compilar(ent, isFunc);
 
                         if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                         {
                             String templabel = instance.newLabel();
-                            instance.addLabel(value.trueLabel);
-                            instance.addSetStack(temp, "1");
-                            instance.addGoto(templabel);
-                            instance.addLabel(value.falseLabel);
-                            instance.addSetStack(temp, "0");
-                            instance.addLabel(templabel);
+                            instance.addLabel(value.trueLabel, isFunc);
+                            instance.addSetStack(temp, "1", isFunc);
+                            instance.addGoto(templabel, isFunc);
+                            instance.addLabel(value.falseLabel, isFunc);
+                            instance.addSetStack(temp, "0", isFunc);
+                            instance.addLabel(templabel, isFunc);
                         }
                         else
                         {
                             if (expresion == null)
                             {
-                                instance.addSetStack(temp, "0");
+                                instance.addSetStack(temp, "0", isFunc);
                             }
                             else
                             {
-                                instance.addSetStack(temp, value.getValue());
+                                instance.addSetStack(temp, value.getValue(), isFunc);
                             }
                         }
                     }
@@ -164,53 +164,53 @@ namespace Proyecto1_Compi2.Instrucciones
                 }                
                 if (sim.isGlobal) {
                     if (expresion != null)
-                        value = this.expresion.Compilar(ent);
+                        value = this.expresion.Compilar(ent, isFunc);
 
                     if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                     {
                         String templabel = instance.newLabel();
-                        instance.addLabel(value.trueLabel);
-                        instance.addSetStack(sim.posicion.ToString(), "1");
-                        instance.addGoto(templabel);
-                        instance.addLabel(value.falseLabel);
-                        instance.addSetStack(sim.posicion.ToString(), "0");
-                        instance.addLabel(templabel);
+                        instance.addLabel(value.trueLabel, isFunc);
+                        instance.addSetStack(sim.posicion.ToString(), "1", isFunc);
+                        instance.addGoto(templabel, isFunc);
+                        instance.addLabel(value.falseLabel, isFunc);
+                        instance.addSetStack(sim.posicion.ToString(), "0", isFunc);
+                        instance.addLabel(templabel, isFunc);
                     }
                     else
                     {
                         if (value == null)
                         {
-                            instance.addSetStack(sim.posicion.ToString(), "0");
+                            instance.addSetStack(sim.posicion.ToString(), "0", isFunc);
                         }
                         else {
-                            instance.addSetStack(sim.posicion.ToString(), value.getValue());
+                            instance.addSetStack(sim.posicion.ToString(), value.getValue(), isFunc);
                         }                        
                     }
                 }
                 else {
                     String temp = instance.newTemporal(); instance.freeTemp(temp);
-                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+");
+                    instance.addExpression(temp, "p", sim.posicion.ToString(), "+", isFunc);
                     if (expresion != null)
-                        value = this.expresion.Compilar(ent);
+                        value = this.expresion.Compilar(ent, isFunc);
 
                     if (this.tipoVariable == Simbolo.EnumTipoDato.BOOLEAN)
                     {
                         String templabel = instance.newLabel();
-                        instance.addLabel(value.trueLabel);
-                        instance.addSetStack(temp, "1");
-                        instance.addGoto(templabel);
-                        instance.addLabel(value.falseLabel);
-                        instance.addSetStack(temp, "0");
-                        instance.addLabel(templabel);
+                        instance.addLabel(value.trueLabel, isFunc);
+                        instance.addSetStack(temp, "1", isFunc);
+                        instance.addGoto(templabel, isFunc);
+                        instance.addLabel(value.falseLabel, isFunc);
+                        instance.addSetStack(temp, "0", isFunc);
+                        instance.addLabel(templabel, isFunc);
                     }
                     else
                     {
                         if (value == null)
                         {
-                            instance.addSetStack(temp, "0");
+                            instance.addSetStack(temp, "0",isFunc);
                         }
                         else {
-                            instance.addSetStack(temp, value.getValue());
+                            instance.addSetStack(temp, value.getValue(), isFunc);
                         }                        
                     }
                 }

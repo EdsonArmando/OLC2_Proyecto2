@@ -13,7 +13,8 @@ namespace Proyecto2_Compi2.Code3D
         private LinkedList<String> temporalNoUsados;
         private LinkedList<String> labels;
         private StringBuilder code = new StringBuilder();
-        private int contTemp = 0;
+        private StringBuilder codeFuncion = new StringBuilder();
+        public int contTemp = 0;
         private int contLabel = 0;
         String isFunc = "";
         public Generator3D() { 
@@ -32,83 +33,98 @@ namespace Proyecto2_Compi2.Code3D
         //Agregar Fin de Funcion
         public void addFinal()
         {
-            this.code.Append("return; \n}\n");
+            this.codeFuncion.Append("return; \n}\n");
         }
         //Agregar inicio Procedimiento en C
         public void addInicioProc(String id)
         {
-            this.code.Append("void " + id + " (){\n");
+            this.codeFuncion.Append("void " + id + " (){\n");
         }
         public void LimpiarStorage()
         {
             this.tempStorage.Clear();
         }
         //Guardar Temporales
-        public int guardarTemps(Entorno ent) {
+        public int guardarTemps(Entorno ent,bool isFunc) {
             if (tempStorage.Count > 0) {
                 String temp = this.newTemporal();
                 this.freeTemp(temp);
                 int num = 0;
-                this.agregarComentario("Guarda Temporales");
-                this.addExpression(temp,"p",ent.pos.ToString(),"+");
+                this.agregarComentario("Guarda Temporales", isFunc);
+                this.addExpression(temp,"p",ent.pos.ToString(),"+", isFunc);
                 foreach (String valor in tempStorage) {
                     num++;
-                    this.addSetStack(temp,valor);
+                    this.addSetStack(temp,valor, isFunc);
                     if (num != this.tempStorage.Count) {
-                        this.addExpression(temp,temp,"1","+");
+                        this.addExpression(temp,temp,"1","+", isFunc);
                     }
                 }
-                this.agregarComentario("finalizo guardar temporales");
+                this.agregarComentario("finalizo guardar temporales", isFunc);
             }
             int puntero = ent.pos;
             ent.pos = puntero + tempStorage.Count;
             return puntero;
         }
         //Cambio Simulado
-        public void nextEnt(int size) {
-            this.code.Append("p=p + " +size.ToString()+";\n");
+        public void nextEnt(int size, bool isFunc) {
+            if (!isFunc)
+            {
+                this.code.Append("p=p + " + size.ToString() + ";\n");
+            }
+            else {
+                this.codeFuncion.Append("p=p + " + size.ToString() + ";\n");
+            }
+                
+           
         }
         //Funcion para Imprimir String
-        public void NativePrintString() {
+        public void NativePrintString(bool isFunc) {
             addInicioProc("Native_PrintString");
             String T1 = newTemporal(); String T2 = newTemporal(); String T3 = newTemporal();
             String L1 = newLabel(); String L2 = newLabel(); String L3 = newLabel();
-            addExpression(T1, "p", "0", "+");
-            addGetStack(T2, T1);
-            addIf(T2, "-1", "!=", L1);
-            addPrint("\"% c\"", "32");
-            addGoto(L3);
-            addLabel(L1);
-            addGetHeap(T3, T2);
-            addLabel(L2);
-            addIf(T3, "-1", "==", L3);
-            addPrint("\"% c\"", "(char)" + T3);
-            addExpression(T2, T2, "1","+");
-            addGetHeap(T3,T2);
-            addGoto(L2);
-            addLabel(L3);
+            addExpression(T1, "p", "0", "+", isFunc);
+            addGetStack(T2, T1, isFunc);
+            addIf(T2, "-1", "!=", L1, isFunc);
+            addPrint("\"% c\"", "32", isFunc);
+            addGoto(L3, isFunc);
+            addLabel(L1, isFunc);
+            addGetHeap(T3, T2, isFunc);
+            addLabel(L2, isFunc);
+            addIf(T3, "-1", "==", L3, isFunc);
+            addPrint("\"% c\"", "(char)" + T3, isFunc);
+            addExpression(T2, T2, "1","+", isFunc);
+            addGetHeap(T3,T2, isFunc);
+            addGoto(L2, isFunc);
+            addLabel(L3, isFunc);
             addFinal();
             freeTemp(T1);freeTemp(T2);freeTemp(T3);
         }
         //Llamada Funcion
-        public void addCall(String id) {
-            this.code.Append(id + "() ;\n");
+        public void addCall(String id, bool isFunc) {
+            if (!isFunc)
+            {
+                this.code.Append(id + "() ;\n");
+            }
+            else {
+                this.codeFuncion.Append(id + "() ;\n");
+            }
+                           
         }
         //Recuperar Temporales
-        public void RecuperarTemp(Entorno ent,int pos) {
+        public void RecuperarTemp(Entorno ent,int pos,bool isFunc) {
             if (tempStorage.Count > 0) {
                 String temp = newTemporal();
                 freeTemp(temp);
                 int size = 0;
-                agregarComentario("Inicia Recuperacion temporales");
-                addExpression(temp, "p", pos.ToString(), "+");
+                agregarComentario("Inicia Recuperacion temporales",isFunc);
+                addExpression(temp, "p", pos.ToString(), "+", isFunc);
                 foreach (String tempSt in tempStorage) {
                     size++;
-                    addGetStack(tempSt,temp);
+                    addGetStack(tempSt,temp, isFunc);
                     if (size != this.tempStorage.Count)
-                        addExpression(temp,temp,"1","+");
+                        addExpression(temp,temp,"1","+", isFunc);
                 }
-                agregarComentario("Finaliza Recuperacion");
+                agregarComentario("Finaliza Recuperacion", isFunc);
                 ent.pos = pos;
             }
         }
@@ -118,9 +134,15 @@ namespace Proyecto2_Compi2.Code3D
                 this.tempStorage.AddLast(temp);
         }
         //Regreso Entorno
-        public void antEnt(int size)
+        public void antEnt(int size, bool isFunc)
         {
-            this.code.Append("p=p - " + size.ToString()+";\n");
+            if (!isFunc)
+            {
+                this.code.Append("p=p - " + size.ToString() + ";\n");
+            }
+            else {
+                this.codeFuncion.Append("p=p - " + size.ToString() + ";\n");
+            }                            
         }
         public LinkedList<String> getTempStorage()
         {
@@ -130,13 +152,26 @@ namespace Proyecto2_Compi2.Code3D
         {
             this.tempStorage = (LinkedList<string>)tempStorage;
         }
-        public void addSetHeap(object index,object value)
+        public void addSetHeap(object index, object value, bool isFunc)
         {
-            this.code.Append("Heap[(int)"+index+"] = "+value+";\n");
+            if (!isFunc)
+            {
+                this.code.Append("Heap[(int)" + index + "] = " + value + ";\n");
+            }
+            else {
+                this.codeFuncion.Append("Heap[(int)" + index + "] = " + value + ";\n");
+            }               
+            
         }
-        public void nextHeap()
+        public void nextHeap(bool isFunc)
         {
-            this.code.Append("h = h + 1;\n");
+            if (!isFunc)
+            {
+                this.code.Append("h = h + 1;\n");
+            }
+            else {
+                this.codeFuncion.Append("h = h + 1;\n");
+            }                           
         }
         public String newLabel()
         {
@@ -150,11 +185,23 @@ namespace Proyecto2_Compi2.Code3D
                 this.tempStorage.Remove(temp);
             }
         }
-        public void AgregarExpresionNumerica() {
-            code.Append("Hola Mundo");
+        public void AgregarExpresionNumerica(bool isFunc) {
+            if (!isFunc)
+            {
+                code.Append("Hola Mundo");
+            }
+            else {
+                codeFuncion.Append("Hola Mundo");
+            }                            
         }
-        public void agregarComentario(String coment) {
-            code.Append("//"+coment + "\n");
+        public void agregarComentario(String coment, bool isFunc) {
+            if (!isFunc)
+            {
+                code.Append("//" + coment + "\n");
+            }
+            else {
+                codeFuncion.Append("//" + coment + "\n");
+            }                            
         }
         public static Generator3D getInstance()
         {
@@ -164,21 +211,45 @@ namespace Proyecto2_Compi2.Code3D
             }
             return singleton;
         }
-        internal void addSetStack(String posicion, string v)
+        internal void addSetStack(String posicion, string v, bool isFunc)
         {
-            this.code.Append("Stack[(int)"+posicion+"] ="+ v + ";\n");
+            if (!isFunc) {
+                this.code.Append("Stack[(int)" + posicion + "] =" + v + ";\n");
+            }
+            else {
+                this.codeFuncion.Append("Stack[(int)" + posicion + "] =" + v + ";\n");
+            }
+            
         }
-        public void addGetStack(object target ,object index)
+        public void addGetStack(object target ,object index,bool isFunc)
         {
-            this.code.Append(target.ToString() +  "=" + "Stack[(int)" + index.ToString()+ "];\n");
+            if (!isFunc) {
+                this.code.Append(target.ToString() + "=" + "Stack[(int)" + index.ToString() + "];\n");
+            }
+            else {
+                this.codeFuncion.Append(target.ToString() + "=" + "Stack[(int)" + index.ToString() + "];\n");
+            }
+           
         }
-        public void addGetHeap(object target, object index)
+        public void addGetHeap(object target, object index, bool isFunc)
         {
-            this.code.Append(target.ToString() +  " = " +  "Heap[(int)" + index+ "];\n");
+            if (!isFunc) {
+                this.code.Append(target.ToString() + " = " + "Heap[(int)" + index + "];\n");
+            }
+            else{
+                this.codeFuncion.Append(target.ToString() + " = " + "Heap[(int)" + index + "];\n");
+            }
+            
         }
-        public void addNextEnv(int size)
+        public void addNextEnv(int size, bool isFunc)
         {
-            this.code.Append("p = p + " +size + ";\n");
+            if (!isFunc) {
+                this.code.Append("p = p + " + size + ";\n");
+            }
+            else {
+                this.codeFuncion.Append("p = p + " + size + ";\n");
+            }
+            
         }
         public StringBuilder agregarEncabezado() {
             StringBuilder encabezado = new StringBuilder();
@@ -195,39 +266,73 @@ namespace Proyecto2_Compi2.Code3D
             }
             return encabezado;
         }
-        public void addPrint(String format, object value) {
-            this.code.Append("printf(" + format +","+value+ ");\n");
+        public void addPrint(String format, object value,bool isFunc) {
+            if (!isFunc) {
+                this.code.Append("printf(" + format + "," + value + ");\n");
+            }
+            else{
+                this.codeFuncion.Append("printf(" + format + "," + value + ");\n");
+            }
+            
         }
-        public String addExpression(string temp, string v1, string v2, string v3)
+        public String addExpression(string temp, string v1, string v2, string v3, bool isFunc)
         {
-            this.code.Append(temp + " = " + v1 + v3 + v2 + ";\n");
+            if (!isFunc) {
+                this.code.Append(temp + " = " + v1 + v3 + v2 + ";\n");
+            }
+            else {
+                this.codeFuncion.Append(temp + " = " + v1 + v3 + v2 + ";\n");
+            }
+            
             return "";
         }
         public StringBuilder getCode() {
             return this.code;
         }
-        public void addPrintTrue() {
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("t")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("r")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("u")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("e")[0]);  
-        }
-        public void addLabel(String label) {
-            this.code.Append(label + ":\n");
-        }
-        public void addGoto(String label) {
-            this.code.Append("goto " + label + " ;\n");
-        }
-        public void addIf(object izq, object dere, String operador, String label) {
-            this.code.Append("if (" + izq + operador + dere + ") goto " + label +" ;\n");
-        }
-        public void addPrintFalse()
+        public StringBuilder getCodeFuncion()
         {
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("f")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("a")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("l")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("s")[0]);
-            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("e")[0]);
+            return this.codeFuncion;
+        }
+        public void addPrintTrue(bool isFunc) {
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("t")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("r")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("u")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("e")[0], isFunc);  
+        }
+        public void addLabel(String label, bool isFunc) {
+            if (!isFunc) {
+                this.code.Append(label + ":\n");
+            }
+            else {
+                this.codeFuncion.Append(label + ":\n");
+            }
+           
+        }
+        public void addGoto(String label,bool isFunc) {
+            if (!isFunc) {
+                this.code.Append("goto " + label + " ;\n");
+            }
+            else {
+                this.codeFuncion.Append("goto " + label + " ;\n");
+            }
+            
+        }
+        public void addIf(object izq, object dere, String operador, String label, bool isFunc) {
+            if (!isFunc) {
+                this.code.Append("if (" + izq + operador + dere + ") goto " + label + " ;\n");
+            }
+            else {
+                this.codeFuncion.Append("if (" + izq + operador + dere + ") goto " + label + " ;\n");
+            }
+            
+        }
+        public void addPrintFalse(bool isFunc)
+        {
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("f")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("a")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("l")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("s")[0], isFunc);
+            this.addPrint("\"%c\"", Encoding.ASCII.GetBytes("e")[0], isFunc);
         }
     }
 }
